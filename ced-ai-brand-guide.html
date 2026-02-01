@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ced.ai Brand Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* ========================================
+               COMPLEMENTARY (Primary Brand Palette)
+               Core: Your chosen harmony colors
+               ======================================== */
+            --ced-blue: #017CED;
+            --ced-orange: #ED5701;
+            
+            /* Blue Tints & Shades (Derived for UI) */
+            --blue-50: #E5F2FC;   /* Backgrounds, hover fills */
+            --blue-200: #A8D1F5;  /* Borders, dividers */
+            --blue-400: #4DA3F2;  /* Hover states, links */
+            --blue-500: #017CED;  /* Primary (base) */
+            --blue-700: #0159A8;  /* Active/pressed states */
+            --blue-900: #013A6B;  /* Dark mode text on blue bg */
+            
+            /* Orange Tints & Shades (Derived for UI) */
+            --orange-50: #FEF0E5;   /* Alert backgrounds, badges */
+            --orange-200: #FDCAA8;  /* Borders, progress bars */
+            --orange-400: #FF7A33;  /* Hover on orange buttons */
+            --orange-500: #ED5701;  /* Accent (base) */
+            --orange-700: #B84400;  /* Active/pressed states */
+            --orange-900: #6B2800;  /* Dark mode text on orange bg */
+            
+            /* ========================================
+               MONOCHROMATIC (Email Correspondence)
+               Core: Your chosen harmony colors
+               ======================================== */
+            --mono-primary: #017CED;    /* Headers, links */
+            --mono-secondary: #2B82D4;  /* Subheaders */
+            
+            /* Tints (Derived for email UI) */
+            --mono-pale: #E5F2FC;   /* Section backgrounds */
+            --mono-light: #A8D1F5;  /* Borders, table headers */
+            --mono-mid: #5A9FDE;    /* Secondary buttons, icons */
+            --mono-dark: #0159A8;   /* Footer text, emphasis */
+            
+            /* ========================================
+               TRIADIC (Dynamic Content)
+               Core: Your chosen harmony colors
+               ======================================== */
+            --triadic-blue: #017CED;   /* Primary — headers, links */
+            --triadic-yellow: #EDCE01; /* Tags, badges, highlights */
+            --triadic-red: #ED0140;    /* Alerts, emphasis, urgency */
+            
+            /* Yellow Tints & Shades (Derived for UI) */
+            --yellow-50: #FFFBE5;   /* Highlight backgrounds */
+            --yellow-200: #FFF0A8;  /* Tag backgrounds */
+            --yellow-500: #EDCE01;  /* Base */
+            --yellow-700: #A89300;  /* Text on yellow bg */
+            
+            /* Red Tints & Shades (Derived for UI) */
+            --red-50: #FEE5EC;    /* Error backgrounds */
+            --red-200: #FCA8BD;   /* Borders, soft alerts */
+            --red-500: #ED0140;   /* Base */
+            --red-700: #A8012D;   /* Active/pressed states */
+            
+            /* ========================================
+               TETRADIC (High-Energy Content)
+               Core: Your chosen harmony colors
+               ======================================== */
+            --tetradic-blue: #017CED;    /* Primary — headers */
+            --tetradic-orange: #ED5701;  /* CTAs, action items */
+            --tetradic-yellow: #EDCE01;  /* Badges, new tags */
+            --tetradic-purple: #AE01ED;  /* Premium, special features */
+            
+            /* Purple Tints & Shades (Derived for UI) */
+            --purple-50: #F5E5FE;   /* Feature backgrounds */
+            --purple-200: #DCA8FC;  /* Borders, dividers */
+            --purple-400: #C44DF2;  /* Hover states */
+            --purple-500: #AE01ED;  /* Base */
+            --purple-700: #7C01A8;  /* Active/pressed states */
+            --purple-900: #4A0166;  /* Dark text on purple bg */
+            
+            /* ========================================
+               NEUTRALS (System Colors for All Contexts)
+               ======================================== */
+            /* Dark: Text, Dark Mode Backgrounds */
+            --neutral-950: #0A0A0B;  /* Dark mode bg */
+            --neutral-900: #141416;  /* Primary text (light mode) */
+            --neutral-800: #1E1E21;  /* Dark mode cards */
+            --neutral-700: #2D2D32;  /* Dark mode borders */
+            
+            /* Mid: Secondary Text, Icons */
+            --neutral-600: #45454D;  /* Secondary text */
+            --neutral-500: #65656F;  /* Placeholder text */
+            --neutral-400: #8E8E99;  /* Disabled text, icons */
+            --neutral-300: #B4B4BC;  /* Dark mode text */
+            
+            /* Light: Borders, Backgrounds */
+            --neutral-200: #D4D4D9;  /* Borders, dividers */
+            --neutral-100: #EBEBED;  /* Card backgrounds, hover */
+            --neutral-50: #F7F7F8;   /* Page background */
+            --white: #FFFFFF;        /* Cards, modals, inputs */
+            
+            /* ========================================
+               SEMANTIC (Feedback & Status)
+               ======================================== */
+            --success: #10B981;  /* Confirmations, complete */
+            --warning: #F59E0B;  /* Cautions, attention */
+            --error: #EF4444;    /* Errors, destructive */
+            --info: #017CED;     /* Information, tips */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--neutral-50);
+            color: var(--neutral-900);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+        
+        .brand-mark {
+            font-family: 'Fraunces', serif;
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: -2px;
+            margin-bottom: 8px;
+        }
+        
+        .brand-mark span {
+            color: var(--ced-blue);
+        }
+        
+        header p {
+            font-size: 18px;
+            color: var(--neutral-500);
+            font-weight: 400;
+        }
+        
+        /* Section Styles */
+        section {
+            margin-bottom: 80px;
+        }
+        
+        h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: var(--neutral-900);
+        }
+        
+        .section-subtitle {
+            color: var(--neutral-500);
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+        
+        h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--neutral-400);
+            margin-bottom: 20px;
+        }
+        
+        /* Color Swatches */
+        .palette-group {
+            margin-bottom: 50px;
+        }
+        
+        .color-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .color-swatch {
+            width: 140px;
+        }
+        
+        .swatch-box {
+            width: 140px;
+            height: 100px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .swatch-box.large {
+            width: 180px;
+            height: 140px;
+        }
+        
+        .color-swatch.large {
+            width: 180px;
+        }
+        
+        .swatch-label {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--neutral-800);
+        }
+        
+        .swatch-hex {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--neutral-500);
+            margin-top: 2px;
+        }
+        
+        .swatch-use {
+            font-size: 12px;
+            color: var(--neutral-400);
+            margin-top: 4px;
+        }
+        
+        /* Use Case Badges */
+        .use-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: var(--neutral-100);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--neutral-600);
+            margin-bottom: 20px;
+        }
+        
+        .use-badge.primary {
+            background: var(--ced-blue);
+            color: white;
+        }
+        
+        .use-badge.dynamic {
+            background: linear-gradient(135deg, var(--triadic-blue), var(--triadic-yellow), var(--triadic-red));
+            color: white;
+        }
+        
+        .use-badge.mono {
+            background: linear-gradient(135deg, var(--mono-primary), var(--mono-secondary));
+            color: white;
+        }
+        
+        /* Typography Section */
+        .font-specimen {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .font-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ced-blue);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .font-role {
+            font-size: 13px;
+            color: var(--neutral-400);
+            margin-bottom: 24px;
+        }
+        
+        .font-display {
+            margin-bottom: 20px;
+        }
+        
+        .specimen-fraunces {
+            font-family: 'Fraunces', serif;
+        }
+        
+        .specimen-dm {
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        .specimen-jetbrains {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .specimen-garamond {
+            font-family: 'EB Garamond', serif;
+        }
+        
+        .display-large {
+            font-size: 48px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+        
+        .display-medium {
+            font-size: 32px;
+            line-height: 1.2;
+            color: var(--neutral-700);
+        }
+        
+        .body-sample {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--neutral-600);
+            max-width: 600px;
+        }
+        
+        .code-sample {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--neutral-700);
+            background: var(--neutral-100);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .weight-row {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .weight-item {
+            text-align: center;
+        }
+        
+        .weight-demo {
+            font-size: 28px;
+            margin-bottom: 4px;
+        }
+        
+        .weight-label {
+            font-size: 11px;
+            color: var(--neutral-400);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Scale Section */
+        .type-scale {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .scale-item {
+            display: flex;
+            align-items: baseline;
+            gap: 24px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--neutral-100);
+        }
+        
+        .scale-item:last-child {
+            border-bottom: none;
+        }
+        
+        .scale-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--neutral-400);
+            width: 100px;
+            flex-shrink: 0;
+        }
+        
+        .scale-size {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--ced-blue);
+            width: 60px;
+            flex-shrink: 0;
+        }
+        
+        /* Application Examples */
+        .app-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+        
+        .app-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .app-card-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--neutral-100);
+        }
+        
+        .app-card-header h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .app-card-header p {
+            font-size: 13px;
+            color: var(--neutral-400);
+        }
+        
+        .app-card-body {
+            padding: 24px;
+        }
+        
+        /* Email Preview */
+        .email-preview {
+            background: var(--mono-pale);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .email-preview .email-header {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--mono-primary);
+            margin-bottom: 12px;
+        }
+        
+        .email-preview .email-body {
+            font-family: 'EB Garamond', serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--neutral-700);
+        }
+        
+        /* Blog Preview */
+        .blog-preview {
+            background: linear-gradient(135deg, var(--neutral-950) 0%, var(--neutral-800) 100%);
+            border-radius: 8px;
+            padding: 24px;
+            color: white;
+        }
+        
+        .blog-preview .blog-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--triadic-yellow);
+            color: var(--neutral-900);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        
+        .blog-preview h5 {
+            font-family: 'Fraunces', serif;
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .blog-preview p {
+            font-size: 14px;
+            color: var(--neutral-300);
+        }
+        
+        /* Website Preview */
+        .web-preview {
+            background: white;
+            border: 1px solid var(--neutral-200);
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .web-preview .web-logo {
+            font-family: 'Fraunces', serif;
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 16px;
+        }
+        
+        .web-preview .web-logo span {
+            color: var(--ced-blue);
+        }
+        
+        .web-preview .web-tagline {
+            font-size: 14px;
+            color: var(--neutral-500);
+            margin-bottom: 20px;
+        }
+        
+        .web-preview .web-btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background: var(--ced-blue);
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        
+        /* Tetradic Demo */
+        .tetradic-demo {
+            background: linear-gradient(135deg, var(--tetradic-purple) 0%, var(--tetradic-blue) 50%, var(--tetradic-orange) 100%);
+            border-radius: 8px;
+            padding: 24px;
+            color: white;
+            text-align: center;
+        }
+        
+        .tetradic-demo h5 {
+            font-family: 'Fraunces', serif;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        
+        .tetradic-demo p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        /* Usage Rules */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .rule-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .rule-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .rule-card h4 .icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .rule-card h4 .icon.do {
+            background: var(--success);
+            color: white;
+        }
+        
+        .rule-card h4 .icon.dont {
+            background: var(--error);
+            color: white;
+        }
+        
+        .rule-card ul {
+            list-style: none;
+            font-size: 14px;
+            color: var(--neutral-600);
+        }
+        
+        .rule-card li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .rule-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--neutral-300);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--neutral-200);
+            color: var(--neutral-400);
+            font-size: 14px;
+        }
+        
+        footer .version {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--neutral-300);
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="brand-mark">ced<span>.ai</span></div>
+            <p>Brand &amp; Typography Guide</p>
+        </header>
+        
+        <!-- PRIMARY PALETTE -->
+        <section>
+            <h2>Color System</h2>
+            <p class="section-subtitle">A structured approach to color across all touchpoints</p>
+            
+            <div class="palette-group">
+                <span class="use-badge primary">Primary Brand Palette</span>
+                <h3>Complementary — Website, Apps, Primary Content</h3>
+                
+                <!-- Core Colors -->
+                <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8E8E99; margin-bottom: 12px; margin-top: 8px;">Core (Your chosen harmony)</p>
+                <div class="color-row">
+                    <div class="color-swatch large">
+                        <div class="swatch-box large" style="background: #017CED;"></div>
+                        <div class="swatch-label">CED Blue</div>
+                        <div class="swatch-hex">#017CED</div>
+                        <div class="swatch-use">Primary brand color</div>
+                    </div>
+                    <div class="color-swatch large">
+                        <div class="swatch-box large" style="background: #ED5701;"></div>
+                        <div class="swatch-label">CED Orange</div>
+                        <div class="swatch-hex">#ED5701</div>
+                        <div class="swatch-use">Accent, CTAs, highlights</div>
+                    </div>
+                </div>
+                
+                <!-- Derived Blue -->
+                <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8E8E99; margin-bottom: 12px; margin-top: 24px;">Blue Tints &amp; Shades (Derived for UI)</p>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #E5F2FC;"></div>
+                        <div class="swatch-label">Blue 50</div>
+                        <div class="swatch-hex">#E5F2FC</div>
+                        <div class="swatch-use">Backgrounds, hover fills</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #A8D1F5;"></div>
+                        <div class="swatch-label">Blue 200</div>
+                        <div class="swatch-hex">#A8D1F5</div>
+                        <div class="swatch-use">Borders, dividers</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #4DA3F2;"></div>
+                        <div class="swatch-label">Blue 400</div>
+                        <div class="swatch-hex">#4DA3F2</div>
+                        <div class="swatch-use">Hover states, links</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #017CED;"></div>
+                        <div class="swatch-label">Blue 500</div>
+                        <div class="swatch-hex">#017CED</div>
+                        <div class="swatch-use">Primary (base)</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #0159A8;"></div>
+                        <div class="swatch-label">Blue 700</div>
+                        <div class="swatch-hex">#0159A8</div>
+                        <div class="swatch-use">Active/pressed states</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #013A6B;"></div>
+                        <div class="swatch-label">Blue 900</div>
+                        <div class="swatch-hex">#013A6B</div>
+                        <div class="swatch-use">Dark mode text on blue bg</div>
+                    </div>
+                </div>
+                
+                <!-- Derived Orange -->
+                <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8E8E99; margin-bottom: 12px; margin-top: 24px;">Orange Tints &amp; Shades (Derived for UI)</p>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #FEF0E5;"></div>
+                        <div class="swatch-label">Orange 50</div>
+                        <div class="swatch-hex">#FEF0E5</div>
+                        <div class="swatch-use">Alert backgrounds, badges</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #FDCAA8;"></div>
+                        <div class="swatch-label">Orange 200</div>
+                        <div class="swatch-hex">#FDCAA8</div>
+                        <div class="swatch-use">Borders, progress bars</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #FF7A33;"></div>
+                        <div class="swatch-label">Orange 400</div>
+                        <div class="swatch-hex">#FF7A33</div>
+                        <div class="swatch-use">Hover on orange buttons</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #ED5701;"></div>
+                        <div class="swatch-label">Orange 500</div>
+                        <div class="swatch-hex">#ED5701</div>
+                        <div class="swatch-use">Accent (base)</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #B84400;"></div>
+                        <div class="swatch-label">Orange 700</div>
+                        <div class="swatch-hex">#B84400</div>
+                        <div class="swatch-use">Active/pressed states</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #6B2800;"></div>
+                        <div class="swatch-label">Orange 900</div>
+                        <div class="swatch-hex">#6B2800</div>
+                        <div class="swatch-use">Dark mode text on orange bg</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="palette-group">
+                <span class="use-badge mono">Professional Correspondence</span>
+                <h3>Monochromatic — Email, Formal Documents</h3>
+                
+                <!-- Core Color -->
+                <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8E8E99; margin-bottom: 12px; margin-top: 8px;">Core (Your chosen harmony)</p>
+                <div class="color-row">
+                    <div class="color-swatch large">
+                        <div class="swatch-box large" style="background: #017CED;"></div>
+                        <div class="swatch-label">CED Blue</div>
+                        <div class="swatch-hex">#017CED</div>
+                        <div class="swatch-use">Primary — headers, links</div>
+                    </div>
+                    <div class="color-swatch large">
+                        <div class="swatch-box large" style="background: #2B82D4;"></div>
+                        <div class="swatch-label">Blue Secondary</div>
+                        <div class="swatch-hex">#2B82D4</div>
+                        <div class="swatch-use">Secondary — subheaders</div>
+                    </div>
+                </div>
+                
+                <!-- Derived Tints -->
+                <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8E8E99; margin-bottom: 12px; margin-top: 24px;">Tints (Derived for email UI)</p>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #E5F2FC;"></div>
+                        <div class="swatch-label">Pale</div>
+                        <div class="swatch-hex">#E5F2FC</div>
+                        <div class="swatch-use">Section backgrounds</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #A8D1F5;"></div>
+                        <div class="swatch-label">Light</div>
+                        <div class="swatch-hex">#A8D1F5</div>
+                        <div class="swatch-use">Borders, table headers</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #5A9FDE;"></div>
+                        <div class="swatch-label">Mid</div>
+                        <div class="swatch-hex">#5A9FDE</div>
+                        <div class="swatch-use">Secondary buttons, icons</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #0159A8;"></div>
+                        <div class="swatch-label">Dark</div>
+                        <div class="swatch-hex">#0159A8</div>
+                        <div class="swatch-use">Footer text, emphasis</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="palette-group">
+                <span class="use-badge dynamic">Dynamic Content</span>
+                <h3>Triadic — Blog Articles, Announcements, Featured Content</h3>
+                
+                <!-- Core Colors -->
+                <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8E8E99; margin-bottom: 12px; margin-top: 8px;">Core (Your chosen harmony)</p>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #017CED;"></div>
+                        <div class="swatch-label">Blue</div>
+                        <div class="swatch-hex">#017CED</div>
+                        <div class="swatch-use">Primary — headers, links</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #EDCE01;"></div>
+                        <div class="swatch-label">Yellow</div>
+                        <div class="swatch-hex">#EDCE01</div>
+                        <div class="swatch-use">Tags, badges, highlights</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #ED0140;"></div>
+                        <div class="swatch-label">Red</div>
+                        <div class="swatch-hex">#ED0140</div>
+                        <div class="swatch-use">Alerts, emphasis, urgency</div>
+                    </div>
+                </div>
+                
+                <!-- Derived Yellow -->
+                <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8E8E99; margin-bottom: 12px; margin-top: 24px;">Yellow Tints &amp; Shades (Derived for UI)</p>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #FFFBE5;"></div>
+                        <div class="swatch-label">Yellow 50</div>
+                        <div class="swatch-hex">#FFFBE5</div>
+                        <div class="swatch-use">Highlight backgrounds</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #FFF0A8;"></div>
+                        <div class="swatch-label">Yellow 200</div>
+                        <div class="swatch-hex">#FFF0A8</div>
+                        <div class="swatch-use">Tag backgrounds</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #EDCE01;"></div>
+                        <div class="swatch-label">Yellow 500</div>
+                        <div class="swatch-hex">#EDCE01</div>
+                        <div class="swatch-use">Base</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #A89300;"></div>
+                        <div class="swatch-label">Yellow 700</div>
+                        <div class="swatch-hex">#A89300</div>
+                        <div class="swatch-use">Text on yellow bg</div>
+                    </div>
+                </div>
+                
+                <!-- Derived Red -->
+                <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8E8E99; margin-bottom: 12px; margin-top: 24px;">Red Tints &amp; Shades (Derived for UI)</p>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #FEE5EC;"></div>
+                        <div class="swatch-label">Red 50</div>
+                        <div class="swatch-hex">#FEE5EC</div>
+                        <div class="swatch-use">Error backgrounds</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #FCA8BD;"></div>
+                        <div class="swatch-label">Red 200</div>
+                        <div class="swatch-hex">#FCA8BD</div>
+                        <div class="swatch-use">Borders, soft alerts</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #ED0140;"></div>
+                        <div class="swatch-label">Red 500</div>
+                        <div class="swatch-hex">#ED0140</div>
+                        <div class="swatch-use">Base</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #A8012D;"></div>
+                        <div class="swatch-label">Red 700</div>
+                        <div class="swatch-hex">#A8012D</div>
+                        <div class="swatch-use">Active/pressed states</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="palette-group">
+                <span class="use-badge dynamic">High-Energy Content</span>
+                <h3>Tetradic — Product Launches, Demos, Special Features</h3>
+                
+                <!-- Core Colors -->
+                <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8E8E99; margin-bottom: 12px; margin-top: 8px;">Core (Your chosen harmony)</p>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #017CED;"></div>
+                        <div class="swatch-label">Blue</div>
+                        <div class="swatch-hex">#017CED</div>
+                        <div class="swatch-use">Primary — headers</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #ED5701;"></div>
+                        <div class="swatch-label">Orange</div>
+                        <div class="swatch-hex">#ED5701</div>
+                        <div class="swatch-use">CTAs, action items</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #EDCE01;"></div>
+                        <div class="swatch-label">Yellow</div>
+                        <div class="swatch-hex">#EDCE01</div>
+                        <div class="swatch-use">Badges, new tags</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #AE01ED;"></div>
+                        <div class="swatch-label">Purple</div>
+                        <div class="swatch-hex">#AE01ED</div>
+                        <div class="swatch-use">Premium, special features</div>
+                    </div>
+                </div>
+                
+                <!-- Derived Purple -->
+                <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8E8E99; margin-bottom: 12px; margin-top: 24px;">Purple Tints &amp; Shades (Derived for UI)</p>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #F5E5FE;"></div>
+                        <div class="swatch-label">Purple 50</div>
+                        <div class="swatch-hex">#F5E5FE</div>
+                        <div class="swatch-use">Feature backgrounds</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #DCA8FC;"></div>
+                        <div class="swatch-label">Purple 200</div>
+                        <div class="swatch-hex">#DCA8FC</div>
+                        <div class="swatch-use">Borders, dividers</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #C44DF2;"></div>
+                        <div class="swatch-label">Purple 400</div>
+                        <div class="swatch-hex">#C44DF2</div>
+                        <div class="swatch-use">Hover states</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #AE01ED;"></div>
+                        <div class="swatch-label">Purple 500</div>
+                        <div class="swatch-hex">#AE01ED</div>
+                        <div class="swatch-use">Base</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #7C01A8;"></div>
+                        <div class="swatch-label">Purple 700</div>
+                        <div class="swatch-hex">#7C01A8</div>
+                        <div class="swatch-use">Active/pressed states</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #4A0166;"></div>
+                        <div class="swatch-label">Purple 900</div>
+                        <div class="swatch-hex">#4A0166</div>
+                        <div class="swatch-use">Dark text on purple bg</div>
+                    </div>
+                </div>
+                
+                <!-- Note: Blue, Orange, Yellow tints already defined in Complementary and Triadic palettes -->
+                <p style="font-size: 13px; color: #65656F; margin-top: 20px; font-style: italic;">Note: Blue tints from Complementary, Yellow tints from Triadic — use those for consistency.</p>
+            </div>
+            
+            <div class="palette-group">
+                <h3>Neutrals — System Colors for All Contexts</h3>
+                
+                <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8E8E99; margin-bottom: 12px; margin-top: 8px;">Dark (Text, Dark Mode Backgrounds)</p>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #0A0A0B;"></div>
+                        <div class="swatch-label">950</div>
+                        <div class="swatch-hex">#0A0A0B</div>
+                        <div class="swatch-use">Dark mode bg</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #141416;"></div>
+                        <div class="swatch-label">900</div>
+                        <div class="swatch-hex">#141416</div>
+                        <div class="swatch-use">Primary text (light mode)</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #1E1E21;"></div>
+                        <div class="swatch-label">800</div>
+                        <div class="swatch-hex">#1E1E21</div>
+                        <div class="swatch-use">Dark mode cards</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #2D2D32;"></div>
+                        <div class="swatch-label">700</div>
+                        <div class="swatch-hex">#2D2D32</div>
+                        <div class="swatch-use">Dark mode borders</div>
+                    </div>
+                </div>
+                
+                <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8E8E99; margin-bottom: 12px; margin-top: 24px;">Mid (Secondary Text, Icons)</p>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #45454D;"></div>
+                        <div class="swatch-label">600</div>
+                        <div class="swatch-hex">#45454D</div>
+                        <div class="swatch-use">Secondary text</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #65656F;"></div>
+                        <div class="swatch-label">500</div>
+                        <div class="swatch-hex">#65656F</div>
+                        <div class="swatch-use">Placeholder text</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #8E8E99;"></div>
+                        <div class="swatch-label">400</div>
+                        <div class="swatch-hex">#8E8E99</div>
+                        <div class="swatch-use">Disabled text, icons</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #B4B4BC;"></div>
+                        <div class="swatch-label">300</div>
+                        <div class="swatch-hex">#B4B4BC</div>
+                        <div class="swatch-use">Dark mode text</div>
+                    </div>
+                </div>
+                
+                <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8E8E99; margin-bottom: 12px; margin-top: 24px;">Light (Borders, Backgrounds)</p>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #D4D4D9;"></div>
+                        <div class="swatch-label">200</div>
+                        <div class="swatch-hex">#D4D4D9</div>
+                        <div class="swatch-use">Borders, dividers</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #EBEBED; border: 1px solid #D4D4D9;"></div>
+                        <div class="swatch-label">100</div>
+                        <div class="swatch-hex">#EBEBED</div>
+                        <div class="swatch-use">Card backgrounds, hover</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #F7F7F8; border: 1px solid #EBEBED;"></div>
+                        <div class="swatch-label">50</div>
+                        <div class="swatch-hex">#F7F7F8</div>
+                        <div class="swatch-use">Page background</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #FFFFFF; border: 1px solid #EBEBED;"></div>
+                        <div class="swatch-label">White</div>
+                        <div class="swatch-hex">#FFFFFF</div>
+                        <div class="swatch-use">Cards, modals, inputs</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="palette-group">
+                <h3>Semantic — Feedback &amp; Status</h3>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #10B981;"></div>
+                        <div class="swatch-label">Success</div>
+                        <div class="swatch-hex">#10B981</div>
+                        <div class="swatch-use">Confirmations, complete</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #F59E0B;"></div>
+                        <div class="swatch-label">Warning</div>
+                        <div class="swatch-hex">#F59E0B</div>
+                        <div class="swatch-use">Cautions, attention</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #EF4444;"></div>
+                        <div class="swatch-label">Error</div>
+                        <div class="swatch-hex">#EF4444</div>
+                        <div class="swatch-use">Errors, destructive</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-box" style="background: #017CED;"></div>
+                        <div class="swatch-label">Info</div>
+                        <div class="swatch-hex">#017CED</div>
+                        <div class="swatch-use">Information, tips</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- TYPOGRAPHY -->
+        <section>
+            <h2>Typography</h2>
+            <p class="section-subtitle">A type system balancing personality with clarity</p>
+            
+            <div class="font-specimen">
+                <div class="font-name">Fraunces</div>
+                <div class="font-role">Display &amp; Headlines — Website titles, section headers, brand moments</div>
+                <div class="font-display specimen-fraunces">
+                    <div class="display-large">ced.ai</div>
+                    <div class="display-medium">Building what's next</div>
+                </div>
+                <div class="weight-row specimen-fraunces">
+                    <div class="weight-item">
+                        <div class="weight-demo" style="font-weight: 300;">Aa</div>
+                        <div class="weight-label">Light 300</div>
+                    </div>
+                    <div class="weight-item">
+                        <div class="weight-demo" style="font-weight: 400;">Aa</div>
+                        <div class="weight-label">Regular 400</div>
+                    </div>
+                    <div class="weight-item">
+                        <div class="weight-demo" style="font-weight: 500;">Aa</div>
+                        <div class="weight-label">Medium 500</div>
+                    </div>
+                    <div class="weight-item">
+                        <div class="weight-demo" style="font-weight: 600;">Aa</div>
+                        <div class="weight-label">Semibold 600</div>
+                    </div>
+                    <div class="weight-item">
+                        <div class="weight-demo" style="font-weight: 700;">Aa</div>
+                        <div class="weight-label">Bold 700</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="font-specimen">
+                <div class="font-name">DM Sans</div>
+                <div class="font-role">UI &amp; Body — Interface elements, buttons, navigation, general body text</div>
+                <p class="body-sample specimen-dm">
+                    The intersection of technology and education isn't just about tools—it's about understanding how people learn, think, and grow. Every system we build should amplify human capability, not replace human judgment.
+                </p>
+                <div class="weight-row specimen-dm">
+                    <div class="weight-item">
+                        <div class="weight-demo" style="font-weight: 400;">Aa</div>
+                        <div class="weight-label">Regular 400</div>
+                    </div>
+                    <div class="weight-item">
+                        <div class="weight-demo" style="font-weight: 500;">Aa</div>
+                        <div class="weight-label">Medium 500</div>
+                    </div>
+                    <div class="weight-item">
+                        <div class="weight-demo" style="font-weight: 600;">Aa</div>
+                        <div class="weight-label">Semibold 600</div>
+                    </div>
+                    <div class="weight-item">
+                        <div class="weight-demo" style="font-weight: 700;">Aa</div>
+                        <div class="weight-label">Bold 700</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="font-specimen">
+                <div class="font-name">JetBrains Mono</div>
+                <div class="font-role">Code &amp; Technical — Code snippets, technical documentation, data</div>
+                <div class="code-sample specimen-jetbrains">
+const cognitiveRigor = (input) => {<br>
+&nbsp;&nbsp;return input<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.map(analyze)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.filter(isRigorous)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.reduce(synthesize);<br>
+};
+                </div>
+            </div>
+            
+            <div class="font-specimen">
+                <div class="font-name">EB Garamond</div>
+                <div class="font-role">Long-form &amp; Correspondence — Blog posts, emails, formal documents</div>
+                <p class="body-sample specimen-garamond">
+                    Dear colleague, I wanted to follow up on our conversation regarding the curriculum framework. The approach we discussed offers a promising path forward, balancing rigor with accessibility in ways that could genuinely transform how students engage with complex material.
+                </p>
+            </div>
+        </section>
+        
+        <!-- TYPE SCALE -->
+        <section>
+            <h3>Type Scale</h3>
+            <div class="type-scale">
+                <div class="scale-item">
+                    <div class="scale-label">Display XL</div>
+                    <div class="scale-size">72px</div>
+                    <div style="font-family: 'Fraunces', serif; font-size: 48px; font-weight: 300;">ced.ai</div>
+                </div>
+                <div class="scale-item">
+                    <div class="scale-label">Display</div>
+                    <div class="scale-size">48px</div>
+                    <div style="font-family: 'Fraunces', serif; font-size: 36px; font-weight: 400;">Section Title</div>
+                </div>
+                <div class="scale-item">
+                    <div class="scale-label">Heading 1</div>
+                    <div class="scale-size">36px</div>
+                    <div style="font-family: 'Fraunces', serif; font-size: 28px; font-weight: 500;">Page Heading</div>
+                </div>
+                <div class="scale-item">
+                    <div class="scale-label">Heading 2</div>
+                    <div class="scale-size">28px</div>
+                    <div style="font-family: 'DM Sans', sans-serif; font-size: 24px; font-weight: 600;">Subsection</div>
+                </div>
+                <div class="scale-item">
+                    <div class="scale-label">Heading 3</div>
+                    <div class="scale-size">22px</div>
+                    <div style="font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 600;">Card Title</div>
+                </div>
+                <div class="scale-item">
+                    <div class="scale-label">Body Large</div>
+                    <div class="scale-size">18px</div>
+                    <div style="font-family: 'DM Sans', sans-serif; font-size: 18px;">Lead paragraph text</div>
+                </div>
+                <div class="scale-item">
+                    <div class="scale-label">Body</div>
+                    <div class="scale-size">16px</div>
+                    <div style="font-family: 'DM Sans', sans-serif; font-size: 16px;">Standard body copy</div>
+                </div>
+                <div class="scale-item">
+                    <div class="scale-label">Body Small</div>
+                    <div class="scale-size">14px</div>
+                    <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--neutral-500);">Secondary text, captions</div>
+                </div>
+                <div class="scale-item">
+                    <div class="scale-label">Caption</div>
+                    <div class="scale-size">12px</div>
+                    <div style="font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--neutral-400);">Labels, metadata</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- APPLICATION EXAMPLES -->
+        <section>
+            <h2>In Application</h2>
+            <p class="section-subtitle">How color and type work together across contexts</p>
+            
+            <div class="app-examples">
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <h4>Website (Complementary)</h4>
+                        <p>Primary brand presence</p>
+                    </div>
+                    <div class="app-card-body">
+                        <div class="web-preview">
+                            <div class="web-logo">ced<span>.ai</span></div>
+                            <div class="web-tagline">Building at the intersection of AI and education</div>
+                            <a href="#" class="web-btn">View Work</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <h4>Email (Monochromatic)</h4>
+                        <p>Professional correspondence</p>
+                    </div>
+                    <div class="app-card-body">
+                        <div class="email-preview">
+                            <div class="email-header">Re: Curriculum Framework Review</div>
+                            <div class="email-body">
+                                Thank you for the thoughtful feedback on the cognitive rigor index. I've incorporated your suggestions into the revised draft...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <h4>Blog Article (Triadic)</h4>
+                        <p>Featured content, announcements</p>
+                    </div>
+                    <div class="app-card-body">
+                        <div class="blog-preview">
+                            <span class="blog-tag">New Release</span>
+                            <h5>The Input Framework: Rethinking Cognitive Rigor</h5>
+                            <p>A new approach to measuring and developing critical thinking...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <h4>Product Launch (Tetradic)</h4>
+                        <p>High-energy, special features</p>
+                    </div>
+                    <div class="app-card-body">
+                        <div class="tetradic-demo">
+                            <h5>Rising Above Recall</h5>
+                            <p>Interactive training for cognitive rigor — now live</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- USAGE RULES -->
+        <section>
+            <h2>Usage Guidelines</h2>
+            <p class="section-subtitle">Principles for consistent application</p>
+            
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <h4><span class="icon do">✓</span> Do</h4>
+                    <ul>
+                        <li>Use Complementary as the default for all primary touchpoints</li>
+                        <li>Reserve Triadic/Tetradic for content that earns the energy</li>
+                        <li>Keep email correspondence in Monochromatic only</li>
+                        <li>Pair Fraunces with DM Sans for clear hierarchy</li>
+                        <li>Use JetBrains Mono for any code or technical data</li>
+                        <li>Use EB Garamond for long-form reading</li>
+                    </ul>
+                </div>
+                
+                <div class="rule-card">
+                    <h4><span class="icon dont">✗</span> Don't</h4>
+                    <ul>
+                        <li>Mix colors across harmony groups (no Triadic yellow with Complementary orange)</li>
+                        <li>Use Tetradic for routine content — save it for launches</li>
+                        <li>Put orange or other accents in email signatures</li>
+                        <li>Use Fraunces for body copy — it's for display only</li>
+                        <li>Combine more than two font families in one context</li>
+                        <li>Override the semantic system (error is always red, etc.)</li>
+                    </ul>
+                </div>
+                
+                <div class="rule-card">
+                    <h4>Context Triggers</h4>
+                    <ul>
+                        <li><strong>Complementary:</strong> Website, apps, social, presentations</li>
+                        <li><strong>Monochromatic:</strong> Email, formal letters, invoices</li>
+                        <li><strong>Triadic:</strong> Blog posts, announcements, featured work</li>
+                        <li><strong>Tetradic:</strong> Product launches, demos, experimental features</li>
+                    </ul>
+                </div>
+                
+                <div class="rule-card">
+                    <h4>Font Loading</h4>
+                    <ul>
+                        <li>Load via Google Fonts or self-host for performance</li>
+                        <li>Fraunces: 300, 400, 500, 600, 700</li>
+                        <li>DM Sans: 400, 500, 600, 700</li>
+                        <li>JetBrains Mono: 400, 500, 600</li>
+                        <li>EB Garamond: 400, 500, 600, 700 + italics</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>ced.ai Brand Guide</p>
+            <div class="version">v1.0 — February 2026</div>
+        </footer>
+    </div>
+</body>
+</html>
