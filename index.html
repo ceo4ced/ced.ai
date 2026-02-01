@@ -19,25 +19,40 @@
             --triadic-yellow: #EDCE01;
             --triadic-red: #ED0140;
             --tetradic-purple: #AE01ED;
-            
+
             /* Derived */
             --blue-400: #4DA3F2;
             --blue-700: #0159A8;
-            
-            /* Dark Mode */
+
+            /* Dark Mode (default) */
             --bg-primary: #0A0A0B;
             --bg-secondary: #111113;
             --bg-card: #161618;
             --bg-elevated: #1A1A1D;
-            
             --text-primary: #F7F7F8;
             --text-secondary: #B4B4BC;
             --text-muted: #65656F;
             --border: #2D2D32;
-            
+            --nav-bg: rgba(10, 10, 11, 0.9);
+            --spirograph-color: %23ffffff;
+
             /* Animation */
             --wave-duration: 350ms;
             --wave-delay: 12ms;
+        }
+
+        /* Light Mode */
+        [data-theme="light"] {
+            --bg-primary: #F7F7F8;
+            --bg-secondary: #EBEBED;
+            --bg-card: #FFFFFF;
+            --bg-elevated: #FFFFFF;
+            --text-primary: #0A0A0B;
+            --text-secondary: #45454D;
+            --text-muted: #65656F;
+            --border: #D4D4D9;
+            --nav-bg: rgba(247, 247, 248, 0.9);
+            --spirograph-color: %230A0A0B;
         }
         
         * {
@@ -68,11 +83,118 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 11, 0.9);
+            background: var(--nav-bg);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
         }
-        
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: var(--bg-elevated);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            overflow: hidden;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-card);
+        }
+
+        .theme-toggle svg {
+            width: 22px;
+            height: 22px;
+            transition: transform 0.5s ease, opacity 0.3s ease;
+        }
+
+        .theme-toggle .sun-icon {
+            color: var(--triadic-yellow);
+            position: absolute;
+            transform: translateY(50px) rotate(-90deg);
+            opacity: 0;
+        }
+
+        .theme-toggle .moon-icon {
+            color: var(--blue-400);
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+
+        [data-theme="light"] .theme-toggle .sun-icon {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+
+        [data-theme="light"] .theme-toggle .moon-icon {
+            transform: translateY(-50px) rotate(90deg);
+            opacity: 0;
+        }
+
+        /* Sunrise/Sunset Overlay */
+        .theme-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+        }
+
+        .theme-transition-overlay.sunrise {
+            background: radial-gradient(circle at var(--tx, 50%) var(--ty, 0%),
+                var(--triadic-yellow) 0%,
+                var(--ced-orange) 20%,
+                transparent 70%
+            );
+            animation: sunriseWipe 0.8s ease-out forwards;
+        }
+
+        .theme-transition-overlay.sunset {
+            background: radial-gradient(circle at var(--tx, 50%) var(--ty, 0%),
+                var(--tetradic-purple) 0%,
+                var(--blue-700) 20%,
+                transparent 70%
+            );
+            animation: sunsetWipe 0.8s ease-out forwards;
+        }
+
+        @keyframes sunriseWipe {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            30% {
+                opacity: 0.9;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(4);
+            }
+        }
+
+        @keyframes sunsetWipe {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            30% {
+                opacity: 0.9;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(4);
+            }
+        }
+
         .nav-logo {
             font-family: 'EB Garamond', serif;
             font-size: 22px;
@@ -124,12 +246,22 @@
             content: '';
             position: absolute;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='0.8'%3E%3Ccircle cx='300' cy='300' r='50'/%3E%3Ccircle cx='300' cy='300' r='80'/%3E%3Ccircle cx='300' cy='300' r='110'/%3E%3Ccircle cx='300' cy='300' r='140'/%3E%3Ccircle cx='300' cy='300' r='170'/%3E%3Ccircle cx='300' cy='300' r='200'/%3E%3Ccircle cx='300' cy='300' r='230'/%3E%3Ccircle cx='300' cy='300' r='260'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(0 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(30 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(60 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(90 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(120 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(150 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(15 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(45 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(75 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(105 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(135 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(165 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(7.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(37.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(67.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(97.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(127.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(157.5 300 300)'/%3E%3C/g%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600'%3E%3Cg fill='none' stroke='var(--spirograph-color)' stroke-width='0.8'%3E%3Ccircle cx='300' cy='300' r='50'/%3E%3Ccircle cx='300' cy='300' r='80'/%3E%3Ccircle cx='300' cy='300' r='110'/%3E%3Ccircle cx='300' cy='300' r='140'/%3E%3Ccircle cx='300' cy='300' r='170'/%3E%3Ccircle cx='300' cy='300' r='200'/%3E%3Ccircle cx='300' cy='300' r='230'/%3E%3Ccircle cx='300' cy='300' r='260'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(0 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(30 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(60 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(90 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(120 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(150 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(15 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(45 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(75 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(105 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(135 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(165 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(7.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(37.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(67.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(97.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(127.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(157.5 300 300)'/%3E%3C/g%3E%3C/svg%3E");
             background-position: center center;
             background-repeat: no-repeat;
             background-size: 900px 900px;
             opacity: 0.06;
             pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Spirograph for light mode needs inline SVG update via JS */
+        .hero-spirograph {
+            position: absolute;
+            inset: 0;
+            opacity: 0.06;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
         }
         
         .hero-content {
@@ -664,6 +796,9 @@
     </script>
 </head>
 <body>
+    <!-- Theme Transition Overlay -->
+    <div class="theme-transition-overlay" id="themeOverlay"></div>
+
     <nav>
         <a href="/" class="nav-logo">ced<span>.ai</span></a>
         <ul class="nav-links">
@@ -672,6 +807,24 @@
             <li><a href="/insights">Insights</a></li>
             <li><a href="/contact">Start</a></li>
         </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <!-- Moon Icon (visible in dark mode) -->
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <!-- Sun Icon (visible in light mode) -->
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+        </button>
     </nav>
     
     <main>
@@ -837,11 +990,54 @@
     </footer>
     
     <script>
+        // Theme Toggle with Sunrise/Sunset Animation
+        const themeToggle = document.getElementById('themeToggle');
+        const themeOverlay = document.getElementById('themeOverlay');
+        const html = document.documentElement;
+
+        // Check for saved theme or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            html.setAttribute('data-theme', savedTheme);
+        } else if (!systemPrefersDark) {
+            html.setAttribute('data-theme', 'light');
+        }
+
+        themeToggle.addEventListener('click', (e) => {
+            const rect = themeToggle.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+
+            // Set the origin point for the radial gradient
+            themeOverlay.style.setProperty('--tx', `${x}px`);
+            themeOverlay.style.setProperty('--ty', `${y}px`);
+
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            // Add animation class
+            themeOverlay.classList.remove('sunrise', 'sunset');
+            void themeOverlay.offsetWidth; // Force reflow
+            themeOverlay.classList.add(newTheme === 'light' ? 'sunrise' : 'sunset');
+
+            // Change theme partway through animation
+            setTimeout(() => {
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            }, 200);
+
+            // Remove animation class after complete
+            setTimeout(() => {
+                themeOverlay.classList.remove('sunrise', 'sunset');
+            }, 800);
+        });
+
+        // Equation Wave Animation
         const equation = document.getElementById('equation');
-        
-        // Wrap characters for animation
         let charCount = 0;
-        
+
         const wrapChars = (el) => {
             const text = el.textContent;
             el.textContent = '';
@@ -855,30 +1051,20 @@
                 el.appendChild(span);
             }
         };
-        
-        // Wrap all parts of the equation
+
         equation.querySelectorAll('.brand, .equals, .term, .plus').forEach(wrapChars);
-        
-        // Trigger the wave animation
+
         const triggerWave = () => {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            
             equation.removeAttribute('data-wave');
-            void equation.offsetWidth; // Force reflow
+            void equation.offsetWidth;
             equation.setAttribute('data-wave', 'on');
-            
-            // Remove after animation completes
             const totalDuration = 800 + (charCount * 25) + 200;
             setTimeout(() => equation.removeAttribute('data-wave'), totalDuration);
         };
-        
-        // Initial wave on load
+
         setTimeout(triggerWave, 500);
-        
-        // Periodic wave every 10 seconds
         setInterval(triggerWave, 10000);
-        
-        // Also trigger on hover
         equation.addEventListener('mouseenter', triggerWave);
     </script>
 </body>

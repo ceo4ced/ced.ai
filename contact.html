@@ -28,6 +28,19 @@
             --text-secondary: #B4B4BC;
             --text-muted: #65656F;
             --border: #2D2D32;
+            --nav-bg: rgba(10, 10, 11, 0.9);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #F7F7F8;
+            --bg-secondary: #EBEBED;
+            --bg-card: #FFFFFF;
+            --bg-elevated: #FFFFFF;
+            --text-primary: #0A0A0B;
+            --text-secondary: #45454D;
+            --text-muted: #65656F;
+            --border: #D4D4D9;
+            --nav-bg: rgba(247, 247, 248, 0.9);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,6 +53,33 @@
             line-height: 1.6;
         }
 
+        /* Theme Toggle */
+        .theme-toggle {
+            position: relative; width: 44px; height: 44px; border: none;
+            background: var(--bg-elevated); border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.3s ease; overflow: hidden;
+        }
+        .theme-toggle:hover { background: var(--bg-card); }
+        .theme-toggle svg { width: 22px; height: 22px; transition: transform 0.5s ease, opacity 0.3s ease; }
+        .theme-toggle .sun-icon { color: var(--triadic-yellow); position: absolute; transform: translateY(50px) rotate(-90deg); opacity: 0; }
+        .theme-toggle .moon-icon { color: var(--blue-400); transform: translateY(0) rotate(0deg); opacity: 1; }
+        [data-theme="light"] .theme-toggle .sun-icon { transform: translateY(0) rotate(0deg); opacity: 1; }
+        [data-theme="light"] .theme-toggle .moon-icon { transform: translateY(-50px) rotate(90deg); opacity: 0; }
+        .theme-transition-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999; opacity: 0;
+        }
+        .theme-transition-overlay.sunrise {
+            background: radial-gradient(circle at var(--tx, 50%) var(--ty, 0%), var(--triadic-yellow) 0%, var(--ced-orange) 20%, transparent 70%);
+            animation: themeWipe 0.8s ease-out forwards;
+        }
+        .theme-transition-overlay.sunset {
+            background: radial-gradient(circle at var(--tx, 50%) var(--ty, 0%), var(--tetradic-purple) 0%, var(--blue-700) 20%, transparent 70%);
+            animation: themeWipe 0.8s ease-out forwards;
+        }
+        @keyframes themeWipe { 0% { opacity: 0; transform: scale(0); } 30% { opacity: 0.9; } 100% { opacity: 0; transform: scale(4); } }
+
         /* Navigation */
         nav {
             position: fixed;
@@ -51,7 +91,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 11, 0.9);
+            background: var(--nav-bg);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
         }
@@ -373,6 +413,7 @@
     </script>
 </head>
 <body>
+    <div class="theme-transition-overlay" id="themeOverlay"></div>
     <nav>
         <a href="/" class="nav-logo">ced<span>.ai</span></a>
         <ul class="nav-links">
@@ -381,6 +422,10 @@
             <li><a href="/insights">Insights</a></li>
             <li><a href="/contact" class="active">Start</a></li>
         </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
     </nav>
 
     <main class="contact-page">
@@ -458,5 +503,24 @@
             </div>
         </footer>
     </main>
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const themeOverlay = document.getElementById('themeOverlay');
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) html.setAttribute('data-theme', savedTheme);
+        else if (!window.matchMedia('(prefers-color-scheme: dark)').matches) html.setAttribute('data-theme', 'light');
+        themeToggle.addEventListener('click', () => {
+            const rect = themeToggle.getBoundingClientRect();
+            themeOverlay.style.setProperty('--tx', `${rect.left + rect.width/2}px`);
+            themeOverlay.style.setProperty('--ty', `${rect.top + rect.height/2}px`);
+            const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            themeOverlay.classList.remove('sunrise', 'sunset');
+            void themeOverlay.offsetWidth;
+            themeOverlay.classList.add(newTheme === 'light' ? 'sunrise' : 'sunset');
+            setTimeout(() => { html.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme); }, 200);
+            setTimeout(() => themeOverlay.classList.remove('sunrise', 'sunset'), 800);
+        });
+    </script>
 </body>
 </html>
