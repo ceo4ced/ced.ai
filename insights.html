@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights | ced.ai</title>
+    <meta name="description" content="Perspectives on AI implementation, cognitive science in design, and building systems that work. Written from 25+ years of experience at the intersection of technology and human understanding.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ced-blue: #017CED;
+            --ced-orange: #ED5701;
+            --triadic-yellow: #EDCE01;
+            --triadic-red: #ED0140;
+            --tetradic-purple: #AE01ED;
+            --blue-400: #4DA3F2;
+            --blue-700: #0159A8;
+            --bg-primary: #0A0A0B;
+            --bg-secondary: #111113;
+            --bg-card: #161618;
+            --bg-elevated: #1A1A1D;
+            --text-primary: #F7F7F8;
+            --text-secondary: #B4B4BC;
+            --text-muted: #65656F;
+            --border: #2D2D32;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 11, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-family: 'EB Garamond', serif;
+            font-size: 22px;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .nav-logo span { color: var(--ced-blue); }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+            background: var(--bg-elevated);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 160px 48px 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ced-orange);
+            margin-bottom: 16px;
+        }
+
+        .page-title {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .page-intro {
+            font-size: 20px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            max-width: 700px;
+        }
+
+        /* Articles Grid */
+        .articles-section {
+            padding: 0 48px 100px;
+        }
+
+        .articles-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Featured Article */
+        .featured-article {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 48px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 48px;
+            margin-bottom: 48px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-article::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ced-blue), var(--tetradic-purple));
+        }
+
+        .featured-article:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-4px);
+        }
+
+        @media (max-width: 800px) {
+            .featured-article {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding: 32px;
+            }
+        }
+
+        .featured-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--bg-primary);
+            background: var(--triadic-yellow);
+            padding: 4px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .article-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--ced-blue);
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .featured-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .featured-excerpt {
+            font-family: 'EB Garamond', serif;
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .article-meta {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .featured-preview {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 32px;
+        }
+
+        .featured-preview h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .featured-preview ul {
+            list-style: none;
+        }
+
+        .featured-preview li {
+            font-size: 15px;
+            color: var(--text-secondary);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .featured-preview li:last-child {
+            border-bottom: none;
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 700px) {
+            .articles-grid { grid-template-columns: 1fr; }
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--ced-blue);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .article-card:nth-child(2)::before { background: var(--ced-orange); }
+        .article-card:nth-child(3)::before { background: var(--triadic-yellow); }
+        .article-card:nth-child(4)::before { background: var(--tetradic-purple); }
+
+        .article-card:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-4px);
+        }
+
+        .article-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .article-card:nth-child(2) .article-tag { color: var(--ced-orange); }
+        .article-card:nth-child(3) .article-tag { color: var(--triadic-yellow); }
+        .article-card:nth-child(4) .article-tag { color: var(--tetradic-purple); }
+
+        .article-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: 80px 48px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+        }
+
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ced-orange);
+            margin-bottom: 16px;
+        }
+
+        .newsletter-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .newsletter-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 500px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 16px 20px;
+            font-size: 15px;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--ced-blue);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--ced-blue);
+            color: white;
+            border-color: var(--ced-blue);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--ced-blue);
+            box-shadow: 0 0 30px rgba(1, 124, 237, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 48px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-left {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover { color: var(--ced-blue); }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            nav { padding: 16px 24px; }
+            .nav-links { display: none; }
+            .page-header,
+            .articles-section,
+            .newsletter-section { padding-left: 24px; padding-right: 24px; }
+            footer { padding: 32px 24px; }
+        }
+    </style>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Insights - ced.ai",
+        "description": "Perspectives on AI implementation, cognitive science in design, and building systems that work.",
+        "url": "https://ced.ai/insights",
+        "isPartOf": {
+            "@id": "https://ced.ai/#website"
+        }
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <a href="/" class="nav-logo">ced<span>.ai</span></a>
+        <ul class="nav-links">
+            <li><a href="/approach">Approach</a></li>
+            <li><a href="/work">Case Studies</a></li>
+            <li><a href="/insights" class="active">Insights</a></li>
+            <li><a href="/contact">Start</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <header class="page-header">
+            <p class="page-label">Writing</p>
+            <h1 class="page-title">Thinking out loud about AI that works.</h1>
+            <p class="page-intro">
+                Observations from 25+ years building systems at the intersection of technology and human understanding. Less hype, more reality.
+            </p>
+        </header>
+
+        <section class="articles-section">
+            <div class="articles-container">
+                <a href="/insights/vibe-coding-missing" class="featured-article">
+                    <div class="featured-content">
+                        <span class="featured-badge">Featured</span>
+                        <span class="article-tag">AI Implementation</span>
+                        <h2 class="featured-title">What Vibe Coding Misses</h2>
+                        <p class="featured-excerpt">
+                            The explosion of AI-assisted development has created a new class of builder — fast, prolific, and often dangerously confident. Here's what they haven't learned yet, and why it matters for the systems they're shipping.
+                        </p>
+                        <div class="article-meta">8 min read · January 2026</div>
+                    </div>
+                    <div class="featured-preview">
+                        <h4>Key Points</h4>
+                        <ul>
+                            <li>Speed without understanding creates technical debt</li>
+                            <li>AI-generated code still needs human judgment</li>
+                            <li>The gap between demo and production remains</li>
+                            <li>Experience isn't about age — it's about failure</li>
+                        </ul>
+                    </div>
+                </a>
+
+                <div class="articles-grid">
+                    <a href="/insights/interface-is-product" class="article-card">
+                        <span class="article-tag">Design Philosophy</span>
+                        <h3 class="article-title">The Interface Is the Product</h3>
+                        <p class="article-excerpt">
+                            Your model accuracy doesn't matter if nobody uses the system. Why the human interaction layer deserves more attention than the algorithm.
+                        </p>
+                        <div class="article-meta">5 min read · January 2026</div>
+                    </a>
+
+                    <a href="/insights/trust-surfaces" class="article-card">
+                        <span class="article-tag">Cognitive Science</span>
+                        <h3 class="article-title">Designing Trust Surfaces</h3>
+                        <p class="article-excerpt">
+                            How to build AI interfaces that users actually trust — and when to deliberately introduce friction to prevent over-reliance.
+                        </p>
+                        <div class="article-meta">6 min read · December 2025</div>
+                    </a>
+
+                    <a href="/insights/monday-morning-test" class="article-card">
+                        <span class="article-tag">Systems Thinking</span>
+                        <h3 class="article-title">The Monday Morning Test</h3>
+                        <p class="article-excerpt">
+                            Why we evaluate every system by whether it survives contact with real users on a real Monday. Demos impress; production teaches.
+                        </p>
+                        <div class="article-meta">4 min read · December 2025</div>
+                    </a>
+
+                    <a href="/insights/cognitive-rigor-ai" class="article-card">
+                        <span class="article-tag">Education × AI</span>
+                        <h3 class="article-title">Teaching Cognitive Rigor in an AI World</h3>
+                        <p class="article-excerpt">
+                            As AI handles more routine cognitive tasks, what skills do humans need to develop? Thoughts on education's next evolution.
+                        </p>
+                        <div class="article-meta">7 min read · November 2025</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter-section">
+            <div class="newsletter-container">
+                <p class="section-label">Stay Updated</p>
+                <h2 class="newsletter-title">Occasional thoughts, no spam.</h2>
+                <p class="newsletter-description">
+                    Infrequent emails about AI implementation, cognitive science, and building systems that actually work. Unsubscribe anytime.
+                </p>
+                <form class="newsletter-form" action="#" method="post">
+                    <input type="email" placeholder="your@email.com" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-left">© 2026 ced.ai</div>
+        <div class="footer-links">
+            <a href="https://linkedin.com/in/cedricwilliams" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/cedricwilliams" target="_blank" rel="noopener">GitHub</a>
+            <a href="mailto:hello@ced.ai">Email</a>
+        </div>
+    </footer>
+</body>
+</html>

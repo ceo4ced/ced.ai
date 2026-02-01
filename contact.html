@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start an Engagement | ced.ai</title>
+    <meta name="description" content="Ready to build AI systems that actually work? Start a conversation with ced.ai about strategy, systems, or curriculum development.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ced-blue: #017CED;
+            --ced-orange: #ED5701;
+            --triadic-yellow: #EDCE01;
+            --triadic-red: #ED0140;
+            --tetradic-purple: #AE01ED;
+            --blue-400: #4DA3F2;
+            --blue-700: #0159A8;
+            --bg-primary: #0A0A0B;
+            --bg-secondary: #111113;
+            --bg-card: #161618;
+            --bg-elevated: #1A1A1D;
+            --text-primary: #F7F7F8;
+            --text-secondary: #B4B4BC;
+            --text-muted: #65656F;
+            --border: #2D2D32;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 11, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-family: 'EB Garamond', serif;
+            font-size: 22px;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .nav-logo span { color: var(--ced-blue); }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+            background: var(--bg-elevated);
+        }
+
+        /* Page Layout */
+        .contact-page {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding-top: 73px;
+        }
+
+        @media (max-width: 900px) {
+            .contact-page {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Left Column - Info */
+        .contact-info {
+            padding: 80px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .page-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ced-orange);
+            margin-bottom: 16px;
+        }
+
+        .page-title {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(36px, 4vw, 48px);
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .page-intro {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            max-width: 480px;
+        }
+
+        /* What to Expect */
+        .expect-section h3 {
+            font-family: 'EB Garamond', serif;
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .expect-list {
+            list-style: none;
+        }
+
+        .expect-list li {
+            font-size: 15px;
+            color: var(--text-secondary);
+            padding: 12px 0;
+            padding-left: 28px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .expect-list li:last-child {
+            border-bottom: none;
+        }
+
+        .expect-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 18px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--ced-blue);
+        }
+
+        .expect-list li:nth-child(2)::before { background: var(--ced-orange); }
+        .expect-list li:nth-child(3)::before { background: var(--triadic-yellow); }
+
+        /* Direct Contact */
+        .direct-contact {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .direct-contact h4 {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-links a {
+            font-size: 15px;
+            color: var(--ced-blue);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--blue-400);
+        }
+
+        /* Right Column - Form */
+        .contact-form-section {
+            background: var(--bg-secondary);
+            padding: 80px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-form {
+            max-width: 480px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 15px;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--ced-blue);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2365656F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+            padding-right: 48px;
+        }
+
+        .form-group select option {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .form-hint {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 18px 36px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--ced-blue);
+            color: white;
+            border-color: var(--ced-blue);
+        }
+
+        .btn-primary:hover {
+            background: var(--blue-700);
+            border-color: var(--blue-700);
+        }
+
+        .form-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 48px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            grid-column: 1 / -1;
+        }
+
+        .footer-left {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover { color: var(--ced-blue); }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            nav { padding: 16px 24px; }
+            .nav-links { display: none; }
+            .contact-info,
+            .contact-form-section { padding: 48px 24px; }
+            footer { padding: 32px 24px; }
+        }
+    </style>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact - ced.ai",
+        "description": "Start a conversation with ced.ai about AI strategy, systems, or curriculum development.",
+        "url": "https://ced.ai/contact",
+        "isPartOf": {
+            "@id": "https://ced.ai/#website"
+        }
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <a href="/" class="nav-logo">ced<span>.ai</span></a>
+        <ul class="nav-links">
+            <li><a href="/approach">Approach</a></li>
+            <li><a href="/work">Case Studies</a></li>
+            <li><a href="/insights">Insights</a></li>
+            <li><a href="/contact" class="active">Start</a></li>
+        </ul>
+    </nav>
+
+    <main class="contact-page">
+        <div class="contact-info">
+            <p class="page-label">Let's Talk</p>
+            <h1 class="page-title">Start an engagement.</h1>
+            <p class="page-intro">
+                Every project begins with a conversation. Tell us what you're trying to solve, and we'll let you know if we can help — and be honest if we can't.
+            </p>
+
+            <div class="expect-section">
+                <h3>What to expect</h3>
+                <ul class="expect-list">
+                    <li><strong>Quick response.</strong> We reply within 48 hours, usually faster.</li>
+                    <li><strong>Honest assessment.</strong> Not every problem needs AI. We'll tell you if yours does.</li>
+                    <li><strong>Clear next steps.</strong> If there's a fit, we'll propose a discovery phase to understand your specific context.</li>
+                </ul>
+            </div>
+
+            <div class="direct-contact">
+                <h4>Prefer email?</h4>
+                <div class="contact-links">
+                    <a href="mailto:hello@ced.ai">hello@ced.ai</a>
+                    <a href="https://linkedin.com/in/cedricwilliams" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form-section">
+            <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="organization">Organization</label>
+                    <input type="text" id="organization" name="organization" placeholder="Company or institution">
+                </div>
+
+                <div class="form-group">
+                    <label for="type">What are you looking for?</label>
+                    <select id="type" name="type" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="strategy">AI Strategy Consultation</option>
+                        <option value="systems">System Development</option>
+                        <option value="curriculum">Curriculum Development</option>
+                        <option value="training">Training & Workshops</option>
+                        <option value="other">Something Else</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell us about your project</label>
+                    <textarea id="message" name="message" placeholder="What problem are you trying to solve? What have you tried? What does success look like?" required></textarea>
+                    <p class="form-hint">The more context you provide, the better we can assess fit.</p>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Send Message</button>
+                <p class="form-note">We read every message personally.</p>
+            </form>
+        </div>
+
+        <footer>
+            <div class="footer-left">© 2026 ced.ai</div>
+            <div class="footer-links">
+                <a href="https://linkedin.com/in/cedricwilliams" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/cedricwilliams" target="_blank" rel="noopener">GitHub</a>
+                <a href="mailto:hello@ced.ai">Email</a>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>
