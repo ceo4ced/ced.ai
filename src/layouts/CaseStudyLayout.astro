@@ -97,7 +97,7 @@ const { title, description, tag, tagColor, headline, metric, metricLabel, techSt
 <style>
     .case-study-header {
         padding: 120px 48px 60px;
-        max-width: 900px;
+        max-width: 996px;
         margin: 0 auto;
     }
 
@@ -138,7 +138,7 @@ const { title, description, tag, tagColor, headline, metric, metricLabel, techSt
     }
 
     .case-study-content {
-        max-width: 900px;
+        max-width: 996px;
         margin: 0 auto;
         padding: 0 48px 60px;
     }
@@ -190,7 +190,21 @@ const { title, description, tag, tagColor, headline, metric, metricLabel, techSt
         border-top: 1px solid var(--border);
     }
 
-    @media (max-width: 600px) {
+    /* Tablet */
+    @media (max-width: 900px) {
+        .case-study-header {
+            padding: 110px 32px 50px;
+        }
+        .case-study-content {
+            padding: 0 32px 50px;
+        }
+        .case-study-section {
+            padding: 50px 32px;
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 700px) {
         .case-study-header {
             padding: 100px 24px 40px;
         }
@@ -202,6 +216,13 @@ const { title, description, tag, tagColor, headline, metric, metricLabel, techSt
         }
         .metric-highlight {
             font-size: 36px;
+        }
+        .case-hero-title {
+            font-size: clamp(26px, 6vw, 40px);
+        }
+        .case-hero-metric {
+            flex-direction: column;
+            gap: 4px;
         }
     }
 </style>

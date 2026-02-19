@@ -47,23 +47,23 @@
     background: var(--bg-secondary);
 }
 
-/* Page Header */
+/* Page Header — padding is outside the max-width container to align with content sections */
 .page-header {
     padding: 160px 48px 80px;
-    max-width: 900px;
+    max-width: 996px; /* 900px content + 48px padding each side */
     margin: 0 auto;
 }
 
-/* Responsive */
+/* Tablet (900px) */
 @media (max-width: 900px) {
     .pillars-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
     .case-grid {
         grid-template-columns: 1fr;
     }
     .metrics-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
     .case-card-large {
         grid-template-columns: 1fr;
@@ -73,9 +73,19 @@
     .philosophy-grid {
         grid-template-columns: 1fr;
     }
+    .section-header {
+        margin-bottom: 48px;
+    }
 }
 
-@media (max-width: 600px) {
+/* Small tablet (700px) */
+@media (max-width: 700px) {
+    .pillars-grid {
+        grid-template-columns: 1fr;
+    }
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
     nav {
         padding: 16px 24px;
     }
@@ -91,7 +101,9 @@
     .page-header {
         padding: 120px 24px 60px;
     }
-    .content-section,
+    .content-section {
+        padding: 60px 24px;
+    }
     .cta-section {
         padding: 80px 24px;
     }
@@ -101,5 +113,11 @@
     .process-step {
         flex-direction: column;
         gap: 16px;
+    }
+    .section-title {
+        font-size: 28px;
+    }
+    .page-title {
+        font-size: clamp(28px, 6vw, 42px);
     }
 }

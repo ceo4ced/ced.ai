@@ -139,9 +139,18 @@ const colorMap: Record<number, { border: string; tag: string; arrow: string }> =
         font-family: 'EB Garamond', serif;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
+        .cases-section {
+            padding: 0 32px 80px;
+        }
+    }
+
+    @media (max-width: 700px) {
         .cases-section {
             padding: 0 24px 60px;
+        }
+        .key-metric strong {
+            font-size: 24px;
         }
     }
 </style>
