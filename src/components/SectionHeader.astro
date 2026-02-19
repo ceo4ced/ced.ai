@@ -1,0 +1,25 @@
+---
+interface Props {
+    label: string;
+    title: string;
+    centered?: boolean;
+    labelColor?: string;
+}
+
+const { label, title, centered = true, labelColor } = Astro.props;
+---
+
+<div class:list={["section-header-block", { centered }]}>
+    <p class="section-label" style={labelColor ? `color: ${labelColor}` : undefined}>{label}</p>
+    <h2 class="section-title">{title}</h2>
+</div>
+
+<style>
+    .section-header-block {
+        margin-bottom: 48px;
+    }
+    .centered {
+        text-align: center;
+        margin-bottom: 64px;
+    }
+</style>

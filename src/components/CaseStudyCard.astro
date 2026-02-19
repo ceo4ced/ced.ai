@@ -1,0 +1,76 @@
+---
+interface Props {
+    href: string;
+    tag: string;
+    tagColor: string;
+    title: string;
+    description: string;
+    borderColor: string;
+}
+
+const { href, tag, tagColor, title, description, borderColor } = Astro.props;
+---
+
+<a href={href} class="case-card" style={`--card-accent: ${borderColor}`}>
+    <span class="card-tag" style={`color: ${tagColor}`}>{tag}</span>
+    <h3>{title}</h3>
+    <p>{description}</p>
+</a>
+
+<style>
+    .case-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .case-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--card-accent);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+    }
+
+    .case-card:hover {
+        border-color: var(--text-muted);
+        transform: translateY(-4px);
+    }
+
+    .case-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .card-tag {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        display: inline-block;
+    }
+
+    h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    p {
+        font-size: 15px;
+        color: var(--text-muted);
+        line-height: 1.6;
+    }
+</style>

@@ -1,0 +1,207 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+    title: string;
+    description: string;
+    tag: string;
+    tagColor: string;
+    headline: string;
+    metric?: string;
+    metricLabel?: string;
+    techStack: string[];
+    schema?: object;
+}
+
+const { title, description, tag, tagColor, headline, metric, metricLabel, techStack, schema } = Astro.props;
+---
+
+<BaseLayout title={`${title} | ced.ai`} description={description} schema={schema}>
+    <Nav />
+    <main>
+        <!-- Breadcrumb -->
+        <div class="case-study-header">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span class="separator">&rsaquo;</span>
+                <a href="/work">Case Studies</a>
+                <span class="separator">&rsaquo;</span>
+                <span>{title}</span>
+            </nav>
+
+            <!-- Hero -->
+            <div class="case-hero">
+                <span class="case-study-tag" style={`color: ${tagColor}`}>{tag}</span>
+                <h1 class="case-hero-title">{headline}</h1>
+                {metric && (
+                    <div class="case-hero-metric">
+                        <span class="metric-highlight">{metric}</span>
+                        {metricLabel && <span class="metric-context">{metricLabel}</span>}
+                    </div>
+                )}
+            </div>
+        </div>
+
+        <!-- MDX Content -->
+        <article class="case-study-content">
+            <slot />
+        </article>
+
+        <!-- Tech Stack -->
+        <section class="case-study-section">
+            <div class="content-container">
+                <h2 class="section-title">Technology Stack</h2>
+                <div class="tech-stack">
+                    {techStack.map((tech) => (
+                        <span class="tech-pill">{tech}</span>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Placeholder -->
+        <section class="case-study-section">
+            <div class="content-container">
+                <div class="placeholder-section">
+                    <h3>Video Walkthrough</h3>
+                    <p>Coming soon</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Docs Placeholder -->
+        <section class="case-study-section">
+            <div class="content-container">
+                <div class="placeholder-section">
+                    <h3>Documentation</h3>
+                    <p>Coming soon</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="cta-box">
+                <p class="section-label">Similar challenge?</p>
+                <h2>Have a problem like this?</h2>
+                <p>We build AI systems that solve real business problems. Let's talk about yours.</p>
+                <a href="/contact" class="btn btn-primary">Start a Conversation</a>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</BaseLayout>
+
+<style>
+    .case-study-header {
+        padding: 120px 48px 60px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .case-study-tag {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        display: inline-block;
+    }
+
+    .case-hero-title {
+        font-family: 'EB Garamond', serif;
+        font-size: clamp(32px, 5vw, 52px);
+        font-weight: 500;
+        line-height: 1.2;
+        margin-bottom: 24px;
+    }
+
+    .case-hero-metric {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    .metric-highlight {
+        font-family: 'EB Garamond', serif;
+        font-size: 48px;
+        font-weight: 500;
+        color: var(--ced-blue);
+    }
+
+    .metric-context {
+        font-size: 16px;
+        color: var(--text-secondary);
+    }
+
+    .case-study-content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 48px 60px;
+    }
+
+    .case-study-content :global(h2) {
+        font-family: 'EB Garamond', serif;
+        font-size: 32px;
+        font-weight: 500;
+        margin: 48px 0 16px;
+        padding-top: 32px;
+        border-top: 1px solid var(--border);
+    }
+
+    .case-study-content :global(h2:first-child) {
+        border-top: none;
+        padding-top: 0;
+        margin-top: 0;
+    }
+
+    .case-study-content :global(h3) {
+        font-family: 'EB Garamond', serif;
+        font-size: 24px;
+        font-weight: 500;
+        margin: 32px 0 12px;
+    }
+
+    .case-study-content :global(p) {
+        font-size: 16px;
+        line-height: 1.8;
+        color: var(--text-secondary);
+        margin-bottom: 16px;
+    }
+
+    .case-study-content :global(ul),
+    .case-study-content :global(ol) {
+        margin: 16px 0;
+        padding-left: 24px;
+        color: var(--text-secondary);
+    }
+
+    .case-study-content :global(li) {
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 8px;
+    }
+
+    .case-study-section {
+        padding: 60px 48px;
+        border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+        .case-study-header {
+            padding: 100px 24px 40px;
+        }
+        .case-study-content {
+            padding: 0 24px 40px;
+        }
+        .case-study-section {
+            padding: 40px 24px;
+        }
+        .metric-highlight {
+            font-size: 36px;
+        }
+    }
+</style>

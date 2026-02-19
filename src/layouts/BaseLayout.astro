@@ -1,0 +1,73 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    canonicalURL?: string;
+    schema?: object;
+    ogImage?: string;
+}
+
+const { title, description, canonicalURL, schema, ogImage } = Astro.props;
+const siteURL = 'https://ced.ai';
+const canonical = canonicalURL || new URL(Astro.url.pathname, siteURL).href;
+const ogImg = ogImage || `${siteURL}/og-default.png`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    <link rel="canonical" href={canonical}>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={canonical}>
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:site_name" content="ced.ai">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <style is:global>
+        @import '../styles/global.css';
+        @import '../styles/typography.css';
+        @import '../styles/animations.css';
+        @import '../styles/components.css';
+        @import '../styles/utilities.css';
+    </style>
+
+    <!-- Theme init (prevent flash) -->
+    <script is:inline>
+        (function() {
+            const saved = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+            } else if (!prefersDark) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+
+    {schema && (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+
+    <slot name="head" />
+</head>
+<body>
+    <slot />
+</body>
+</html>

@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "ContactPage",
+            "name": "Start an Engagement - ced.ai",
+            "description": "Start a conversation with ced.ai about AI strategy, system development, workflow automation, or technical assessment.",
+            "url": "https://ced.ai/contact",
+            "isPartOf": { "@id": "https://ced.ai/#website" }
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "How do I start working with ced.ai?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Start by filling out the contact form at ced.ai/contact or emailing hello@ced.ai. Describe the problem you're trying to solve. We reply within 48 hours with an honest assessment of whether we can help, and if so, we'll propose a discovery phase to understand your specific context."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What services does ced.ai offer?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "ced.ai offers AI Strategy consultation, AI System Development, Workflow Automation, and Technical Assessment. We specialize in building production-grade AI systems using our 6-step methodology. Past projects include bid automation (90%+ time savings), engagement analytics (25% time reclaimed), and AI-integrated mobile applications."
+                    }
+                }
+            ]
+        }
+    ]
+};
+---
+
+<BaseLayout
+    title="Start an Engagement | ced.ai"
+    description="Start a conversation with ced.ai about AI strategy, system development, workflow automation, or technical assessment. We reply within 48 hours."
+    schema={schema}
+>
+    <Nav />
+    <main class="contact-page">
+        <div class="contact-info">
+            <p class="page-label">Let's Talk</p>
+            <h1 class="page-title">Start an engagement.</h1>
+            <p class="page-intro">
+                Every project begins with a conversation. Tell us what you're trying to solve, and we'll let you know if we can help — and be honest if we can't.
+            </p>
+
+            <div class="expect-section">
+                <h3>What to expect</h3>
+                <ul class="expect-list">
+                    <li><strong>Quick response.</strong> We reply within 48 hours, usually faster.</li>
+                    <li><strong>Honest assessment.</strong> Not every problem needs AI. We'll tell you if yours does.</li>
+                    <li><strong>Clear next steps.</strong> If there's a fit, we'll propose a discovery phase to understand your specific context.</li>
+                </ul>
+            </div>
+
+            <div class="direct-contact">
+                <h4>Prefer email?</h4>
+                <div class="contact-links">
+                    <a href="mailto:hello@ced.ai">hello@ced.ai</a>
+                    <a href="https://linkedin.com/in/cedricwilliams" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form-section">
+            <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="organization">Organization</label>
+                    <input type="text" id="organization" name="organization" placeholder="Company or institution">
+                </div>
+
+                <div class="form-group">
+                    <label for="type">What are you looking for?</label>
+                    <select id="type" name="type" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="strategy">AI Strategy</option>
+                        <option value="systems">System Development</option>
+                        <option value="automation">Workflow Automation</option>
+                        <option value="assessment">Technical Assessment</option>
+                        <option value="other">Something Else</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell us about your project</label>
+                    <textarea id="message" name="message" placeholder="What problem are you trying to solve? What have you tried? What does success look like?" required></textarea>
+                    <p class="form-hint">The more context you provide, the better we can assess fit.</p>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Send Message</button>
+                <p class="form-note">We read every message personally.</p>
+            </form>
+        </div>
+
+        <Footer />
+    </main>
+</BaseLayout>
+
+<style>
+    .contact-page {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-top: 73px;
+    }
+
+    .contact-info {
+        padding: 80px 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .page-intro {
+        margin-bottom: 48px;
+        max-width: 480px;
+    }
+
+    .expect-section h3 {
+        font-family: 'EB Garamond', serif;
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    .expect-list {
+        list-style: none;
+    }
+
+    .expect-list li {
+        font-size: 15px;
+        color: var(--text-secondary);
+        padding: 12px 0 12px 28px;
+        position: relative;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .expect-list li:last-child {
+        border-bottom: none;
+    }
+
+    .expect-list li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 18px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--ced-blue);
+    }
+
+    .expect-list li:nth-child(2)::before { background: var(--ced-orange); }
+    .expect-list li:nth-child(3)::before { background: var(--triadic-yellow); }
+
+    .direct-contact {
+        margin-top: 48px;
+        padding-top: 32px;
+        border-top: 1px solid var(--border);
+    }
+
+    .direct-contact h4 {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-muted);
+        margin-bottom: 16px;
+    }
+
+    .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .contact-links a {
+        font-size: 15px;
+        color: var(--ced-blue);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .contact-links a:hover {
+        color: var(--blue-400);
+    }
+
+    .contact-form-section {
+        background: var(--bg-secondary);
+        padding: 80px 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .contact-form {
+        max-width: 480px;
+    }
+
+    footer {
+        grid-column: 1 / -1;
+    }
+
+    @media (max-width: 900px) {
+        .contact-page {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .contact-info,
+        .contact-form-section {
+            padding: 48px 24px;
+        }
+    }
+</style>

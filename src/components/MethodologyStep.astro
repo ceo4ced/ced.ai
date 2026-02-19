@@ -1,0 +1,19 @@
+---
+interface Props {
+    number: string;
+    name: string;
+    origin: string;
+    description: string;
+}
+
+const { number, name, origin, description } = Astro.props;
+---
+
+<div class="process-step">
+    <span class="step-number">{number}</span>
+    <div class="step-content">
+        <h3>{name}</h3>
+        <p class="step-origin">{origin}</p>
+        <p>{description}</p>
+    </div>
+</div>

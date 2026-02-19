@@ -1,0 +1,192 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import MethodologyStep from '../components/MethodologyStep.astro';
+import CTASection from '../components/CTASection.astro';
+
+const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "name": "Approach - ced.ai",
+            "description": "How ced.ai builds AI systems that actually work. A 6-step methodology combining HCI, specification, pure functions, TDD, regression testing, and AI CI/CD.",
+            "url": "https://ced.ai/approach",
+            "isPartOf": { "@id": "https://ced.ai/#website" }
+        },
+        {
+            "@type": "HowTo",
+            "name": "The ced.ai 6-Step AI Development Methodology",
+            "description": "A proven framework for building production-grade AI systems that solve real business problems. Developed from 25+ years of building systems across construction, education, and consumer technology.",
+            "step": [
+                { "@type": "HowToStep", "position": 1, "name": "HCI / Wireframing", "text": "Understand users and workflows before writing code. Map pain points, prototype interfaces, validate with stakeholders. Rooted in Georgia Tech MS HCI training." },
+                { "@type": "HowToStep", "position": 2, "name": "SpecKit / Specify", "text": "Translate understanding into precise specifications. Define every input, output, edge case, and failure mode before building." },
+                { "@type": "HowToStep", "position": 3, "name": "Pure Functions", "text": "Build modular, testable components with predictable inputs and outputs. No side effects, no hidden state, no surprises." },
+                { "@type": "HowToStep", "position": 4, "name": "Test-Driven Development", "text": "Write tests before code. Every behavior is verified, every edge case is covered. 406 tests on our bid automation system." },
+                { "@type": "HowToStep", "position": 5, "name": "Regression Testing", "text": "Ensure nothing breaks when things change. Continuous validation across the full behavioral surface of the system." },
+                { "@type": "HowToStep", "position": 6, "name": "CI/CD with AI Agents", "text": "Deploy with AI agents managing quality gates, evaluation pipelines, and continuous improvement in production." }
+            ]
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "What is the ced.ai development methodology?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The ced.ai methodology is a 6-step framework for building reliable AI systems: (1) HCI/Wireframing to deeply understand users, (2) SpecKit specification to define precise requirements, (3) Pure Functions architecture for testable components, (4) Test-Driven Development for verified behavior, (5) Regression Testing for continuous validation, and (6) CI/CD with AI Agents for intelligent deployment. This methodology ensures AI systems that work in production, not just in demos."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Why does ced.ai start with HCI before building AI systems?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Most AI projects fail not because the model is wrong, but because nobody thought about who would use it or how. Starting with Human-Computer Interaction (HCI) ensures we understand the real workflow, the real pain points, and the real users before writing any code. This approach, informed by a Georgia Tech MS in HCI, prevents building technically brilliant solutions that nobody actually uses."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What credentials back the ced.ai methodology?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The ced.ai methodology is built on: Economics and Computer Science (AI/ML concentration) from UNC Chapel Hill, a Master's in Human-Computer Interaction from Georgia Tech, and experience as a Data Scientist since 2012. This combination of formal training in both the human and technical sides of technology, plus over a decade of production experience, informs every step of the framework."
+                    }
+                }
+            ]
+        }
+    ]
+};
+---
+
+<PageLayout
+    title="Approach | ced.ai — How We Build AI That Works"
+    description="The ced.ai 6-step methodology for building production-grade AI systems. HCI-first design, pure functions, TDD, and AI CI/CD. Backed by UNC Chapel Hill CS, Georgia Tech MS HCI, and 12+ years as a Data Scientist."
+    schema={schema}
+>
+    <header class="page-header">
+        <p class="page-label">Methodology</p>
+        <h1 class="page-title">How we build AI that actually works.</h1>
+        <p class="page-intro">
+            Most AI projects fail not because the model is wrong, but because nobody thought about who would use it or how. We start with the human problem and work backward to the technical solution.
+        </p>
+    </header>
+
+    <!-- Philosophy -->
+    <section class="content-section">
+        <div class="section-container">
+            <p class="section-label">Philosophy</p>
+            <h2 class="section-title">The interface is the product.</h2>
+            <div class="section-content">
+                <p>
+                    In 25 years of building systems, the pattern is always the same: technically brilliant solutions that nobody uses. The model accuracy doesn't matter if the workflow is broken. The automation doesn't help if people don't trust it.
+                </p>
+                <p>
+                    We learned this the hard way — building analytics dashboards that gathered dust, recommendation engines that users ignored, and classifiers that created more work than they saved. The technology was sound. The human design wasn't.
+                </p>
+            </div>
+
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <h3>Understand before you build</h3>
+                    <p>We spend more time watching people work than writing code. The real requirements live in workarounds, complaints, and the things nobody thought to mention.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>Trust is designed, not assumed</h3>
+                    <p>Users need to understand what the AI did and why. Every output should be traceable. Every automation should have an override. Opacity kills adoption.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>Failure modes matter most</h3>
+                    <p>We design for what happens when the AI is wrong — because it will be wrong. The question is whether that failure is recoverable or catastrophic.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>Monday morning is the test</h3>
+                    <p>Demos impress. Production teaches. We build systems that survive contact with real users, real edge cases, and real organizational complexity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6-Step Methodology -->
+    <section class="content-section">
+        <div class="section-container">
+            <p class="section-label">Process</p>
+            <h2 class="section-title">Six steps from problem to production.</h2>
+            <div class="section-content">
+                <p>
+                    Every engagement follows this structure, adapted to scale. The sequence matters — each step builds on the previous one. Skip a step and the system breaks in production.
+                </p>
+            </div>
+
+            <div class="process-steps">
+                <MethodologyStep
+                    number="01"
+                    name="HCI / Wireframing"
+                    origin="Georgia Tech MS HCI"
+                    description="Understand users and workflows before writing code. We observe actual work, interview stakeholders, map the real process — not the documented one. Prototype the interface first. If the workflow doesn't make sense on paper, it won't make sense in code."
+                />
+                <MethodologyStep
+                    number="02"
+                    name="SpecKit / Specify"
+                    origin="Software Architecture"
+                    description="Translate understanding into precise specifications. Every input, output, edge case, and failure mode is defined before building begins. The spec becomes the contract between what we promised and what we deliver."
+                />
+                <MethodologyStep
+                    number="03"
+                    name="Pure Functions"
+                    origin="Computer Science Fundamentals"
+                    description="Build modular, testable components. Each function does one thing with predictable inputs and outputs. No side effects, no hidden state, no surprises. This is what makes AI systems debuggable."
+                />
+                <MethodologyStep
+                    number="04"
+                    name="Test-Driven Development"
+                    origin="Engineering Discipline"
+                    description="Write the test before the code. Every behavior is verified. Every edge case is covered. Our bid automation system has 406 tests. Our zoom tracker has 200+. This isn't overhead — it's how you sleep at night."
+                />
+                <MethodologyStep
+                    number="05"
+                    name="Regression Testing"
+                    origin="Production Experience"
+                    description="Ensure nothing breaks when things change. AI systems evolve — prompts update, models change, data shifts. Regression testing catches drift before users do."
+                />
+                <MethodologyStep
+                    number="06"
+                    name="CI/CD with AI Agents"
+                    origin="Modern AI Operations"
+                    description="Deploy with AI agents in the loop. Automated quality gates, evaluation pipelines, and continuous improvement. The system gets better in production, not just in development."
+                />
+            </div>
+        </div>
+    </section>
+
+    <!-- Background -->
+    <section class="content-section">
+        <div class="section-container">
+            <p class="section-label">Background</p>
+            <h2 class="section-title">Where this comes from.</h2>
+            <div class="section-content">
+                <p>
+                    This methodology didn't come from a textbook. It emerged from building systems that had to work — in construction offices, virtual classrooms, and mobile apps used by real people.
+                </p>
+                <p>
+                    The foundation is a dual degree in Economics and Computer Science with an AI/ML concentration from UNC Chapel Hill, followed by a Master's in Human-Computer Interaction from Georgia Tech. The economics training shaped how we think about incentives and systems. The CS training gave us the engineering rigor. The HCI training taught us that neither matters without understanding the human in the loop.
+                </p>
+                <p>
+                    Since 2012, the work has been Data Science — building models, pipelines, and intelligent systems across industries. Each project added a lesson. Each failure sharpened the methodology. The 6 steps above aren't theoretical. They're battle-tested.
+                </p>
+                <p>
+                    Most importantly, we've been on both sides. Building systems teaches you what's possible. Using systems teaches you what's needed. That dual perspective is what separates tools that ship from tools that stick.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <CTASection
+        label="Ready to start?"
+        title="Let's talk about your problem."
+        description="Every engagement begins with understanding. Tell us what you're trying to solve."
+        buttonText="Get in Touch"
+        buttonHref="/contact"
+    />
+</PageLayout>

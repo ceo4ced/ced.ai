@@ -1,0 +1,61 @@
+---
+title: "SSA / Bid Manager"
+description: "AI-powered bid automation system for a construction company. Email classification, document analysis, and knowledge graph reduce 4-hour bid processes to 5 minutes. 90%+ time savings with 406 tests and >95% classification accuracy."
+tag: "Construction x AI"
+tagColor: "#017CED"
+headline: "From 4-hour bids to 5-minute automation"
+metric: "90%+"
+metricLabel: "time savings on bid processing"
+domain: "Construction"
+timeline: "2024–Present"
+status: "Phases 1-2 Delivered"
+techStack: ["n8n", "Python", "FastAPI", "React", "Claude AI", "OpenRouter", "Google Workspace APIs", "Firestore"]
+methodologySteps: [1, 2, 3, 4, 5, 6]
+order: 1
+---
+
+## The Problem
+
+A construction company was drowning in their bid process. Every day, dozens of RFI (Request for Information) emails arrived with attached bid documents — plans, specifications, material lists. Each bid required manual review, classification, and data extraction before the estimating team could even begin pricing.
+
+The process consumed roughly 4 hours per bid. At ~2 bids per day, that's a full-time person doing nothing but document triage. The bottleneck wasn't estimating — it was the administrative overhead of organizing incoming work.
+
+Critical information was scattered across email threads, Google Drive folders, and spreadsheets. Bids were missed. Deadlines were blown. The team knew there had to be a better way, but every "solution" they'd tried just moved the manual work from one place to another.
+
+## The Solution
+
+We built two interconnected systems that transformed the entire bid pipeline:
+
+**bid_manager** handles the email side — monitoring incoming RFIs, classifying emails using Claude 3.5 Sonnet, extracting key metadata (project name, deadline, scope, materials), and organizing everything into a structured pipeline in Google Sheets and Drive.
+
+**solid-surface-assistant** handles document analysis. It builds a knowledge graph from bid documents, enabling the team to query across projects: "Show me all countertop specs from the last 6 months" or "What's the typical timeline for a hospital renovation?" This isn't just search — it's institutional memory.
+
+The two systems work together. When bid_manager classifies an incoming email and extracts documents, solid-surface-assistant automatically indexes them into the knowledge graph.
+
+## Results
+
+The numbers speak for themselves:
+
+- **90%+ time savings** on bid processing — from 4 hours to under 5 minutes
+- **>95% classification accuracy** on email categorization
+- **406 tests** ensuring system reliability
+- **Phases 1-2 delivered** — email automation and document analysis are in production
+- **Phases 3-4 on roadmap** — automated takeoff estimation and proposal generation
+
+The system processes bids faster than the team can estimate them, which is exactly the right bottleneck to have.
+
+## How We Built It
+
+All six methodology steps applied to this project:
+
+1. **HCI / Wireframing** — We spent two weeks observing the actual bid process. The documented workflow had 6 steps. The real workflow had 23. We mapped every workaround, every Excel macro, every "I just remember to check that."
+
+2. **SpecKit / Specify** — Every email classification category, every extraction field, every edge case (What about emails with no attachments? What about forwarded chains? What about attachments in wrong formats?) was specified before building.
+
+3. **Pure Functions** — The classification pipeline is a chain of pure functions. Email in, structured data out. No side effects. Each stage is independently testable and replaceable.
+
+4. **TDD** — 406 tests. Classification accuracy tests. Extraction validation tests. Integration tests. Edge case tests. The test suite runs in under 3 minutes and catches issues before they reach production.
+
+5. **Regression Testing** — When we updated from Claude 3 to Claude 3.5 Sonnet, the regression suite caught 3 classification edge cases that would have silently degraded accuracy.
+
+6. **AI CI/CD** — Automated deployment with evaluation pipelines. When classification accuracy drops below threshold, the system alerts before users notice.

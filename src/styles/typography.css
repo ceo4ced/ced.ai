@@ -1,0 +1,57 @@
+/* ced.ai Typography */
+
+/* Page titles */
+.page-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ced-orange);
+    margin-bottom: 16px;
+}
+
+.page-title {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.page-intro {
+    font-size: 20px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 700px;
+}
+
+/* Section headers */
+.section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ced-orange);
+    margin-bottom: 16px;
+}
+
+.section-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 36px;
+    font-weight: 500;
+}
+
+/* Content sections */
+.section-content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.section-content p {
+    margin-bottom: 20px;
+}
+
+.section-content p:last-child {
+    margin-bottom: 0;
+}

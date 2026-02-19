@@ -1,0 +1,56 @@
+---
+interface Props {
+    icon: string;
+    title: string;
+    description: string;
+    color: string;
+}
+
+const { icon, title, description, color } = Astro.props;
+---
+
+<article class="pillar" style={`--pillar-color: ${color}`}>
+    <span class="icon">{icon}</span>
+    <h3>{title}</h3>
+    <p>{description}</p>
+</article>
+
+<style>
+    .pillar {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        transition: all 0.3s ease;
+    }
+
+    .pillar:hover {
+        border-color: var(--pillar-color);
+        transform: translateY(-4px);
+    }
+
+    .icon {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 14px;
+        font-weight: 600;
+        display: inline-block;
+        padding: 8px 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        background: color-mix(in srgb, var(--pillar-color) 15%, transparent);
+        color: var(--pillar-color);
+    }
+
+    h3 {
+        font-family: 'EB Garamond', serif;
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 12px;
+    }
+
+    p {
+        font-size: 15px;
+        color: var(--text-secondary);
+        line-height: 1.7;
+    }
+</style>

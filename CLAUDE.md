@@ -1,7 +1,7 @@
 # ced.ai — Project Context for Claude Code
 
 ## What is this?
-ced.ai is a personal consultancy website for Cedric Williams. McKinsey energy, one person, AI-powered. It's a brand, not a resume.
+ced.ai is an AI consulting firm website for Cedric Williams. McKinsey energy, one person, AI-powered. It's a brand, not a resume. Built with **Astro 5.x** + MDX, deploying to GitHub Pages.
 
 ## The Core Equation
 ```
@@ -11,117 +11,106 @@ This is the brand identity. Three disciplines, one methodology. The equation app
 
 ---
 
-## Design System
+## Tech Stack
+- **Astro 5.x** — Static site generator with islands architecture
+- **@astrojs/mdx** — Case study content in MDX format
+- **@astrojs/sitemap** — Auto-generated sitemap
+- **Vanilla JS** — No UI framework (future: @astrojs/react for AI side panel)
+- **GitHub Pages** — Static deployment via GitHub Actions
 
-### Colors
-```css
-/* Primary */
---ced-blue: #017CED;      /* Brand blue — literally contains "CED" */
---ced-orange: #ED5701;    /* Complementary */
-
-/* Triadic Accents */
---triadic-yellow: #EDCE01;
---triadic-red: #ED0140;
---tetradic-purple: #AE01ED;
-
-/* Dark Mode (default) */
---bg-primary: #0A0A0B;
---bg-secondary: #111113;
---bg-card: #161618;
---text-primary: #F7F7F8;
---text-secondary: #B4B4BC;
---text-muted: #65656F;
---border: #2D2D32;
+## Build Commands
+```bash
+npm run dev      # Local dev server
+npm run build    # Production build → dist/
+npm run preview  # Preview production build
 ```
-
-### Typography
-- **EB Garamond** — Headlines, the equation, display text
-- **DM Sans** — Body text, UI elements
-- **JetBrains Mono** — Code, labels, tags, technical elements
-
-### Animation
-- Rainbow wave on equation: 10s interval, 350ms duration, 12ms delay between chars, 0.6 opacity
-- Keep animations subtle — confident, not flashy
-
-### Background
-- Subtle spirograph/rose machine pattern at ~6% opacity
-- Mathematical, geometric, understated
 
 ---
 
 ## Site Architecture
 
 ```
-/                → Home (equation + POV + case study teasers + comparison table)
-/approach        → The framework methodology (where credentials appear naturally)
-/work            → Case studies list (problem → approach → outcome)
-/work/[slug]     → Individual case study detail
-/insights        → Blog/articles (fed by reading history + personal take)
-/insights/[slug] → Individual article
-/contact         → Start an engagement (not "hire me")
+/               → Homepage (equation + 3 case studies + methodology preview)
+/approach       → 6-step methodology + credentials
+/work           → Case studies listing (3 case studies)
+/work/[slug]    → Individual case study (bid-manager, ncca-zoom, merces)
+/contact        → Start an engagement (Formspree form)
 ```
+
+## Directory Structure
+```
+src/
+├── layouts/           BaseLayout, PageLayout, CaseStudyLayout
+├── components/        Nav, Footer, Equation, PillarCard, CaseStudyCard,
+│                      MethodologyStep, CTASection, SectionHeader
+├── styles/            global.css, typography.css, animations.css,
+│                      components.css, utilities.css
+├── content/work/      bid-manager.mdx, ncca-zoom.mdx, merces.mdx
+├── pages/             index, approach, contact, work/index, work/[...slug]
+├── content.config.ts  Content collection schema
+└── utils/             (schema helpers)
+```
+
+---
+
+## Design System
+
+### Colors
+```css
+--ced-blue: #017CED;      /* Brand blue */
+--ced-orange: #ED5701;    /* Complementary */
+--triadic-yellow: #EDCE01;
+--triadic-red: #ED0140;
+--tetradic-purple: #AE01ED;
+```
+
+### Typography
+- **EB Garamond** — Headlines, equation, display text
+- **DM Sans** — Body text, UI elements
+- **JetBrains Mono** — Code, labels, tags, technical elements
+
+### Animation
+- Rainbow wave on equation: 10s interval, 350ms duration, 12ms char delay
+- Sunrise/sunset theme toggle: 0.8s radial gradient wipe
+- Card hover: translateY(-4px), 0.3s ease
+- `prefers-reduced-motion` respected throughout
 
 ---
 
 ## Content Principles
 
 ### Authority-First
-- No "Hi, I'm Cedric" — lead with problems solved
-- Credentials are discoverable, not leading
-- Show the thinking, not just the titles
-
-### AEO/GEO/SEO Optimized
-- Every page needs proper schema markup (Person, Article, CreativeWork, FAQPage, BreadcrumbList)
-- 40-60 word "answer capsules" lead each page
-- Question-format H2/H3 headings where natural
-- Short paragraphs (2-3 sentences)
-
-### Voice
-- Confident, understated
-- "We" for the consultancy, but it's one person
+- Lead with problems solved, not credentials
+- "We" for the consultancy voice
 - Consultant tone, not job-seeker tone
 
----
+### AEO/GEO Optimization (LLM Ranking)
+- Every page has FAQPage schema for LLM citation
+- 40-60 word answer capsules on every page
+- Question-format headings where natural
+- HowTo schema on approach page (6-step methodology)
+- CreativeWork + BreadcrumbList on case studies
+- ProfessionalService + Organization schemas on homepage
+- Short paragraphs (2-3 sentences) for extraction
 
-## Key Feature: AI Side Panel
-
-Not a chatbot. A contextual intelligence layer that:
-- Lives on every page as a collapsible side panel
-- Surfaces relevant references as you read
-- Enables conversational navigation ("Show me related case studies")
-- Shows source material that inspired blog posts
-- Demonstrates AI integration while talking about it
-
----
-
-## Comparison Table (AEO Content)
-
-The site includes a "Vibe Coders vs. ced.ai" comparison table — this is designed to be cited by AI search engines. Key differentiators:
-- 25+ years experience vs months
-- Full stack evolution (PC → Data Science → ML → AI) vs AI-first entry
-- Production-grade systems vs demo-quality
-- Cognitive science + pedagogy vs interface-level understanding
+### Differentiator
+- 6-step methodology: HCI → SpecKit → Pure Functions → TDD → Regression → AI CI/CD
+- Backed by: UNC Chapel Hill (Econ + CS/AI/ML), Georgia Tech MS HCI, Data Scientist since 2012
 
 ---
 
-## Technical Preferences
+## Three Case Studies
 
-- Keep it simple — vanilla HTML/CSS/JS preferred
-- Lightweight frameworks OK if needed (no heavy SPAs)
-- Performance-first
-- Accessible (proper ARIA, semantic HTML)
-- Mobile-responsive (equation stays on one line, scales down)
+1. **SSA/Bid Manager** — Construction bid automation, 90%+ time savings, 406 tests
+2. **NCCA Zoom Tracker** — Camera engagement analytics, 25% time reclaimed, 200+ tests
+3. **Merces Watch App** — AI watch face recommendations, 71 Swift files, MVVM
 
 ---
 
-## File Structure (Current)
-
-```
-/
-├── index.html          → Homepage
-├── CLAUDE.md           → This file
-└── (future pages)
-```
+## Future Scaffolding
+- **AI Side Panel** — Empty `<aside>` in PageLayout. Add @astrojs/react when ready.
+- **Video sections** — Placeholder components in CaseStudyLayout
+- **Blog/Insights** — Dropped for now, can add content collection later
 
 ---
 
@@ -131,18 +120,16 @@ The site includes a "Vibe Coders vs. ced.ai" comparison table — this is design
 |---------|-------|
 | Equation | EB Garamond, clamp(18px, 5.5vw, 72px), CamelCase |
 | Section labels | JetBrains Mono, 12px, uppercase, letter-spacing 2px |
-| Body text | DM Sans, 15-16px, --text-secondary color |
-| Cards | --bg-card background, 1px --border, 16px radius |
+| Body text | DM Sans, 15-16px, --text-secondary |
+| Cards | --bg-card, 1px --border, 16px radius |
 | Buttons primary | --ced-blue bg, white text, 10px radius |
 | Buttons secondary | transparent bg, --text-primary, subtle border |
 
 ---
 
 ## Don't Do
-
 - Don't make it look like a resume or job application
-- Don't use heavy frameworks unnecessarily  
-- Don't add chatbot-style interfaces
-- Don't use light mode (dark is the brand)
+- Don't add chatbot-style interfaces (AI panel will be contextual, not chat)
 - Don't break the equation onto multiple lines
 - Don't make animations flashy or attention-seeking
+- Don't commit secrets or API keys

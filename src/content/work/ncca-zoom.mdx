@@ -1,0 +1,61 @@
+---
+title: "NCCA Zoom Tracker"
+description: "Python library inferring camera status from Zoom QoS bitrate metrics for a virtual charter school. 3-tier detection system reclaims 25% of lost instructional time with 200+ tests and real-time engagement dashboards."
+tag: "Education x Analytics"
+tagColor: "#ED5701"
+headline: "Reclaiming 25% of lost instructional time"
+metric: "25%"
+metricLabel: "instructional time reclaimed"
+domain: "K-12 Virtual Education"
+timeline: "2023–Present"
+status: "In Production"
+techStack: ["Python", "Flask", "Zoom API", "SSE", "Server-to-Server OAuth"]
+methodologySteps: [1, 3, 4, 5]
+order: 2
+---
+
+## The Problem
+
+A virtual charter school was losing 25% of class time to camera policing. Teachers would spend the first 10-15 minutes of every class asking students to turn cameras on, checking compliance, following up with non-compliant students, and documenting the interaction.
+
+The deeper problem: Zoom doesn't expose camera on/off status in its API. There is no field, no webhook, no event for "Student X turned their camera off at 10:32 AM." The school had no technical way to know who had cameras on without a teacher manually checking every participant.
+
+Teachers were reduced to attendance police instead of educators. The instructional time lost was staggering — multiply 15 minutes by 6 classes by 180 school days. That's 270 hours of teaching per teacher per year, gone.
+
+## The Solution
+
+We built a Python library that infers camera status from Zoom's Quality of Service (QoS) bitrate metrics. The insight: when a camera is on, the participant's video bitrate is measurably higher. When it's off, bitrate drops to near-zero or a predictable placeholder level.
+
+The system uses a 3-tier detection approach:
+
+1. **Bitrate analysis** — Primary detection. Video bitrate above threshold = camera on. Below = camera off. Handles bandwidth variation with adaptive thresholds.
+
+2. **FPS correlation** — Secondary validation. Frames per second confirms bitrate signals. A student with high bitrate but 0 FPS is likely using a static image.
+
+3. **Placeholder bypass detection** — Tertiary check. Some students use looping video backgrounds or static images. The system detects these through bitrate pattern analysis (real cameras have variable bitrate; fakes are suspiciously consistent).
+
+The result is a permanent, pulsing record of engagement for every student in every class session. Three dashboards surface this data:
+
+- **Live dashboard** — Real-time camera status for all active sessions via SSE (Server-Sent Events)
+- **Historical dashboard** — Engagement patterns over time, by student, by class, by period
+- **Admin authentication dashboard** — Role-based access for teachers, administrators, and counselors
+
+## Results
+
+- **25% instructional time reclaimed** — Teachers stopped policing cameras. The system created a deterrent effect: students knew their camera status was being recorded.
+- **200+ tests** covering detection accuracy, edge cases, and API integration
+- **Deterrent effect** — Camera compliance improved simply because monitoring was visible
+- **Expansion** — System extended to chat monitoring and automated status emails to parents
+- **Zero false positives** on the 3-tier detection system after calibration
+
+## How We Built It
+
+Four methodology steps applied:
+
+1. **HCI / Wireframing** — We shadowed teachers for a week. The problem wasn't "we need camera tracking." The problem was "I lose my first 15 minutes every class and I'm exhausted by period 4." The solution had to require zero teacher effort.
+
+3. **Pure Functions** — The detection pipeline is a chain: raw QoS data → bitrate extraction → threshold comparison → status determination → dashboard update. Each stage is pure, testable, and replaceable.
+
+4. **TDD** — 200+ tests including synthetic QoS data at various bitrate levels, edge cases (student joins then immediately leaves, camera toggle during class, bandwidth fluctuation), and integration tests against Zoom's API sandbox.
+
+5. **Regression Testing** — Zoom updates their QoS data format periodically. The regression suite catches format changes before they break detection accuracy.

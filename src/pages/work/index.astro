@@ -1,0 +1,147 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import { getCollection } from 'astro:content';
+
+const caseStudies = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+
+const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "CollectionPage",
+            "name": "Case Studies - ced.ai",
+            "description": "Production AI systems built by ced.ai: bid automation saving 90%+ time, analytics reclaiming 25% of lost productivity, and AI-integrated mobile applications.",
+            "url": "https://ced.ai/work",
+            "isPartOf": { "@id": "https://ced.ai/#website" }
+        },
+        {
+            "@type": "ItemList",
+            "name": "ced.ai Case Studies",
+            "itemListElement": caseStudies.map((study, i) => ({
+                "@type": "ListItem",
+                "position": i + 1,
+                "url": `https://ced.ai/work/${study.id}`,
+                "name": study.data.title,
+                "description": study.data.description
+            }))
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "What kind of AI projects has ced.ai built?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "ced.ai has built production AI systems across construction (bid automation saving 90%+ time with 406 tests), education (Zoom engagement analytics reclaiming 25% of lost instructional time with 200+ tests), and consumer mobile (AI-powered watch face recommendations with 71 Swift files). All projects follow the ced.ai 6-step methodology and are in active production use."
+                    }
+                }
+            ]
+        }
+    ]
+};
+
+const colorMap: Record<number, { border: string; tag: string; arrow: string }> = {
+    0: { border: 'var(--ced-blue)', tag: 'var(--ced-blue)', arrow: 'var(--ced-blue)' },
+    1: { border: 'var(--ced-orange)', tag: 'var(--ced-orange)', arrow: 'var(--ced-orange)' },
+    2: { border: 'var(--triadic-yellow)', tag: 'var(--triadic-yellow)', arrow: 'var(--triadic-yellow)' },
+};
+---
+
+<PageLayout
+    title="Case Studies | ced.ai — AI Systems in Production"
+    description="Production AI systems built by ced.ai: bid automation saving 90%+ time, analytics platforms reclaiming 25% of lost productivity, and AI-integrated mobile apps."
+    schema={schema}
+>
+    <header class="page-header">
+        <p class="page-label">Selected Work</p>
+        <h1 class="page-title">Systems that run on Monday morning.</h1>
+        <p class="page-intro">
+            These aren't demos. They're production systems used by real people to do real work. Each project started with a problem and ended with something that actually got adopted.
+        </p>
+    </header>
+
+    <section class="cases-section">
+        <div class="cases-container">
+            {caseStudies.map((study, i) => {
+                const colors = colorMap[i] || colorMap[0];
+                return (
+                    <a href={`/work/${study.id}`} class="case-card-large" style={`--card-accent: ${colors.border}`}>
+                        <div class="case-info">
+                            <span class="case-tag" style={`color: ${colors.tag}`}>{study.data.tag}</span>
+                            <h2 class="case-title">{study.data.headline}</h2>
+                            <p class="case-description">{study.data.description}</p>
+                            <div class="case-meta">
+                                <div class="case-meta-item">
+                                    <div class="case-meta-label">Domain</div>
+                                    <div class="case-meta-value">{study.data.domain}</div>
+                                </div>
+                                <div class="case-meta-item">
+                                    <div class="case-meta-label">Timeline</div>
+                                    <div class="case-meta-value">{study.data.timeline}</div>
+                                </div>
+                                <div class="case-meta-item">
+                                    <div class="case-meta-label">Status</div>
+                                    <div class="case-meta-value">{study.data.status}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="case-details">
+                            <h4>Key Result</h4>
+                            <p class="key-metric">
+                                {study.data.metric && <strong style={`color: ${colors.tag}`}>{study.data.metric}</strong>}
+                                {study.data.metricLabel && ` ${study.data.metricLabel}`}
+                            </p>
+                            <h4>Technology</h4>
+                            <div class="tech-stack">
+                                {study.data.techStack.slice(0, 5).map((tech) => (
+                                    <span class="tech-pill">{tech}</span>
+                                ))}
+                            </div>
+                        </div>
+                    </a>
+                );
+            })}
+        </div>
+    </section>
+
+    <CTASection
+        label="Your project"
+        title="Have a problem that needs solving?"
+        description="We're selective about projects — quality over quantity. But if you've got something interesting, let's talk."
+        buttonText="Start a Conversation"
+        buttonHref="/contact"
+    />
+</PageLayout>
+
+<style>
+    .cases-section {
+        padding: 0 48px 100px;
+    }
+
+    .cases-container {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .case-card-large::before {
+        background: var(--card-accent);
+    }
+
+    .key-metric {
+        font-size: 18px;
+        margin-bottom: 24px;
+    }
+
+    .key-metric strong {
+        font-size: 28px;
+        font-family: 'EB Garamond', serif;
+    }
+
+    @media (max-width: 600px) {
+        .cases-section {
+            padding: 0 24px 60px;
+        }
+    }
+</style>

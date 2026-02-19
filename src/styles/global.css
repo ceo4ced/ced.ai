@@ -1,0 +1,71 @@
+/* ced.ai Global Styles — CSS Reset + Custom Properties */
+
+:root {
+    /* Brand Colors */
+    --ced-blue: #017CED;
+    --ced-orange: #ED5701;
+    --triadic-yellow: #EDCE01;
+    --triadic-red: #ED0140;
+    --tetradic-purple: #AE01ED;
+
+    /* Derived */
+    --blue-400: #4DA3F2;
+    --blue-700: #0159A8;
+
+    /* Dark Mode (default) */
+    --bg-primary: #0A0A0B;
+    --bg-secondary: #111113;
+    --bg-card: #161618;
+    --bg-elevated: #1A1A1D;
+    --text-primary: #F7F7F8;
+    --text-secondary: #B4B4BC;
+    --text-muted: #65656F;
+    --border: #2D2D32;
+    --nav-bg: rgba(10, 10, 11, 0.9);
+    --spirograph-color: %23ffffff;
+
+    /* Animation */
+    --wave-duration: 350ms;
+    --wave-delay: 12ms;
+}
+
+/* Light Mode */
+[data-theme="light"] {
+    --bg-primary: #F7F7F8;
+    --bg-secondary: #EBEBED;
+    --bg-card: #FFFFFF;
+    --bg-elevated: #FFFFFF;
+    --text-primary: #0A0A0B;
+    --text-secondary: #45454D;
+    --text-muted: #65656F;
+    --border: #D4D4D9;
+    --nav-bg: rgba(247, 247, 248, 0.9);
+    --spirograph-color: %230A0A0B;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+}

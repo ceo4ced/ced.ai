@@ -1,0 +1,285 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Equation from '../components/Equation.astro';
+import PillarCard from '../components/PillarCard.astro';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
+import MethodologyStep from '../components/MethodologyStep.astro';
+import CTASection from '../components/CTASection.astro';
+
+const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebSite",
+            "@id": "https://ced.ai/#website",
+            "url": "https://ced.ai",
+            "name": "ced.ai",
+            "description": "ced.ai is an AI consulting firm that builds practical AI systems for businesses. We combine computer science, cognitive science, and artificial intelligence to solve real workflow problems.",
+            "publisher": { "@id": "https://ced.ai/#organization" }
+        },
+        {
+            "@type": "Organization",
+            "@id": "https://ced.ai/#organization",
+            "name": "ced.ai",
+            "url": "https://ced.ai",
+            "description": "AI consulting firm specializing in building production-grade AI systems that solve real business problems. Founded by Cedric Williams, combining 25+ years of computer science, cognitive science, and AI expertise.",
+            "founder": {
+                "@type": "Person",
+                "name": "Cedric Williams",
+                "alumniOf": [
+                    { "@type": "CollegeOrUniversity", "name": "University of North Carolina at Chapel Hill" },
+                    { "@type": "CollegeOrUniversity", "name": "Georgia Institute of Technology" }
+                ],
+                "knowsAbout": ["Artificial Intelligence", "Human-Computer Interaction", "Computer Science", "Cognitive Science", "Machine Learning", "Data Science"]
+            },
+            "sameAs": [
+                "https://linkedin.com/in/cedricwilliams",
+                "https://github.com/cedricwilliams"
+            ]
+        },
+        {
+            "@type": "ProfessionalService",
+            "@id": "https://ced.ai/#service",
+            "name": "ced.ai AI Consulting",
+            "provider": { "@id": "https://ced.ai/#organization" },
+            "serviceType": ["AI Strategy", "AI System Development", "Workflow Automation", "Technical Assessment"],
+            "areaServed": "US",
+            "description": "We build AI systems that solve real business problems — from email automation saving 90%+ time to analytics platforms reclaiming 25% of lost productivity. Our 6-step methodology (HCI, SpecKit, Pure Functions, TDD, Regression, AI CI/CD) ensures systems that work on Monday morning, not just in demos."
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "What does ced.ai do?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "ced.ai is an AI consulting firm that builds production-grade AI systems for businesses. We combine computer science, cognitive science, and artificial intelligence to automate workflows, build intelligent applications, and solve real business problems. Our clients typically see 90%+ time savings on manual processes."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is the ced.ai methodology?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The ced.ai methodology is a 6-step framework for building reliable AI systems: (1) HCI/Wireframing to understand users, (2) SpecKit specification, (3) Pure Functions architecture, (4) Test-Driven Development, (5) Regression Testing, and (6) CI/CD with AI Agents. This ensures systems that work in production, not just in demos."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What industries does ced.ai work with?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "ced.ai works across industries including construction, education, and consumer technology. Past projects include AI-powered bid automation for construction companies, analytics platforms for virtual schools, and AI-integrated mobile applications."
+                    }
+                }
+            ]
+        }
+    ]
+};
+---
+
+<BaseLayout
+    title="ced.ai | AI Consulting — CompSci + CogSci + AI"
+    description="ced.ai is an AI consulting firm that builds practical AI systems for businesses. We combine computer science, cognitive science, and AI to solve real workflow problems. 90%+ time savings. Systems that run Monday morning."
+    schema={schema}
+>
+    <Nav />
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-content">
+                <Equation />
+                <p class="answer-capsule">
+                    We create AI systems and applications that solve real business problems.
+                    The model is never the product — the interface is. Our 6-step methodology
+                    ensures systems that work on Monday morning, not just in demos.
+                </p>
+                <div class="hero-cta">
+                    <a href="/work" class="btn btn-primary">View Case Studies</a>
+                    <a href="/approach" class="btn btn-secondary">Our Approach</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Three Pillars -->
+        <section class="pillars" id="pillars">
+            <div class="section-container">
+                <div class="section-header">
+                    <p class="section-label">The Framework</p>
+                    <h2 class="section-title">Three disciplines. One methodology.</h2>
+                </div>
+                <div class="pillars-grid">
+                    <PillarCard
+                        icon="CompSci"
+                        title="Systems that hold up."
+                        description="We build the software backbone — pipelines, reliability, evaluation, and handoff. Pure functions, TDD, regression testing. If it can't run on Monday morning, it doesn't ship."
+                        color="var(--ced-blue)"
+                    />
+                    <PillarCard
+                        icon="CogSci"
+                        title="Design for humans."
+                        description="We design the human side — workflows, trust surfaces, correction loops, and adoption. HCI is the difference between a demo and a tool people actually use."
+                        color="var(--ced-orange)"
+                    />
+                    <PillarCard
+                        icon="AI"
+                        title="Leverage where it matters."
+                        description="We apply AI to reduce friction — extraction, classification, summarization with traceability, and automation that knows when to refuse. LLMs, ML pipelines, intelligent agents."
+                        color="var(--triadic-yellow)"
+                    />
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies -->
+        <section class="case-studies-section" id="work">
+            <div class="section-container">
+                <div class="section-header">
+                    <p class="section-label">Proof</p>
+                    <h2 class="section-title">Selected case studies.</h2>
+                </div>
+                <div class="case-grid">
+                    <CaseStudyCard
+                        href="/work/bid-manager"
+                        tag="Construction x AI"
+                        tagColor="var(--ced-blue)"
+                        title="From 4-hour bids to 5-minute automation"
+                        description="90%+ time savings on bid processing. AI-powered email classification and document analysis for a construction company."
+                        borderColor="var(--ced-blue)"
+                    />
+                    <CaseStudyCard
+                        href="/work/ncca-zoom"
+                        tag="Education x Analytics"
+                        tagColor="var(--ced-orange)"
+                        title="Reclaiming 25% of lost instructional time"
+                        description="Python library inferring camera status from Zoom QoS metrics. Real-time dashboards for virtual school engagement."
+                        borderColor="var(--ced-orange)"
+                    />
+                    <CaseStudyCard
+                        href="/work/merces"
+                        tag="Consumer x Mobile"
+                        tagColor="var(--triadic-yellow)"
+                        title="AI-powered watch face recommendations"
+                        description="Dual-platform Swift/SwiftUI app with AI color extraction and custom watch face format. 71 Swift files, MVVM architecture."
+                        borderColor="var(--triadic-yellow)"
+                    />
+                </div>
+            </div>
+        </section>
+
+        <!-- Methodology Preview -->
+        <section class="methodology-preview">
+            <div class="section-container">
+                <div class="section-header">
+                    <p class="section-label">How We Build</p>
+                    <h2 class="section-title">A 6-step methodology for AI that works.</h2>
+                </div>
+                <div class="methodology-compact">
+                    <MethodologyStep number="01" name="HCI / Wireframing" origin="Georgia Tech MS HCI" description="Understand the user before writing a line of code. Map workflows, identify pain points, prototype the interface." />
+                    <MethodologyStep number="02" name="SpecKit / Specify" origin="Software Architecture" description="Translate understanding into precise specifications. Define inputs, outputs, edge cases, and failure modes." />
+                    <MethodologyStep number="03" name="Pure Functions" origin="Computer Science" description="Build modular, testable components. Each function does one thing with predictable inputs and outputs." />
+                    <MethodologyStep number="04" name="Test-Driven Development" origin="Engineering Discipline" description="Write the test before the code. Every behavior is verified. Every edge case is covered." />
+                    <MethodologyStep number="05" name="Regression Testing" origin="Production Experience" description="Ensure nothing breaks when things change. Continuous validation against the full behavioral surface." />
+                    <MethodologyStep number="06" name="AI CI/CD" origin="Modern AI Ops" description="Deploy with AI agents in the loop. Automated quality gates, evaluation pipelines, and continuous improvement." />
+                </div>
+                <div style="text-align: center; margin-top: 48px;">
+                    <a href="/approach" class="btn btn-secondary">Learn more about our approach &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <CTASection
+            label="Ready?"
+            title="Start an engagement."
+            description="Whether it's strategy, system development, or workflow automation — we build what works."
+            buttonText="Get in Touch"
+            buttonHref="/contact"
+        />
+    </main>
+    <Footer />
+</BaseLayout>
+
+<style>
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 140px 48px 100px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600'%3E%3Cg fill='none' stroke='var(--spirograph-color)' stroke-width='0.8'%3E%3Ccircle cx='300' cy='300' r='50'/%3E%3Ccircle cx='300' cy='300' r='80'/%3E%3Ccircle cx='300' cy='300' r='110'/%3E%3Ccircle cx='300' cy='300' r='140'/%3E%3Ccircle cx='300' cy='300' r='170'/%3E%3Ccircle cx='300' cy='300' r='200'/%3E%3Ccircle cx='300' cy='300' r='230'/%3E%3Ccircle cx='300' cy='300' r='260'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(0 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(30 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(60 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(90 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(120 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='200' ry='80' transform='rotate(150 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(15 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(45 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(75 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(105 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(135 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='150' ry='60' transform='rotate(165 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(7.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(37.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(67.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(97.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(127.5 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='40' transform='rotate(157.5 300 300)'/%3E%3C/g%3E%3C/svg%3E");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 900px 900px;
+        opacity: 0.06;
+        pointer-events: none;
+        transition: opacity 0.5s ease;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 1000px;
+    }
+
+    .answer-capsule {
+        font-size: clamp(14px, 2.5vw, 20px);
+        line-height: 1.7;
+        color: var(--text-secondary);
+        max-width: 680px;
+        margin: 0 auto 48px;
+    }
+
+    .hero-cta {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .pillars {
+        padding: 120px 48px;
+        background: var(--bg-secondary);
+        border-top: 1px solid var(--border);
+    }
+
+    .case-studies-section {
+        padding: 120px 48px;
+        border-top: 1px solid var(--border);
+    }
+
+    .methodology-preview {
+        padding: 120px 48px;
+        background: var(--bg-secondary);
+        border-top: 1px solid var(--border);
+    }
+
+    .methodology-compact {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 600px) {
+        .hero {
+            padding: 120px 24px 80px;
+        }
+        .pillars,
+        .case-studies-section,
+        .methodology-preview {
+            padding: 80px 24px;
+        }
+    }
+</style>

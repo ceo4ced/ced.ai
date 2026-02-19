@@ -1,0 +1,51 @@
+---
+title: "Merces Watch App"
+description: "Dual-platform Swift/SwiftUI application for iOS and watchOS with AI-powered watch face recommendations. Camera color extraction, custom .mercesface bundle format, and cloud-backed catalog with offline fallback."
+tag: "Consumer x Mobile"
+tagColor: "#EDCE01"
+headline: "AI-powered watch face recommendations"
+metric: "71"
+metricLabel: "Swift files, MVVM architecture"
+domain: "Consumer Mobile"
+timeline: "2024–Present"
+status: "Pre-Launch / App Store Bound"
+techStack: ["Swift", "SwiftUI", "Firebase", "AdMob", "WatchConnectivity", "ZIPFoundation"]
+methodologySteps: [1, 2, 3]
+order: 3
+---
+
+## The Problem
+
+Apple Watch users want premium, customizable watch faces — but Apple's built-in options are limited and third-party face apps are mostly template-based with no intelligence. Users scroll through hundreds of faces with no way to find ones that match their style, outfit, or mood.
+
+The deeper problem is discovery. Even with a catalog of beautiful faces, users don't know what they want until they see it. Traditional browsing (categories, search, filters) doesn't work well for visual products where preference is subjective and context-dependent.
+
+## The Solution
+
+Merces is a dual-platform Swift/SwiftUI application spanning iOS and watchOS that solves the discovery problem with AI.
+
+**AI Face Matching** — Users point their camera at anything (outfit, room, object) and the app extracts dominant colors, then recommends watch faces that complement the palette. This isn't simple color matching — it uses color theory (complementary, analogous, triadic) to suggest faces that work aesthetically.
+
+**Custom Bundle Format** — We designed the `.mercesface` format, a custom bundle that packages face assets, complications, color schemes, and metadata. This enables offline-first functionality and efficient transfer between devices.
+
+**WatchConnectivity** — Seamless transfer between iPhone and Apple Watch. Browse and select faces on the phone, they appear on the watch within seconds. The transfer handles connection interruptions, queuing, and retry logic.
+
+**Cloud-Backed Catalog** — Firebase backend serves the face catalog with CDN distribution. Local caching ensures the app works fully offline after initial sync. New faces push to users without app updates.
+
+## Results
+
+- **71 Swift files** across iOS and watchOS targets
+- **MVVM architecture** with clean separation of concerns
+- **Pre-launch / App Store bound** — final testing and polish phase
+- **Offline-first** — full functionality without network after initial sync
+- **Custom file format** (.mercesface) for efficient bundling and transfer
+
+## How We Built It
+
+Three methodology steps applied:
+
+1. **HCI / Wireframing** — We studied how people choose watch faces. The key insight: people don't browse faces by category. They think "I want something that goes with this outfit" or "something professional for tomorrow's meeting." The camera-based recommendation flow emerged directly from user research.
+
+2. **SpecKit / Specify** — The `.mercesface` bundle format required precise specification. What data is included? How are assets compressed? What happens with partial downloads? How does versioning work? The spec document defined every field, every edge case, every fallback.
+
+3. **Pure Functions** — Color extraction, color theory matching, and face scoring are all pure functions. Image in → color palette out → face rankings out. Each stage is independently testable. When we swapped the color extraction algorithm, nothing else in the pipeline changed.

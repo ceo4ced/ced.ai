@@ -1,0 +1,40 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+    title: string;
+    description: string;
+    canonicalURL?: string;
+    schema?: object;
+}
+
+const { title, description, canonicalURL, schema } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} canonicalURL={canonicalURL} schema={schema}>
+    <Nav />
+    <main>
+        <slot />
+    </main>
+    <Footer />
+    <!-- AI Side Panel Slot (future) -->
+    <aside id="ai-panel" class="ai-panel" aria-hidden="true"></aside>
+</BaseLayout>
+
+<style>
+    .ai-panel {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 400px;
+        height: 100vh;
+        background: var(--bg-primary);
+        border-left: 1px solid var(--border);
+        z-index: 150;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        display: none;
+    }
+</style>

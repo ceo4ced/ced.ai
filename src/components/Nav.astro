@@ -1,0 +1,109 @@
+---
+interface Props {
+    currentPath?: string;
+}
+
+const { currentPath = '' } = Astro.props;
+const path = currentPath || Astro.url.pathname;
+---
+
+<nav>
+    <a href="/" class="nav-logo">ced<span>.ai</span></a>
+    <ul class="nav-links">
+        <li><a href="/approach" class:list={[{ active: path.startsWith('/approach') }]}>Approach</a></li>
+        <li><a href="/work" class:list={[{ active: path.startsWith('/work') }]}>Case Studies</a></li>
+        <li><a href="/contact" class:list={[{ active: path.startsWith('/contact') }]}>Start</a></li>
+    </ul>
+    <div style="display: flex; gap: 8px; align-items: center;">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+        </button>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu-overlay" id="mobileOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+    <ul class="mobile-menu-links">
+        <li><a href="/" class:list={[{ active: path === '/' }]}>Home</a></li>
+        <li><a href="/approach" class:list={[{ active: path.startsWith('/approach') }]}>Approach</a></li>
+        <li><a href="/work" class:list={[{ active: path.startsWith('/work') }]}>Case Studies</a></li>
+        <li><a href="/contact" class:list={[{ active: path.startsWith('/contact') }]}>Start an Engagement</a></li>
+    </ul>
+</div>
+
+<!-- Theme Transition Overlay -->
+<div class="theme-transition-overlay" id="themeOverlay"></div>
+
+<script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle')!;
+    const themeOverlay = document.getElementById('themeOverlay')!;
+    const html = document.documentElement;
+
+    themeToggle.addEventListener('click', () => {
+        const rect = themeToggle.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+
+        themeOverlay.style.setProperty('--tx', `${x}px`);
+        themeOverlay.style.setProperty('--ty', `${y}px`);
+
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+        themeOverlay.classList.remove('sunrise', 'sunset');
+        void (themeOverlay as HTMLElement).offsetWidth;
+        themeOverlay.classList.add(newTheme === 'light' ? 'sunrise' : 'sunset');
+
+        setTimeout(() => {
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }, 200);
+
+        setTimeout(() => {
+            themeOverlay.classList.remove('sunrise', 'sunset');
+        }, 800);
+    });
+
+    // Mobile Menu
+    const mobileToggle = document.getElementById('mobileMenuToggle')!;
+    const mobileMenu = document.getElementById('mobileMenu')!;
+    const mobileOverlay = document.getElementById('mobileOverlay')!;
+    const mobileClose = document.getElementById('mobileMenuClose')!;
+
+    const openMenu = () => {
+        mobileMenu.classList.add('active');
+        mobileOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeMenu = () => {
+        mobileMenu.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    mobileToggle.addEventListener('click', openMenu);
+    mobileClose.addEventListener('click', closeMenu);
+    mobileOverlay.addEventListener('click', closeMenu);
+</script>

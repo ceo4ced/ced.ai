@@ -1,0 +1,95 @@
+/* ced.ai Animations */
+
+/* Color Wave (Equation) */
+@keyframes colorWave {
+    0% {
+        opacity: 0;
+        background-position: 0% 0%;
+    }
+    5% {
+        opacity: 0.6;
+    }
+    15% {
+        opacity: 0.6;
+        background-position: 0% 50%;
+    }
+    25% {
+        opacity: 0;
+        background-position: 0% 100%;
+    }
+    100% {
+        opacity: 0;
+        background-position: 0% 100%;
+    }
+}
+
+/* Theme Transition */
+@keyframes sunriseWipe {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    30% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(4);
+    }
+}
+
+@keyframes sunsetWipe {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    30% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(4);
+    }
+}
+
+/* Theme Transition Overlay */
+.theme-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+}
+
+.theme-transition-overlay.sunrise {
+    background: radial-gradient(circle at var(--tx, 50%) var(--ty, 0%),
+        var(--triadic-yellow) 0%,
+        var(--ced-orange) 20%,
+        transparent 70%
+    );
+    animation: sunriseWipe 0.8s ease-out forwards;
+}
+
+.theme-transition-overlay.sunset {
+    background: radial-gradient(circle at var(--tx, 50%) var(--ty, 0%),
+        var(--tetradic-purple) 0%,
+        var(--blue-700) 20%,
+        transparent 70%
+    );
+    animation: sunsetWipe 0.8s ease-out forwards;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .equation[data-wave="on"] .ch::after {
+        animation: none;
+    }
+
+    .theme-transition-overlay.sunrise,
+    .theme-transition-overlay.sunset {
+        animation: none;
+    }
+}

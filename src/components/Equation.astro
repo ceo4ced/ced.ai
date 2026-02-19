@@ -1,0 +1,125 @@
+---
+---
+
+<div class="equation-wrapper">
+    <h1 class="equation" id="equation">
+        <span class="brand">ced.ai</span>
+        <span class="equals">=</span>
+        <span class="term">CompSci</span>
+        <span class="plus">+</span>
+        <span class="term">CogSci</span>
+        <span class="plus">+</span>
+        <span class="term">AI</span>
+    </h1>
+</div>
+
+<style>
+    .equation-wrapper {
+        margin-bottom: 32px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .equation {
+        font-family: 'EB Garamond', serif;
+        font-size: clamp(18px, 5.5vw, 72px);
+        font-weight: 500;
+        letter-spacing: -1px;
+        line-height: 1.2;
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        white-space: nowrap;
+    }
+
+    .equation .brand {
+        color: var(--ced-blue);
+    }
+
+    .equation .equals {
+        color: var(--text-muted);
+        margin: 0 0.25em;
+    }
+
+    .equation .plus {
+        color: var(--ced-orange);
+        margin: 0 0.15em;
+    }
+
+    .equation .term {
+        display: inline-block;
+    }
+
+    /* Character spans for wave animation */
+    :global(.ch) {
+        position: relative;
+        display: inline-block;
+        line-height: 1.4;
+    }
+
+    :global(.ch::after) {
+        content: attr(data-ch);
+        position: absolute;
+        left: 0;
+        top: -0.1em;
+        bottom: -0.3em;
+        width: 100%;
+        background: linear-gradient(
+            180deg,
+            var(--ced-blue) 0%,
+            var(--tetradic-purple) 20%,
+            var(--triadic-red) 40%,
+            var(--ced-orange) 60%,
+            var(--triadic-yellow) 80%,
+            var(--ced-blue) 100%
+        );
+        background-size: 100% 400%;
+        background-position: 0% 0%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    :global(.equation[data-wave="on"] .ch::after) {
+        animation: colorWave var(--wave-duration) ease-out forwards;
+        animation-delay: calc(var(--i) * var(--wave-delay));
+    }
+</style>
+
+<script>
+    const equation = document.getElementById('equation');
+    if (equation) {
+        let charCount = 0;
+
+        const wrapChars = (el: Element) => {
+            const text = el.textContent || '';
+            el.textContent = '';
+            for (const ch of text) {
+                const span = document.createElement('span');
+                span.className = 'ch';
+                span.style.setProperty('--i', String(charCount++));
+                const displayChar = ch === ' ' ? '\u00A0' : ch;
+                span.textContent = displayChar;
+                span.setAttribute('data-ch', displayChar);
+                el.appendChild(span);
+            }
+        };
+
+        equation.querySelectorAll('.brand, .equals, .term, .plus').forEach(wrapChars);
+
+        const triggerWave = () => {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            equation.removeAttribute('data-wave');
+            void (equation as HTMLElement).offsetWidth;
+            equation.setAttribute('data-wave', 'on');
+            const totalDuration = 800 + (charCount * 25) + 200;
+            setTimeout(() => equation.removeAttribute('data-wave'), totalDuration);
+        };
+
+        setTimeout(triggerWave, 500);
+        setInterval(triggerWave, 10000);
+        equation.addEventListener('mouseenter', triggerWave);
+    }
+</script>
