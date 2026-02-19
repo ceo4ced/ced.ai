@@ -1,0 +1,69 @@
+# ced.ai — AI Consulting Firm
+
+> ced.ai is an AI consulting firm that builds production-grade AI systems for businesses. Founded by Cedric Williams (UNC Chapel Hill CS/Econ, Georgia Tech MS HCI, Data Scientist since 2012).
+
+## What we do
+
+ced.ai builds AI systems that solve real business problems using a 6-step methodology:
+1. HCI / Wireframing — Understand users before writing code
+2. SpecKit / Specify — Define precise specifications and edge cases
+3. Pure Functions — Modular, testable, debuggable components
+4. Test-Driven Development — Write tests before code
+5. Regression Testing — Catch drift before users do
+6. CI/CD with AI Agents — Intelligent deployment and monitoring
+
+## Core equation
+
+ced.ai = CompSci + CogSci + AI
+
+Three disciplines, one methodology:
+- **CompSci**: Engineering rigor — pure functions, TDD, regression testing
+- **CogSci**: Human-centered design — trust surfaces, workflows, adoption
+- **AI**: Strategic application — extraction, classification, automation with traceability
+
+## Case studies
+
+### SSA / Bid Manager (Construction x AI)
+- Problem: 4-hour manual bid process, ~2 bids/day
+- Solution: AI email classification + document analysis + knowledge graph
+- Results: 90%+ time savings, >95% classification accuracy, 406 tests
+- Tech: Python, FastAPI, Claude AI, n8n, Google Workspace APIs
+
+### NCCA Zoom Tracker (Education x Analytics)
+- Problem: Virtual school losing 25% of class time to camera policing
+- Solution: Python library inferring camera status from QoS bitrate metrics
+- Results: 25% instructional time reclaimed, 200+ tests, zero false positives
+- Tech: Python, Flask, Zoom API, SSE
+
+### Merces Watch App (Consumer x Mobile)
+- Problem: No intelligent watch face discovery for Apple Watch
+- Solution: AI camera color extraction + color theory matching
+- Results: 71 Swift files, MVVM architecture, pre-launch
+- Tech: Swift, SwiftUI, Firebase, WatchConnectivity
+
+## Services
+
+- AI Strategy
+- System Development
+- Workflow Automation
+- Technical Assessment
+
+## Contact
+
+- Website: https://ced.ai
+- Email: hello@ced.ai
+- LinkedIn: https://linkedin.com/in/cedricwilliams
+- GitHub: https://github.com/cedricwilliams
+
+## Pages
+
+- Home: https://ced.ai/
+- Approach: https://ced.ai/approach/
+- CompSci pillar: https://ced.ai/approach/compsci/
+- CogSci pillar: https://ced.ai/approach/cogsci/
+- AI pillar: https://ced.ai/approach/ai/
+- Case Studies: https://ced.ai/work/
+- Bid Manager: https://ced.ai/work/bid-manager/
+- NCCA Zoom Tracker: https://ced.ai/work/ncca-zoom/
+- Merces Watch App: https://ced.ai/work/merces/
+- Contact: https://ced.ai/contact/

@@ -1,0 +1,436 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Article",
+            "headline": "AI at ced.ai — Leverage Where It Matters",
+            "description": "How ced.ai applies artificial intelligence strategically — extraction, classification, summarization, and automation with traceability. LLMs, ML pipelines, and intelligent agents applied to reduce friction, not replace thinking.",
+            "url": "https://ced.ai/approach/ai",
+            "author": { "@id": "https://ced.ai/#organization" },
+            "isPartOf": { "@id": "https://ced.ai/#website" },
+            "about": [
+                { "@type": "Thing", "name": "Artificial Intelligence" },
+                { "@type": "Thing", "name": "Large Language Models" },
+                { "@type": "Thing", "name": "Machine Learning" }
+            ],
+            "speakable": {
+                "@type": "SpeakableSpecification",
+                "cssSelector": [".answer-capsule", ".section-content p:first-child"]
+            }
+        },
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ced.ai" },
+                { "@type": "ListItem", "position": 2, "name": "Approach", "item": "https://ced.ai/approach" },
+                { "@type": "ListItem", "position": 3, "name": "AI", "item": "https://ced.ai/approach/ai" }
+            ]
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "How does ced.ai use large language models in production?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "ced.ai uses LLMs like Claude for specific, bounded tasks where they excel — email classification, document extraction, summarization with traceability, and knowledge graph construction. We don't use LLMs as general-purpose reasoning engines. Each LLM call has a defined input, expected output, and evaluation criteria. Our bid automation system uses Claude 3.5 Sonnet for email classification with >95% accuracy across hundreds of categories."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is AI with traceability?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "AI with traceability means every AI output can be traced back to its source data and reasoning. When ced.ai's bid manager classifies an email, users can see which features triggered the classification. When the document analyzer extracts a specification, it cites the exact page and paragraph. This traceability is essential for building user trust and enabling meaningful human oversight of AI systems."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "When does ced.ai recommend not using AI?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "ced.ai recommends against AI when the problem is better solved with straightforward automation, when the error tolerance is zero and human judgment is irreplaceable, when the data quality is too poor for reliable AI outputs, or when the process is simple enough that adding AI creates more complexity than it removes. Not every problem needs AI, and honest assessment of fit is part of every engagement."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What AI technologies does ced.ai use?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "ced.ai works with LLMs (Claude, GPT), ML pipelines (Python, scikit-learn), cloud AI services (Firebase ML, OpenRouter), API orchestration (n8n, FastAPI), and custom AI agents. Technology selection is driven by the problem — we use the simplest tool that solves it reliably. A regex that works is better than an LLM that usually works."
+                    }
+                }
+            ]
+        }
+    ]
+};
+---
+
+<PageLayout
+    title="AI | ced.ai — Leverage Where It Matters"
+    description="How ced.ai applies artificial intelligence strategically. LLMs, ML pipelines, and intelligent agents for extraction, classification, and automation — with traceability and human oversight built in."
+    schema={schema}
+>
+    <header class="page-header">
+        <div class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span class="separator">&rsaquo;</span>
+            <a href="/approach">Approach</a>
+            <span class="separator">&rsaquo;</span>
+            <span>AI</span>
+        </div>
+        <p class="page-label" style="color: var(--triadic-yellow);">AI</p>
+        <h1 class="page-title">Leverage where it matters.</h1>
+        <p class="page-intro answer-capsule">
+            We apply AI to reduce friction — extraction, classification, summarization with traceability, and automation that knows when to refuse. The model is never the product. The interface is. AI is the engine, not the steering wheel.
+        </p>
+    </header>
+
+    <!-- Philosophy -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--triadic-yellow);">The Problem</p>
+            <h2 class="section-title">AI applied to the wrong problem is worse than no AI.</h2>
+            <div class="section-content">
+                <p>
+                    The AI hype cycle produces a predictable failure mode: organizations adopt AI because they feel they should, not because they've identified a specific problem where AI is the right solution. The result is AI systems that add complexity, cost, and unreliability to processes that worked fine before.
+                </p>
+                <p>
+                    We've seen construction companies try to use GPT to replace estimators (it can't). We've seen schools try to use AI to replace teachers (it shouldn't). We've seen startups build LLM-powered features that could have been a database query.
+                </p>
+                <p>
+                    The AI pillar exists to apply intelligence where it actually creates leverage — and to have the discipline to say "this doesn't need AI" when that's the honest answer.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Where AI Creates Leverage -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--triadic-yellow);">Applications</p>
+            <h2 class="section-title">Where AI creates real leverage.</h2>
+            <div class="section-content">
+                <p>
+                    AI is powerful when applied to specific, bounded tasks where the value of speed and scale outweighs the cost of occasional errors. These are the patterns we see across every industry:
+                </p>
+            </div>
+
+            <div class="capability-grid">
+                <div class="capability-card">
+                    <h3>Extraction</h3>
+                    <p>Pulling structured data from unstructured sources. Emails, documents, images, conversations. The bid manager extracts project names, deadlines, scopes, and material lists from free-form RFI emails — work that took a human 30 minutes per email.</p>
+                </div>
+                <div class="capability-card">
+                    <h3>Classification</h3>
+                    <p>Sorting inputs into categories at scale. >95% accuracy on email classification for the bid manager across hundreds of categories. The key is defining categories precisely and building evaluation pipelines that catch accuracy drift.</p>
+                </div>
+                <div class="capability-card">
+                    <h3>Summarization with traceability</h3>
+                    <p>Condensing information while maintaining source links. When the document analyzer summarizes a 40-page bid package, every claim cites the exact page and paragraph. Users trust summaries they can verify.</p>
+                </div>
+                <div class="capability-card">
+                    <h3>Pattern detection</h3>
+                    <p>Finding signals in noise. The Zoom tracker infers camera status from QoS bitrate patterns — a signal that exists in the data but isn't exposed by Zoom's API. AI detects what traditional logic can't express.</p>
+                </div>
+                <div class="capability-card">
+                    <h3>Intelligent matching</h3>
+                    <p>Connecting items based on nuanced similarity. The Merces app matches watch faces to camera-captured colors using color theory — complementary, analogous, triadic relationships that go beyond simple RGB distance.</p>
+                </div>
+                <div class="capability-card">
+                    <h3>Automation with guardrails</h3>
+                    <p>End-to-end process automation that knows when to stop and ask a human. The bid pipeline automates email → classification → extraction → filing, but flags low-confidence results for human review instead of guessing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Traceability -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--triadic-yellow);">Principle</p>
+            <h2 class="section-title">Every AI output should be traceable.</h2>
+            <div class="section-content">
+                <p>
+                    Black-box AI is a liability. When a system produces an output and nobody can explain why, the system can't be trusted, debugged, or improved. Traceability isn't a feature — it's a design requirement.
+                </p>
+                <p>
+                    In our systems, every AI decision comes with provenance. The bid manager shows which email features triggered a classification. The document analyzer cites specific pages for every extracted data point. The knowledge graph tracks every source document for every node and relationship.
+                </p>
+                <p>
+                    This isn't just about user trust — though that matters enormously. Traceability is how you debug AI systems. When classification accuracy drops, traceable outputs let you identify exactly which input patterns are causing failures. Without traceability, you're guessing.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- When Not to Use AI -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--triadic-yellow);">Discipline</p>
+            <h2 class="section-title">When we recommend against AI.</h2>
+            <div class="section-content">
+                <p>
+                    Not every problem needs AI, and honest assessment of fit is part of every engagement. We recommend against AI in these situations:
+                </p>
+            </div>
+
+            <div class="anti-pattern-list">
+                <div class="anti-pattern">
+                    <h3>When a regex works</h3>
+                    <p>If the input is structured and the rules are clear, a simple rule-based system is faster, cheaper, more reliable, and easier to maintain than an LLM call. A regex that works is better than an LLM that usually works.</p>
+                </div>
+                <div class="anti-pattern">
+                    <h3>When error tolerance is zero</h3>
+                    <p>AI systems have error rates. If the domain can't tolerate any errors — financial calculations, legal compliance, safety-critical systems — AI should augment human judgment, not replace it.</p>
+                </div>
+                <div class="anti-pattern">
+                    <h3>When data quality is poor</h3>
+                    <p>AI amplifies data quality. Clean data produces useful outputs. Noisy data produces confident-sounding garbage. We'd rather fix the data pipeline than build an AI system on top of broken data.</p>
+                </div>
+                <div class="anti-pattern">
+                    <h3>When the process is simple</h3>
+                    <p>Adding AI to a simple process creates complexity without value. If the workflow has 3 steps and clear rules, automate it with traditional tools. AI is for problems that resist simple automation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--triadic-yellow);">Stack</p>
+            <h2 class="section-title">Technology follows the problem.</h2>
+            <div class="section-content">
+                <p>
+                    We don't have a default technology stack. We have a problem-assessment process that selects the simplest tool that solves reliably. Across our projects, the tools include:
+                </p>
+            </div>
+
+            <div class="tech-categories">
+                <div class="tech-category">
+                    <h3>Large Language Models</h3>
+                    <div class="tech-stack">
+                        <span class="tech-pill">Claude (Anthropic)</span>
+                        <span class="tech-pill">OpenRouter</span>
+                    </div>
+                    <p>Used for classification, extraction, summarization, and document analysis. Model selection is task-specific — we benchmark candidates on real data before committing.</p>
+                </div>
+                <div class="tech-category">
+                    <h3>ML & Data Pipelines</h3>
+                    <div class="tech-stack">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">FastAPI</span>
+                        <span class="tech-pill">Flask</span>
+                    </div>
+                    <p>Core pipeline infrastructure. Python for data processing and model integration. FastAPI/Flask for serving predictions and managing API endpoints.</p>
+                </div>
+                <div class="tech-category">
+                    <h3>Orchestration & Automation</h3>
+                    <div class="tech-stack">
+                        <span class="tech-pill">n8n</span>
+                        <span class="tech-pill">Google Workspace APIs</span>
+                        <span class="tech-pill">Zoom API</span>
+                    </div>
+                    <p>Workflow automation connecting AI components to real business tools. n8n for visual pipeline design. Direct API integration when precision matters.</p>
+                </div>
+                <div class="tech-category">
+                    <h3>Mobile & Frontend</h3>
+                    <div class="tech-stack">
+                        <span class="tech-pill">Swift / SwiftUI</span>
+                        <span class="tech-pill">React</span>
+                        <span class="tech-pill">Firebase</span>
+                    </div>
+                    <p>The interface layer where AI meets users. Native mobile for performance-critical applications. React for web dashboards. Firebase for real-time data and cloud functions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Where It Shows Up -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--triadic-yellow);">Evidence</p>
+            <h2 class="section-title">Where this shows up in our work.</h2>
+            <div class="case-links">
+                <a href="/work/bid-manager" class="case-link-card">
+                    <span class="case-link-tag" style="color: var(--ced-blue);">Construction x AI</span>
+                    <h3>SSA / Bid Manager</h3>
+                    <p>Claude 3.5 Sonnet for classification. >95% accuracy. Knowledge graph for cross-project queries. Traceable extraction with source citations.</p>
+                </a>
+                <a href="/work/ncca-zoom" class="case-link-card">
+                    <span class="case-link-tag" style="color: var(--ced-orange);">Education x Analytics</span>
+                    <h3>NCCA Zoom Tracker</h3>
+                    <p>Pattern detection on QoS bitrate data. 3-tier inference system. AI detecting signals invisible to Zoom's own API. Zero false positives.</p>
+                </a>
+                <a href="/work/merces" class="case-link-card">
+                    <span class="case-link-tag" style="color: var(--triadic-yellow);">Consumer x Mobile</span>
+                    <h3>Merces Watch App</h3>
+                    <p>Camera color extraction. Color theory matching (complementary, analogous, triadic). AI-powered discovery that solves the "I don't know what I want" problem.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Background -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--triadic-yellow);">Foundation</p>
+            <h2 class="section-title">Where this comes from.</h2>
+            <div class="section-content">
+                <p>
+                    The AI pillar is built on an AI/ML concentration within the Computer Science degree from UNC Chapel Hill, plus over a decade as a Data Scientist. The academic foundation covers machine learning theory, statistical modeling, and algorithm design. The production experience covers everything the theory doesn't — data quality issues, model drift, evaluation at scale, and the gap between benchmark accuracy and real-world performance.
+                </p>
+                <p>
+                    The progression matters: PC era → Data Science → Machine Learning → Modern AI. This isn't someone who discovered AI in 2023. It's someone who watched the field evolve from statistical models to neural networks to transformers to LLM agents — and who understands which techniques actually survive contact with production data.
+                </p>
+                <p>
+                    The AI pillar is deliberately listed third, after CompSci and CogSci. Not because AI is least important — because it's most effective when it sits on a foundation of engineering rigor and human understanding. AI without CompSci breaks in production. AI without CogSci gets ignored by users. AI with both creates genuine leverage.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <CTASection
+        label="Need AI that actually works?"
+        title="Let's apply AI where it creates real leverage."
+        description="We build AI systems that solve specific problems — not AI for AI's sake. Tell us about yours."
+        buttonText="Start a Conversation"
+        buttonHref="/contact"
+    />
+</PageLayout>
+
+<style>
+    .capability-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        margin-top: 32px;
+    }
+
+    .capability-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+    }
+
+    .capability-card h3 {
+        font-family: 'EB Garamond', serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    .capability-card p {
+        font-size: 15px;
+        color: var(--text-secondary);
+        line-height: 1.7;
+    }
+
+    .anti-pattern-list {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .anti-pattern {
+        padding: 28px 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .anti-pattern:last-child {
+        border-bottom: none;
+    }
+
+    .anti-pattern h3 {
+        font-family: 'EB Garamond', serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    .anti-pattern p {
+        font-size: 15px;
+        color: var(--text-secondary);
+        line-height: 1.7;
+    }
+
+    .tech-categories {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .tech-category h3 {
+        font-family: 'EB Garamond', serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 12px;
+    }
+
+    .tech-category p {
+        font-size: 15px;
+        color: var(--text-secondary);
+        line-height: 1.7;
+        margin-top: 12px;
+    }
+
+    .case-links {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 32px;
+    }
+
+    .case-link-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+    }
+
+    .case-link-card:hover {
+        border-color: var(--text-muted);
+        transform: translateY(-4px);
+    }
+
+    .case-link-tag {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .case-link-card h3 {
+        font-family: 'EB Garamond', serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    .case-link-card p {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+        .capability-grid,
+        .case-links {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

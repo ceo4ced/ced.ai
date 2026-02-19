@@ -4,16 +4,19 @@ interface Props {
     title: string;
     description: string;
     color: string;
+    href?: string;
 }
 
-const { icon, title, description, color } = Astro.props;
+const { icon, title, description, color, href } = Astro.props;
+const Tag = href ? 'a' : 'article';
 ---
 
-<article class="pillar" style={`--pillar-color: ${color}`}>
+<Tag href={href} class="pillar" style={`--pillar-color: ${color}`}>
     <span class="icon">{icon}</span>
     <h3>{title}</h3>
     <p>{description}</p>
-</article>
+    {href && <span class="pillar-link">Learn more &rarr;</span>}
+</Tag>
 
 <style>
     .pillar {
@@ -22,6 +25,9 @@ const { icon, title, description, color } = Astro.props;
         border-radius: 16px;
         padding: 32px;
         transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+        display: block;
     }
 
     .pillar:hover {
@@ -52,5 +58,18 @@ const { icon, title, description, color } = Astro.props;
         font-size: 15px;
         color: var(--text-secondary);
         line-height: 1.7;
+    }
+
+    .pillar-link {
+        display: inline-block;
+        margin-top: 16px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--pillar-color);
+        transition: opacity 0.2s ease;
+    }
+
+    .pillar:hover .pillar-link {
+        opacity: 0.8;
     }
 </style>

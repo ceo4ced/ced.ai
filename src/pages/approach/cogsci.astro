@@ -1,0 +1,341 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Article",
+            "headline": "Cognitive Science at ced.ai — Design for Humans",
+            "description": "How ced.ai applies cognitive science and HCI to build AI systems people actually use. Georgia Tech MS HCI informs every design decision — from trust surfaces to correction loops to adoption strategy.",
+            "url": "https://ced.ai/approach/cogsci",
+            "author": { "@id": "https://ced.ai/#organization" },
+            "isPartOf": { "@id": "https://ced.ai/#website" },
+            "about": [
+                { "@type": "Thing", "name": "Cognitive Science" },
+                { "@type": "Thing", "name": "Human-Computer Interaction" },
+                { "@type": "Thing", "name": "User Experience Design" }
+            ],
+            "speakable": {
+                "@type": "SpeakableSpecification",
+                "cssSelector": [".answer-capsule", ".section-content p:first-child"]
+            }
+        },
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ced.ai" },
+                { "@type": "ListItem", "position": 2, "name": "Approach", "item": "https://ced.ai/approach" },
+                { "@type": "ListItem", "position": 3, "name": "CogSci", "item": "https://ced.ai/approach/cogsci" }
+            ]
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Why does ced.ai start with HCI before building AI systems?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Most AI projects fail not because the model is wrong, but because nobody studied the humans who would use it. ced.ai starts with Human-Computer Interaction research — observing actual workflows, interviewing stakeholders, and mapping the real process (not the documented one). This approach, informed by a Georgia Tech MS in HCI, prevents building technically brilliant solutions that nobody uses."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is a trust surface in AI design?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "A trust surface is the point in an AI system where a human decides whether to accept or override the system's output. ced.ai designs trust surfaces explicitly — making AI decisions transparent, traceable, and overridable. When users can see what the AI did and why, adoption rates increase dramatically. When they can't, even accurate systems get abandoned."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How does cognitive science improve AI system adoption?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Cognitive science provides frameworks for understanding how people form mental models, make decisions under uncertainty, and develop trust in automated systems. ced.ai applies these frameworks to design AI interactions that match how users actually think — not how engineers assume they think. This reduces training time, increases adoption, and prevents the common pattern of technically sound AI systems being abandoned because they don't fit real workflows."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What HCI credentials does ced.ai have?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "ced.ai's founder Cedric Williams holds a Master's in Human-Computer Interaction from Georgia Tech, one of the top HCI programs in the world. This formal training in understanding how humans interact with technology directly shapes every design decision — from how AI outputs are presented to how correction loops work to how trust is built over time."
+                    }
+                }
+            ]
+        }
+    ]
+};
+---
+
+<PageLayout
+    title="CogSci | ced.ai — Design for Humans"
+    description="How ced.ai applies cognitive science and HCI (Georgia Tech MS) to build AI systems people actually use. Trust surfaces, correction loops, workflow design, and adoption strategy."
+    schema={schema}
+>
+    <header class="page-header">
+        <div class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span class="separator">&rsaquo;</span>
+            <a href="/approach">Approach</a>
+            <span class="separator">&rsaquo;</span>
+            <span>CogSci</span>
+        </div>
+        <p class="page-label" style="color: var(--ced-orange);">CogSci</p>
+        <h1 class="page-title">Design for humans.</h1>
+        <p class="page-intro answer-capsule">
+            We design the human side of AI systems — workflows, trust surfaces, correction loops, and adoption strategy. Human-Computer Interaction is the difference between a demo that impresses and a tool people actually use every day.
+        </p>
+    </header>
+
+    <!-- Why CogSci Matters -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--ced-orange);">The Problem</p>
+            <h2 class="section-title">Technically brilliant solutions that nobody uses.</h2>
+            <div class="section-content">
+                <p>
+                    In 25 years of building systems, the pattern is always the same. A team builds something technically impressive — high accuracy, fast inference, clean architecture. They demo it to stakeholders. Everyone's excited. Then it launches, and six months later, people are working around it or ignoring it entirely.
+                </p>
+                <p>
+                    The model accuracy didn't matter because the workflow was wrong. The automation didn't help because people didn't trust it. The dashboard didn't get used because it answered questions nobody was actually asking.
+                </p>
+                <p>
+                    This isn't a technology failure. It's a design failure. And it's preventable — if you understand how humans actually think, work, and develop trust in automated systems.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Understanding Workflows -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--ced-orange);">Observation</p>
+            <h2 class="section-title">We spend more time watching people work than writing code.</h2>
+            <div class="section-content">
+                <p>
+                    The real requirements don't live in specification documents. They live in workarounds, complaints, and the things nobody thought to mention. The Excel macro someone built to avoid a broken process. The sticky note reminding someone to check a second system. The "oh, and I also have to..." that comes up in the third interview.
+                </p>
+                <p>
+                    When we observed the bid process for our construction client, the documented workflow had 6 steps. The real workflow had 23. The difference wasn't laziness or incompetence — it was years of accumulated knowledge about edge cases, exceptions, and shortcuts that the documentation never captured.
+                </p>
+                <p>
+                    For the Zoom engagement tracker, we shadowed teachers for a full week before writing any code. The problem wasn't "we need camera tracking." The problem was "I lose my first 15 minutes every class and I'm exhausted by period 4." That reframing changed everything about the solution — it had to require zero teacher effort, not just provide data.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Surfaces -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--ced-orange);">Design Principle</p>
+            <h2 class="section-title">Trust is designed, not assumed.</h2>
+            <div class="section-content">
+                <p>
+                    A trust surface is the moment where a human decides: do I accept what the AI just did, or do I override it? Every AI system has these moments. Most systems hide them or skip them entirely, presenting AI output as authoritative fact.
+                </p>
+                <p>
+                    We design trust surfaces explicitly. Every AI output should be traceable — users can see what the system did and why. Every automation should have an override — users can correct mistakes without fighting the system. Every confidence level should be visible — users know when the system is sure versus guessing.
+                </p>
+                <p>
+                    In the bid manager, when the AI classifies an email, the classification and reasoning are visible. If it's wrong, the user corrects it with one click, and the correction feeds back into the system. This isn't just good UX — it's how you build institutional trust over time.
+                </p>
+            </div>
+
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <h3>Transparency</h3>
+                    <p>Show what the AI did and why. Users who understand the reasoning trust the system more, even when accuracy is the same.</p>
+                </div>
+                <div class="trust-card">
+                    <h3>Override</h3>
+                    <p>Every automation needs an escape hatch. Users who can correct the system engage more. Users who can't abandon it.</p>
+                </div>
+                <div class="trust-card">
+                    <h3>Feedback loops</h3>
+                    <p>Corrections should improve the system. Users who see their input making the AI better become advocates, not skeptics.</p>
+                </div>
+                <div class="trust-card">
+                    <h3>Confidence signals</h3>
+                    <p>The system should communicate certainty. "I'm 98% sure" and "I'm guessing" require different human responses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Failure Modes -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--ced-orange);">Resilience</p>
+            <h2 class="section-title">We design for what happens when the AI is wrong.</h2>
+            <div class="section-content">
+                <p>
+                    Because it will be wrong. The question isn't whether — it's whether the failure is recoverable or catastrophic. A misclassified email that's easily corrected is recoverable. A misclassified email that triggers an automated bid response is catastrophic.
+                </p>
+                <p>
+                    Cognitive science gives us frameworks for understanding how humans handle errors in automated systems. People develop "automation complacency" — they stop checking outputs that are usually correct. They develop "automation bias" — they trust the system's answer over their own judgment. Both failure modes are predictable and designable.
+                </p>
+                <p>
+                    We design AI systems with explicit failure paths. What happens when the model returns low confidence? What happens when the input doesn't match any training pattern? What happens when the API is down? These aren't afterthoughts — they're core design requirements that get addressed before the first line of code.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Monday Morning -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--ced-orange);">Reality</p>
+            <h2 class="section-title">Monday morning is the test.</h2>
+            <div class="section-content">
+                <p>
+                    Demos impress. Production teaches. A system that works perfectly in a conference room often fails in the real environment — where people are distracted, under pressure, doing three things at once, and not in the mood to learn new software.
+                </p>
+                <p>
+                    The CogSci pillar ensures that our systems survive contact with real organizational complexity. We design for the tired user. The rushed user. The user who was told to use this system but didn't ask for it. The user who's been burned by three previous "AI solutions" and is deeply skeptical.
+                </p>
+                <p>
+                    That's why adoption isn't a post-launch activity for us. It's a design constraint from day one. If the system requires training, it's not simple enough. If the system requires motivation, it's not useful enough. If the system requires trust, it hasn't earned it yet.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Where It Shows Up -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--ced-orange);">Evidence</p>
+            <h2 class="section-title">Where this shows up in our work.</h2>
+            <div class="case-links">
+                <a href="/work/bid-manager" class="case-link-card">
+                    <span class="case-link-tag" style="color: var(--ced-blue);">Construction x AI</span>
+                    <h3>SSA / Bid Manager</h3>
+                    <p>2 weeks observing the real workflow (23 steps vs 6 documented). One-click correction on every classification. Zero training required for adoption.</p>
+                </a>
+                <a href="/work/ncca-zoom" class="case-link-card">
+                    <span class="case-link-tag" style="color: var(--ced-orange);">Education x Analytics</span>
+                    <h3>NCCA Zoom Tracker</h3>
+                    <p>Shadowed teachers for a week. Reframed "camera tracking" as "eliminate camera policing." Zero teacher effort required — pure deterrent effect.</p>
+                </a>
+                <a href="/work/merces" class="case-link-card">
+                    <span class="case-link-tag" style="color: var(--triadic-yellow);">Consumer x Mobile</span>
+                    <h3>Merces Watch App</h3>
+                    <p>User research revealed people choose faces by context, not category. Camera-based recommendation emerged directly from observing real behavior.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Background -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--ced-orange);">Foundation</p>
+            <h2 class="section-title">Where this comes from.</h2>
+            <div class="section-content">
+                <p>
+                    The CogSci pillar is grounded in a Master's in Human-Computer Interaction from Georgia Tech — one of the top HCI programs in the world. The program teaches not just how to design interfaces, but how to understand the humans who use them: cognition, perception, decision-making, and the formation of mental models.
+                </p>
+                <p>
+                    This isn't decorative background. Every design decision in our AI systems traces back to cognitive science principles. How we present confidence levels (anchoring bias). How we structure correction flows (effort reduction). How we sequence information (cognitive load theory). How we build trust over time (calibration and reliability).
+                </p>
+                <p>
+                    Combined with the Economics training from UNC Chapel Hill, we think about both how people think and what incentivizes them. An AI system that saves time but adds mental overhead isn't actually saving anything. A system that requires behavior change needs to offer clear, immediate value or it won't get adopted.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <CTASection
+        label="Need design that drives adoption?"
+        title="Let's build something people actually use."
+        description="We design AI systems around real humans and real workflows. Tell us about yours."
+        buttonText="Start a Conversation"
+        buttonHref="/contact"
+    />
+</PageLayout>
+
+<style>
+    .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        margin-top: 32px;
+    }
+
+    .trust-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+    }
+
+    .trust-card h3 {
+        font-family: 'EB Garamond', serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    .trust-card p {
+        font-size: 15px;
+        color: var(--text-secondary);
+        line-height: 1.7;
+    }
+
+    .case-links {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 32px;
+    }
+
+    .case-link-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+    }
+
+    .case-link-card:hover {
+        border-color: var(--text-muted);
+        transform: translateY(-4px);
+    }
+
+    .case-link-tag {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .case-link-card h3 {
+        font-family: 'EB Garamond', serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    .case-link-card p {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+        .case-links {
+            grid-template-columns: 1fr;
+        }
+        .trust-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

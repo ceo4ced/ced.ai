@@ -1,0 +1,355 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Article",
+            "headline": "Computer Science at ced.ai — Systems That Hold Up",
+            "description": "How ced.ai applies computer science fundamentals — pure functions, TDD, regression testing, and CI/CD — to build AI systems that survive production. 406 tests on our bid automation system. 200+ on our engagement tracker.",
+            "url": "https://ced.ai/approach/compsci",
+            "author": { "@id": "https://ced.ai/#organization" },
+            "isPartOf": { "@id": "https://ced.ai/#website" },
+            "about": [
+                { "@type": "Thing", "name": "Computer Science" },
+                { "@type": "Thing", "name": "Test-Driven Development" },
+                { "@type": "Thing", "name": "Software Engineering" }
+            ],
+            "speakable": {
+                "@type": "SpeakableSpecification",
+                "cssSelector": [".answer-capsule", ".section-content p:first-child"]
+            }
+        },
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ced.ai" },
+                { "@type": "ListItem", "position": 2, "name": "Approach", "item": "https://ced.ai/approach" },
+                { "@type": "ListItem", "position": 3, "name": "CompSci", "item": "https://ced.ai/approach/compsci" }
+            ]
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Why does ced.ai use pure functions for AI systems?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Pure functions — functions with no side effects and predictable outputs for given inputs — make AI systems debuggable and testable. When an AI classification pipeline produces unexpected results, pure functions let you isolate exactly which stage failed. ced.ai's bid automation system uses a chain of pure functions: email in, structured data out, with each stage independently testable and replaceable."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How does test-driven development work for AI applications?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "TDD for AI means writing tests before code, including tests for classification accuracy, extraction validation, edge cases, and integration. ced.ai's bid automation system has 406 tests that run in under 3 minutes. When upgrading from Claude 3 to Claude 3.5 Sonnet, the regression suite caught 3 classification edge cases that would have silently degraded accuracy in production."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Why is regression testing important for AI systems?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "AI systems evolve constantly — prompts update, models change, data distributions shift. Regression testing catches drift before users notice. When Zoom updated their QoS data format, ced.ai's regression suite caught the format changes before they broke the camera detection system. Without regression testing, AI systems degrade silently in production."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What computer science background does ced.ai have?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "ced.ai is founded by Cedric Williams, who holds a Computer Science degree with an AI/ML concentration from UNC Chapel Hill and a Master's in Human-Computer Interaction from Georgia Tech. He has been working as a Data Scientist since 2012, building production systems across construction, education, and consumer technology. The computer science foundation ensures every design can actually be built, tested, and maintained at scale."
+                    }
+                }
+            ]
+        }
+    ]
+};
+---
+
+<PageLayout
+    title="CompSci | ced.ai — Systems That Hold Up"
+    description="How ced.ai applies computer science fundamentals to build AI systems that survive production. Pure functions, TDD with 406+ tests, regression testing, and CI/CD with AI agents."
+    schema={schema}
+>
+    <header class="page-header">
+        <div class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span class="separator">&rsaquo;</span>
+            <a href="/approach">Approach</a>
+            <span class="separator">&rsaquo;</span>
+            <span>CompSci</span>
+        </div>
+        <p class="page-label" style="color: var(--ced-blue);">CompSci</p>
+        <h1 class="page-title">Systems that hold up.</h1>
+        <p class="page-intro answer-capsule">
+            We build the software backbone of AI systems — pipelines, reliability, evaluation, and handoff. Pure functions, test-driven development, and regression testing ensure that what works in development works on Monday morning in production.
+        </p>
+    </header>
+
+    <!-- Why CompSci Matters -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--ced-blue);">The Problem</p>
+            <h2 class="section-title">Most AI systems break in production.</h2>
+            <div class="section-content">
+                <p>
+                    The gap between a working demo and a production system is enormous. Demos handle the happy path. Production handles everything else — malformed inputs, API timeouts, model drift, edge cases nobody anticipated, and users who interact with the system in ways nobody predicted.
+                </p>
+                <p>
+                    This is where computer science fundamentals matter. Not as academic exercises, but as engineering disciplines that prevent 3 AM alerts and silent data corruption. Every shortcut in architecture becomes a production incident eventually.
+                </p>
+                <p>
+                    We've seen it repeatedly: AI systems that classify emails perfectly in testing but choke on forwarded threads with nested attachments. Recommendation engines that work on clean data but produce garbage when users input unexpected formats. Chatbots that handle the scripted flow but crash on the fifth edge case.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pure Functions -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--ced-blue);">Principle</p>
+            <h2 class="section-title">Pure functions make AI debuggable.</h2>
+            <div class="section-content">
+                <p>
+                    A pure function takes an input and produces an output. No side effects. No hidden state. No surprises. When something goes wrong — and in AI systems, things always go wrong — pure functions let you isolate exactly which stage failed and why.
+                </p>
+                <p>
+                    Our bid automation system is a chain of pure functions: raw email → parsing → classification → extraction → structured output. Each stage is independently testable. When the classification model produces an unexpected result, we can replay the exact input through the exact function and reproduce the issue instantly.
+                </p>
+                <p>
+                    This isn't theoretical preference. When we upgraded from Claude 3 to Claude 3.5 Sonnet, we swapped one function in the chain. The regression suite immediately caught 3 edge cases where the new model classified differently. Because the architecture was pure, the fix was isolated — no cascading changes, no unexpected side effects.
+                </p>
+            </div>
+
+            <div class="example-box">
+                <h3>In practice: Bid Manager pipeline</h3>
+                <div class="pipeline-flow">
+                    <span class="pipeline-step">Email Input</span>
+                    <span class="pipeline-arrow">&rarr;</span>
+                    <span class="pipeline-step">Parse & Extract</span>
+                    <span class="pipeline-arrow">&rarr;</span>
+                    <span class="pipeline-step">Classify (AI)</span>
+                    <span class="pipeline-arrow">&rarr;</span>
+                    <span class="pipeline-step">Validate</span>
+                    <span class="pipeline-arrow">&rarr;</span>
+                    <span class="pipeline-step">Structured Output</span>
+                </div>
+                <p class="example-note">Each stage is a pure function. Each stage has its own tests. Each stage can be replaced independently.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TDD -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--ced-blue);">Discipline</p>
+            <h2 class="section-title">Test-driven development isn't overhead — it's how you sleep at night.</h2>
+            <div class="section-content">
+                <p>
+                    We write the test before the code. Every behavior is verified. Every edge case is covered. This isn't a luxury or a nice-to-have — it's the minimum viable engineering for AI systems that handle real data.
+                </p>
+                <p>
+                    Our bid automation system has <strong>406 tests</strong>. Classification accuracy tests. Extraction validation tests. Integration tests. Edge case tests for forwarded emails, empty attachments, malformed headers, and Unicode characters in project names. The suite runs in under 3 minutes.
+                </p>
+                <p>
+                    Our Zoom engagement tracker has <strong>200+ tests</strong> covering synthetic QoS data at various bitrate levels, edge cases like students joining then immediately leaving, camera toggles mid-class, and bandwidth fluctuation that could trigger false positives.
+                </p>
+                <p>
+                    The test suite is the contract. It defines what the system does. When requirements change, the tests change first. When bugs appear, a test reproduces the bug before the fix is written. This discipline is what allows us to move fast without breaking things.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regression Testing -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--ced-blue);">Protection</p>
+            <h2 class="section-title">AI systems drift. Regression testing catches it.</h2>
+            <div class="section-content">
+                <p>
+                    Traditional software breaks loudly — errors, crashes, stack traces. AI systems break quietly. Classification accuracy drops from 97% to 89% and nobody notices for weeks. Extraction quality degrades because the underlying model was updated and the prompt behavior shifted.
+                </p>
+                <p>
+                    Regression testing is the safeguard against silent degradation. Every time we change a prompt, update a model, modify a pipeline stage, or receive new data patterns, the full behavioral surface is validated against known-good results.
+                </p>
+                <p>
+                    When Zoom updated their QoS data format, our regression suite caught the change before it reached production. When we tuned classification prompts for the bid manager, the suite identified 3 categories where the new prompt performed worse — before any user saw the difference.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CI/CD -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--ced-blue);">Operations</p>
+            <h2 class="section-title">CI/CD with AI agents in the loop.</h2>
+            <div class="section-content">
+                <p>
+                    Deployment isn't the end — it's where the real work begins. Our CI/CD pipelines include AI-specific quality gates: classification accuracy thresholds, extraction quality scores, response latency budgets, and cost monitoring.
+                </p>
+                <p>
+                    When accuracy drops below threshold, the system alerts before users notice. When API costs spike unexpectedly, the pipeline flags it. When a new model version is available, the evaluation pipeline benchmarks it against the current production model on real data before any swap happens.
+                </p>
+                <p>
+                    This is where the CompSci discipline pays off most. The pure functions make each stage measurable. The tests define the acceptance criteria. The regression suite validates the full surface. CI/CD ties it all together into a system that gets better in production, not just in development.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Where It Shows Up -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--ced-blue);">Evidence</p>
+            <h2 class="section-title">Where this shows up in our work.</h2>
+            <div class="case-links">
+                <a href="/work/bid-manager" class="case-link-card">
+                    <span class="case-link-tag" style="color: var(--ced-blue);">Construction x AI</span>
+                    <h3>SSA / Bid Manager</h3>
+                    <p>406 tests. >95% classification accuracy. All 6 methodology steps applied. Pure function pipeline from email input to structured output.</p>
+                </a>
+                <a href="/work/ncca-zoom" class="case-link-card">
+                    <span class="case-link-tag" style="color: var(--ced-orange);">Education x Analytics</span>
+                    <h3>NCCA Zoom Tracker</h3>
+                    <p>200+ tests. 3-tier detection pipeline built as pure functions. Regression suite catches Zoom API format changes automatically.</p>
+                </a>
+                <a href="/work/merces" class="case-link-card">
+                    <span class="case-link-tag" style="color: var(--triadic-yellow);">Consumer x Mobile</span>
+                    <h3>Merces Watch App</h3>
+                    <p>71 Swift files. MVVM architecture with clean separation. Pure function pipeline for color extraction and face matching.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Background -->
+    <section class="content-section">
+        <div class="content-container">
+            <p class="section-label" style="color: var(--ced-blue);">Foundation</p>
+            <h2 class="section-title">Where this comes from.</h2>
+            <div class="section-content">
+                <p>
+                    The CompSci pillar is built on a Computer Science degree with an AI/ML concentration from UNC Chapel Hill. The curriculum covered algorithms, systems architecture, machine learning theory, and software engineering — the fundamentals that make production systems possible.
+                </p>
+                <p>
+                    But fundamentals alone don't build production systems. Since 2012, every Data Science project has reinforced the same lesson: the gap between a working model and a working system is almost entirely an engineering problem. The model is 10% of the work. The pipeline, testing, monitoring, and deployment are the other 90%.
+                </p>
+                <p>
+                    That's why CompSci is the first pillar. Not because it's the most glamorous — because it's the foundation that everything else depends on.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <CTASection
+        label="Need systems that hold up?"
+        title="Let's build something that works Monday morning."
+        description="We build AI systems with engineering rigor. Tell us about your challenge."
+        buttonText="Start a Conversation"
+        buttonHref="/contact"
+    />
+</PageLayout>
+
+<style>
+    .example-box {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        margin-top: 32px;
+    }
+
+    .example-box h3 {
+        font-family: 'EB Garamond', serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    .pipeline-flow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+    }
+
+    .pipeline-step {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px;
+        padding: 8px 16px;
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--ced-blue);
+    }
+
+    .pipeline-arrow {
+        color: var(--text-muted);
+        font-size: 18px;
+    }
+
+    .example-note {
+        font-size: 14px;
+        color: var(--text-muted);
+        font-style: italic;
+    }
+
+    .case-links {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 32px;
+    }
+
+    .case-link-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+    }
+
+    .case-link-card:hover {
+        border-color: var(--text-muted);
+        transform: translateY(-4px);
+    }
+
+    .case-link-tag {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .case-link-card h3 {
+        font-family: 'EB Garamond', serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    .case-link-card p {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+        .case-links {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
