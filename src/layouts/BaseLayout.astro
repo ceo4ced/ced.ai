@@ -61,6 +61,9 @@ const ogImg = ogImage || `${siteURL}/og-default.png`;
         })();
     </script>
 
+    <!-- LLM discovery -->
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable site summary">
+
     {schema && (
         <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     )}

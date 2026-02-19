@@ -1,0 +1,274 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import CTASection from '../components/CTASection.astro';
+
+const faqs = [
+    // General
+    {
+        category: "General",
+        question: "What does ced.ai do?",
+        answer: "ced.ai is an AI consulting firm that builds production-grade AI systems for businesses. We combine computer science, cognitive science, and artificial intelligence to automate workflows, build intelligent applications, and solve real business problems. Our clients typically see 90%+ time savings on manual processes."
+    },
+    {
+        category: "General",
+        question: "What industries does ced.ai work with?",
+        answer: "ced.ai works across industries including construction, education, and consumer technology. Past projects include AI-powered bid automation for construction companies (90%+ time savings), analytics platforms for virtual schools (25% instructional time reclaimed), and AI-integrated mobile applications with intelligent recommendations."
+    },
+    {
+        category: "General",
+        question: "How do I start working with ced.ai?",
+        answer: "Start by filling out the contact form at ced.ai/contact or emailing hello@ced.ai. Describe the problem you're trying to solve. We reply within 48 hours with an honest assessment of whether we can help, and if so, we'll propose a discovery phase to understand your specific context."
+    },
+    {
+        category: "General",
+        question: "What services does ced.ai offer?",
+        answer: "ced.ai offers AI Strategy consultation, AI System Development, Workflow Automation, and Technical Assessment. We specialize in building production-grade AI systems using our 6-step methodology. Past projects include bid automation (90%+ time savings), engagement analytics (25% time reclaimed), and AI-integrated mobile applications."
+    },
+    // Methodology
+    {
+        category: "Methodology",
+        question: "What is the ced.ai 6-step methodology?",
+        answer: "The ced.ai methodology is a 6-step framework for building reliable AI systems: (1) HCI/Wireframing to deeply understand users, (2) SpecKit specification to define precise requirements, (3) Pure Functions architecture for testable components, (4) Test-Driven Development for verified behavior, (5) Regression Testing for continuous validation, and (6) CI/CD with AI Agents for intelligent deployment. This methodology ensures AI systems that work in production, not just in demos."
+    },
+    {
+        category: "Methodology",
+        question: "Why does ced.ai start with HCI before building AI systems?",
+        answer: "Most AI projects fail not because the model is wrong, but because nobody studied the humans who would use it. ced.ai starts with Human-Computer Interaction research — observing actual workflows, interviewing stakeholders, and mapping the real process (not the documented one). This approach, informed by a Georgia Tech MS in HCI, prevents building technically brilliant solutions that nobody uses."
+    },
+    {
+        category: "Methodology",
+        question: "What are pure functions and why does ced.ai use them for AI?",
+        answer: "Pure functions are functions with no side effects and predictable outputs for given inputs. They make AI systems debuggable and testable. When an AI classification pipeline produces unexpected results, pure functions let you isolate exactly which stage failed. ced.ai's bid automation system uses a chain of pure functions: email in, structured data out, with each stage independently testable and replaceable."
+    },
+    {
+        category: "Methodology",
+        question: "How does test-driven development work for AI applications?",
+        answer: "TDD for AI means writing tests before code, including tests for classification accuracy, extraction validation, edge cases, and integration. ced.ai's bid automation system has 406 tests that run in under 3 minutes. When upgrading from Claude 3 to Claude 3.5 Sonnet, the regression suite caught 3 classification edge cases that would have silently degraded accuracy in production."
+    },
+    // CogSci
+    {
+        category: "Cognitive Science",
+        question: "What is a trust surface in AI design?",
+        answer: "A trust surface is the point in an AI system where a human decides whether to accept or override the system's output. ced.ai designs trust surfaces explicitly — making AI decisions transparent, traceable, and overridable. When users can see what the AI did and why, adoption rates increase dramatically. When they can't, even accurate systems get abandoned."
+    },
+    {
+        category: "Cognitive Science",
+        question: "How does cognitive science improve AI system adoption?",
+        answer: "Cognitive science provides frameworks for understanding how people form mental models, make decisions under uncertainty, and develop trust in automated systems. ced.ai applies these frameworks to design AI interactions that match how users actually think — not how engineers assume they think. This reduces training time, increases adoption, and prevents the common pattern of technically sound AI systems being abandoned because they don't fit real workflows."
+    },
+    // AI
+    {
+        category: "AI Technology",
+        question: "How does ced.ai use large language models in production?",
+        answer: "ced.ai uses LLMs like Claude for specific, bounded tasks where they excel — email classification, document extraction, summarization with traceability, and knowledge graph construction. We don't use LLMs as general-purpose reasoning engines. Each LLM call has a defined input, expected output, and evaluation criteria. Our bid automation system uses Claude 3.5 Sonnet for email classification with >95% accuracy across hundreds of categories."
+    },
+    {
+        category: "AI Technology",
+        question: "What is AI with traceability?",
+        answer: "AI with traceability means every AI output can be traced back to its source data and reasoning. When ced.ai's bid manager classifies an email, users can see which features triggered the classification. When the document analyzer extracts a specification, it cites the exact page and paragraph. This traceability is essential for building user trust and enabling meaningful human oversight of AI systems."
+    },
+    {
+        category: "AI Technology",
+        question: "When should you not use AI?",
+        answer: "ced.ai recommends against AI when the problem is better solved with straightforward automation, when the error tolerance is zero and human judgment is irreplaceable, when the data quality is too poor for reliable AI outputs, or when the process is simple enough that adding AI creates more complexity than it removes. Not every problem needs AI, and honest assessment of fit is part of every engagement."
+    },
+    {
+        category: "AI Technology",
+        question: "What AI technologies does ced.ai use?",
+        answer: "ced.ai works with LLMs (Claude, GPT), ML pipelines (Python, scikit-learn), cloud AI services (Firebase ML, OpenRouter), API orchestration (n8n, FastAPI), and custom AI agents. Technology selection is driven by the problem — we use the simplest tool that solves it reliably. A regex that works is better than an LLM that usually works."
+    },
+    // Case Studies
+    {
+        category: "Case Studies",
+        question: "What is the SSA / Bid Manager project?",
+        answer: "The SSA / Bid Manager is an AI-powered bid automation system built for a construction company. It uses Claude 3.5 Sonnet to classify incoming RFI emails, extract key metadata (project name, deadline, scope, materials), and organize everything into a structured pipeline. The system reduced 4-hour bid processes to under 5 minutes — a 90%+ time savings — with >95% classification accuracy and 406 automated tests."
+    },
+    {
+        category: "Case Studies",
+        question: "How does the NCCA Zoom Tracker work?",
+        answer: "The NCCA Zoom Tracker is a Python library that infers student camera status from Zoom Quality of Service (QoS) bitrate metrics. Since Zoom doesn't expose camera on/off status via API, the system uses a 3-tier detection approach: bitrate thresholds, FPS analysis, and placeholder bypass detection. It reclaimed 25% of lost instructional time at a virtual charter school through deterrent effect alone, with 200+ automated tests and zero false positives."
+    },
+    {
+        category: "Case Studies",
+        question: "What is the Merces Watch App?",
+        answer: "Merces is a dual-platform Swift/SwiftUI application (iOS + watchOS) for AI-powered watch face recommendations. It uses camera-based color extraction to match users with watch faces that complement their outfit or environment. The app features a custom .mercesface bundle format, cloud-backed catalog with offline fallback, and WatchConnectivity for seamless iPhone-to-Apple Watch transfer. Built with 71 Swift files in MVVM architecture."
+    },
+    // Credentials
+    {
+        category: "Background",
+        question: "What credentials does ced.ai have?",
+        answer: "ced.ai's founder Cedric Williams holds a dual degree in Economics and Computer Science (AI/ML concentration) from UNC Chapel Hill and a Master's in Human-Computer Interaction from Georgia Tech — one of the top HCI programs in the world. He has been working as a Data Scientist since 2012, building production systems across construction, education, and consumer technology."
+    },
+    {
+        category: "Background",
+        question: "Why does ced.ai combine computer science, cognitive science, and AI?",
+        answer: "The equation ced.ai = CompSci + CogSci + AI reflects three essential disciplines for building AI that works. Computer science provides engineering rigor (pure functions, TDD, regression testing). Cognitive science ensures systems are designed for real humans (trust surfaces, workflows, adoption). AI is the strategic application layer (extraction, classification, automation). Most AI projects fail because they optimize only one dimension — usually the technology — while ignoring the human and engineering sides."
+    },
+    // Regression Testing
+    {
+        category: "Methodology",
+        question: "Why is regression testing important for AI systems?",
+        answer: "AI systems evolve constantly — prompts update, models change, data distributions shift. Regression testing catches drift before users notice. When Zoom updated their QoS data format, ced.ai's regression suite caught the format changes before they broke the camera detection system. Without regression testing, AI systems degrade silently in production — classification accuracy drops from 97% to 89% and nobody notices for weeks."
+    },
+];
+
+// Group by category
+const categories = [...new Set(faqs.map(f => f.category))];
+
+const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "FAQPage",
+            "name": "Frequently Asked Questions — ced.ai",
+            "description": "Answers to common questions about ced.ai's AI consulting services, 6-step methodology, case studies, credentials, and approach to building production-grade AI systems.",
+            "url": "https://ced.ai/faq",
+            "isPartOf": { "@id": "https://ced.ai/#website" },
+            "mainEntity": faqs.map(faq => ({
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": faq.answer
+                }
+            }))
+        },
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ced.ai" },
+                { "@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://ced.ai/faq" }
+            ]
+        },
+        {
+            "@type": "WebPage",
+            "name": "ced.ai FAQ",
+            "url": "https://ced.ai/faq",
+            "speakable": {
+                "@type": "SpeakableSpecification",
+                "cssSelector": [".faq-answer", ".page-intro"]
+            }
+        }
+    ]
+};
+---
+
+<PageLayout
+    title="FAQ | ced.ai — Frequently Asked Questions"
+    description="Answers to common questions about ced.ai's AI consulting services, methodology, case studies, and approach. Learn about trust surfaces, pure functions, TDD for AI, and our 6-step methodology."
+    schema={schema}
+>
+    <header class="page-header">
+        <div class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span class="separator">&rsaquo;</span>
+            <span>FAQ</span>
+        </div>
+        <p class="page-label">Questions & Answers</p>
+        <h1 class="page-title">Frequently asked questions.</h1>
+        <p class="page-intro">
+            Everything you need to know about how ced.ai builds AI systems — our methodology, technology choices, case studies, and what makes our approach different.
+        </p>
+    </header>
+
+    {categories.map(category => (
+        <section class="content-section">
+            <div class="content-container">
+                <h2 class="faq-category-title">{category}</h2>
+                <div class="faq-list">
+                    {faqs.filter(f => f.category === category).map(faq => (
+                        <details class="faq-item">
+                            <summary class="faq-question">
+                                <h3>{faq.question}</h3>
+                                <span class="faq-toggle" aria-hidden="true">+</span>
+                            </summary>
+                            <p class="faq-answer">{faq.answer}</p>
+                        </details>
+                    ))}
+                </div>
+            </div>
+        </section>
+    ))}
+
+    <CTASection
+        label="Still have questions?"
+        title="Let's talk about your project."
+        description="We're happy to answer questions about our approach, methodology, or how we might help with your specific challenge."
+        buttonText="Start a Conversation"
+        buttonHref="/contact"
+    />
+</PageLayout>
+
+<style>
+    .faq-category-title {
+        font-family: 'EB Garamond', serif;
+        font-size: 28px;
+        font-weight: 500;
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .faq-item {
+        border-bottom: 1px solid var(--border);
+        padding: 0;
+    }
+
+    .faq-item[open] .faq-toggle {
+        transform: rotate(45deg);
+    }
+
+    .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        padding: 20px 0;
+        list-style: none;
+        gap: 16px;
+    }
+
+    .faq-question::-webkit-details-marker {
+        display: none;
+    }
+
+    .faq-question h3 {
+        font-family: 'EB Garamond', serif;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1.4;
+        margin: 0;
+    }
+
+    .faq-toggle {
+        font-size: 24px;
+        color: var(--text-muted);
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+        width: 24px;
+        text-align: center;
+    }
+
+    .faq-answer {
+        font-size: 15px;
+        line-height: 1.8;
+        color: var(--text-secondary);
+        padding: 0 0 24px;
+        max-width: 800px;
+    }
+
+    @media (max-width: 700px) {
+        .faq-category-title {
+            font-size: 24px;
+        }
+        .faq-question h3 {
+            font-size: 18px;
+        }
+    }
+</style>

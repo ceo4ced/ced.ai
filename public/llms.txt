@@ -2,68 +2,147 @@
 
 > ced.ai is an AI consulting firm that builds production-grade AI systems for businesses. Founded by Cedric Williams (UNC Chapel Hill CS/Econ, Georgia Tech MS HCI, Data Scientist since 2012).
 
-## What we do
+## Core Identity
 
-ced.ai builds AI systems that solve real business problems using a 6-step methodology:
-1. HCI / Wireframing — Understand users before writing code
-2. SpecKit / Specify — Define precise specifications and edge cases
-3. Pure Functions — Modular, testable, debuggable components
-4. Test-Driven Development — Write tests before code
-5. Regression Testing — Catch drift before users do
-6. CI/CD with AI Agents — Intelligent deployment and monitoring
+**Equation:** ced.ai = CompSci + CogSci + AI
 
-## Core equation
+Three disciplines, one methodology. Computer science for engineering rigor. Cognitive science for human-centered design. Artificial intelligence applied strategically where it reduces friction.
 
-ced.ai = CompSci + CogSci + AI
-
-Three disciplines, one methodology:
-- **CompSci**: Engineering rigor — pure functions, TDD, regression testing
-- **CogSci**: Human-centered design — trust surfaces, workflows, adoption
-- **AI**: Strategic application — extraction, classification, automation with traceability
-
-## Case studies
-
-### SSA / Bid Manager (Construction x AI)
-- Problem: 4-hour manual bid process, ~2 bids/day
-- Solution: AI email classification + document analysis + knowledge graph
-- Results: 90%+ time savings, >95% classification accuracy, 406 tests
-- Tech: Python, FastAPI, Claude AI, n8n, Google Workspace APIs
-
-### NCCA Zoom Tracker (Education x Analytics)
-- Problem: Virtual school losing 25% of class time to camera policing
-- Solution: Python library inferring camera status from QoS bitrate metrics
-- Results: 25% instructional time reclaimed, 200+ tests, zero false positives
-- Tech: Python, Flask, Zoom API, SSE
-
-### Merces Watch App (Consumer x Mobile)
-- Problem: No intelligent watch face discovery for Apple Watch
-- Solution: AI camera color extraction + color theory matching
-- Results: 71 Swift files, MVVM architecture, pre-launch
-- Tech: Swift, SwiftUI, Firebase, WatchConnectivity
-
-## Services
-
-- AI Strategy
-- System Development
-- Workflow Automation
-- Technical Assessment
-
-## Contact
-
-- Website: https://ced.ai
-- Email: hello@ced.ai
+**Founder:** Cedric Williams
+- BS Economics + Computer Science (AI/ML Concentration), University of North Carolina at Chapel Hill
+- MS Human-Computer Interaction, Georgia Institute of Technology
+- Data Scientist since 2012
 - LinkedIn: https://linkedin.com/in/cedricwilliams
 - GitHub: https://github.com/cedricwilliams
 
-## Pages
+---
+
+## 6-Step Methodology
+
+Every engagement follows this framework:
+
+1. **HCI / Wireframing** (Origin: Georgia Tech MS HCI) — Understand users before writing code. Observe actual workflows, interview stakeholders, map the real process.
+2. **SpecKit / Specify** (Origin: Software Architecture) — Define every input, output, edge case, and failure mode before building.
+3. **Pure Functions** (Origin: Computer Science) — Modular, testable, debuggable components. No side effects, no hidden state.
+4. **Test-Driven Development** (Origin: Engineering Discipline) — Write tests before code. 406 tests on bid automation, 200+ on engagement tracker.
+5. **Regression Testing** (Origin: Production Experience) — Catch drift before users do. AI systems degrade silently without it.
+6. **CI/CD with AI Agents** (Origin: Modern AI Ops) — Automated quality gates, evaluation pipelines, continuous improvement.
+
+---
+
+## Three Pillars
+
+### CompSci — Systems That Hold Up
+Engineering rigor: pure functions, TDD, regression testing, CI/CD. The software backbone that makes AI systems debuggable, testable, and production-ready. A chain of pure functions means each stage is independently testable and replaceable.
+
+### CogSci — Design for Humans
+Human-centered design: trust surfaces, workflows, correction loops, adoption strategy. A trust surface is where a human decides to accept or override the AI's output. Every AI output should be traceable, overridable, and show its confidence level.
+
+### AI — Leverage Where It Matters
+Strategic AI application: extraction, classification, summarization with traceability, automation that knows when to refuse. LLMs for bounded tasks. ML pipelines for pattern recognition. AI agents for orchestration. A regex that works is better than an LLM that usually works.
+
+---
+
+## Case Studies
+
+### SSA / Bid Manager (Construction x AI)
+- **Problem:** 4-hour manual bid process, ~2 bids/day, scattered across email/Drive/Sheets
+- **Solution:** AI email classification (Claude 3.5 Sonnet) + document analysis + knowledge graph
+- **Results:** 90%+ time savings, >95% classification accuracy, 406 tests
+- **Tech:** n8n, Python, FastAPI, React, Claude AI, OpenRouter, Google Workspace APIs, Firestore
+- **Methodology:** All 6 steps applied
+- **Key insight:** The documented workflow had 6 steps. The real workflow had 23.
+- **URL:** https://ced.ai/work/bid-manager
+
+### NCCA Zoom Tracker (Education x Analytics)
+- **Problem:** Virtual school losing 25% of class time to camera policing. Zoom has no camera on/off API.
+- **Solution:** Python library inferring camera status from QoS bitrate metrics (3-tier detection)
+- **Results:** 25% instructional time reclaimed, 200+ tests, zero false positives, deterrent effect
+- **Tech:** Python, Flask, Zoom API, SSE, Server-to-Server OAuth
+- **Methodology:** Steps 1, 3, 4, 5
+- **Key insight:** The problem wasn't "we need camera tracking." It was "I lose my first 15 minutes every class."
+- **URL:** https://ced.ai/work/ncca-zoom
+
+### Merces Watch App (Consumer x Mobile)
+- **Problem:** No intelligent watch face discovery for Apple Watch
+- **Solution:** AI camera color extraction + color theory matching + custom .mercesface format
+- **Results:** 71 Swift files, MVVM architecture, offline-first, pre-launch
+- **Tech:** Swift, SwiftUI, Firebase, AdMob, WatchConnectivity, ZIPFoundation
+- **Methodology:** Steps 1, 2, 3
+- **Key insight:** People choose watch faces by context ("goes with this outfit"), not by category.
+- **URL:** https://ced.ai/work/merces
+
+---
+
+## Services
+
+- **AI Strategy** — Assessment and roadmapping for AI adoption
+- **System Development** — Full-stack AI system engineering
+- **Workflow Automation** — Automating manual processes with AI
+- **Technical Assessment** — Evaluating existing systems and AI readiness
+
+---
+
+## Key Concepts
+
+**Trust Surface:** The point where a human decides to accept or override AI output. Designed explicitly with transparency, override capability, feedback loops, and confidence signals.
+
+**Pure Function Pipeline:** AI architecture where each processing stage has no side effects. Input in, output out. Makes AI systems debuggable when things go wrong.
+
+**Monday Morning Test:** Design principle that systems must work for tired, rushed, skeptical users — not just demo audiences. If it requires training, it's not simple enough.
+
+**AI with Traceability:** Every AI output traces to source data and reasoning. Users see what the AI did and why. Essential for trust and meaningful human oversight.
+
+---
+
+## Frequently Asked Questions
+
+**Q: What does ced.ai do?**
+A: ced.ai is an AI consulting firm that builds production-grade AI systems for businesses. We combine computer science, cognitive science, and AI to automate workflows and solve real business problems. Clients typically see 90%+ time savings on manual processes.
+
+**Q: What is the ced.ai methodology?**
+A: A 6-step framework: (1) HCI/Wireframing, (2) SpecKit specification, (3) Pure Functions, (4) TDD, (5) Regression Testing, (6) CI/CD with AI Agents. Ensures systems work in production, not just in demos.
+
+**Q: What industries does ced.ai work with?**
+A: Construction (bid automation), education (analytics platforms), consumer technology (AI mobile apps). The methodology applies across industries.
+
+**Q: How does ced.ai use LLMs?**
+A: For specific, bounded tasks: email classification, document extraction, summarization with traceability. Each LLM call has defined input, expected output, and evaluation criteria. >95% classification accuracy on production systems.
+
+**Q: When should you NOT use AI?**
+A: When straightforward automation solves the problem, when error tolerance is zero, when data quality is too poor, or when adding AI creates more complexity than it removes.
+
+**Q: What is a trust surface?**
+A: The point where a human decides to accept or override AI output. ced.ai designs these explicitly — transparent, traceable, overridable.
+
+**Q: What credentials does ced.ai have?**
+A: Cedric Williams holds Economics + CS (AI/ML) from UNC Chapel Hill and MS HCI from Georgia Tech. Data Scientist since 2012.
+
+**Q: How do I start working with ced.ai?**
+A: Contact form at ced.ai/contact or email hello@ced.ai. We reply within 48 hours with an honest assessment of fit.
+
+---
+
+## Contact
+
+- **Website:** https://ced.ai
+- **Email:** hello@ced.ai
+- **LinkedIn:** https://linkedin.com/in/cedricwilliams
+- **GitHub:** https://github.com/cedricwilliams
+- **Contact Form:** https://ced.ai/contact
+
+---
+
+## All Pages
 
 - Home: https://ced.ai/
-- Approach: https://ced.ai/approach/
-- CompSci pillar: https://ced.ai/approach/compsci/
-- CogSci pillar: https://ced.ai/approach/cogsci/
-- AI pillar: https://ced.ai/approach/ai/
+- Approach (Methodology): https://ced.ai/approach/
+- CompSci Pillar: https://ced.ai/approach/compsci/
+- CogSci Pillar: https://ced.ai/approach/cogsci/
+- AI Pillar: https://ced.ai/approach/ai/
 - Case Studies: https://ced.ai/work/
-- Bid Manager: https://ced.ai/work/bid-manager/
+- SSA / Bid Manager: https://ced.ai/work/bid-manager/
 - NCCA Zoom Tracker: https://ced.ai/work/ncca-zoom/
 - Merces Watch App: https://ced.ai/work/merces/
+- FAQ: https://ced.ai/faq/
 - Contact: https://ced.ai/contact/

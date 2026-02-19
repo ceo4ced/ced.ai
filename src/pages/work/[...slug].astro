@@ -13,6 +13,71 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
+// Per-case-study FAQ content
+const caseStudyFaqs: Record<string, Array<{question: string, answer: string}>> = {
+    "bid-manager": [
+        {
+            question: "What is the SSA / Bid Manager project?",
+            answer: "The SSA / Bid Manager is an AI-powered bid automation system built by ced.ai for a construction company. It uses Claude 3.5 Sonnet to classify incoming RFI emails, extract key metadata (project name, deadline, scope, materials), and organize everything into a structured pipeline in Google Sheets and Drive. The system reduced 4-hour bid processes to under 5 minutes — a 90%+ time savings — with >95% classification accuracy and 406 automated tests."
+        },
+        {
+            question: "How does the Bid Manager use AI to classify construction emails?",
+            answer: "The Bid Manager uses Claude 3.5 Sonnet in a pure function pipeline to classify incoming construction bid emails. Raw emails are parsed, then classified by type (RFI, addendum, bid invitation, etc.), and key metadata is extracted. The system achieves >95% classification accuracy across hundreds of email categories. When the model was upgraded from Claude 3 to Claude 3.5 Sonnet, the regression test suite of 406 tests caught 3 classification edge cases that would have silently degraded accuracy."
+        },
+        {
+            question: "What results did the Bid Manager achieve?",
+            answer: "The Bid Manager achieved 90%+ time savings on bid processing — reducing a 4-hour manual process to under 5 minutes. It maintains >95% classification accuracy on email categorization, has 406 automated tests ensuring reliability, and processes bids faster than the estimating team can price them. Phases 1-2 (email automation and document analysis) are in production, with phases 3-4 (automated takeoff estimation and proposal generation) on the roadmap."
+        },
+        {
+            question: "What technology stack does the Bid Manager use?",
+            answer: "The Bid Manager uses n8n for workflow orchestration, Python and FastAPI for the backend, React for the frontend, Claude AI (via OpenRouter) for email classification and document analysis, Google Workspace APIs for Sheets and Drive integration, and Firestore for data persistence. The solid-surface-assistant component builds a knowledge graph from bid documents, enabling cross-project queries."
+        }
+    ],
+    "ncca-zoom": [
+        {
+            question: "What is the NCCA Zoom Tracker?",
+            answer: "The NCCA Zoom Tracker is a Python library built by ced.ai that infers student camera status from Zoom Quality of Service (QoS) bitrate metrics. Since Zoom doesn't expose camera on/off status via API, the system uses a 3-tier detection approach: bitrate thresholds, FPS analysis, and placeholder bypass detection. It reclaimed 25% of lost instructional time at a virtual charter school through deterrent effect alone."
+        },
+        {
+            question: "How does the Zoom Tracker detect if cameras are on without Zoom API support?",
+            answer: "The Zoom Tracker uses a 3-tier detection approach based on QoS metrics. First, video bitrate analysis — camera on means higher bitrate. Second, FPS correlation — a student with high bitrate but 0 FPS is likely using a static image. Third, placeholder bypass detection — real cameras have variable bitrate while fake loops are suspiciously consistent. This achieves zero false positives after calibration, with 200+ automated tests covering edge cases like mid-class camera toggles and bandwidth fluctuation."
+        },
+        {
+            question: "What impact did the Zoom Tracker have on teaching?",
+            answer: "The Zoom Tracker reclaimed 25% of lost instructional time — teachers had been spending 10-15 minutes per class policing camera compliance. The system created a deterrent effect: camera compliance improved simply because students knew monitoring was automated and visible. Teachers stopped being attendance police and returned to being educators. The system was later expanded to include chat monitoring and automated status emails to parents."
+        },
+        {
+            question: "What technology does the NCCA Zoom Tracker use?",
+            answer: "The NCCA Zoom Tracker is built with Python and Flask, using Zoom's Server-to-Server OAuth for API access. Real-time data flows through Server-Sent Events (SSE) to power live dashboards. The system includes three dashboards: live real-time camera status, historical engagement patterns over time, and an admin authentication dashboard with role-based access for teachers, administrators, and counselors."
+        }
+    ],
+    "merces": [
+        {
+            question: "What is the Merces Watch App?",
+            answer: "Merces is a dual-platform Swift/SwiftUI application (iOS + watchOS) built by ced.ai for AI-powered watch face recommendations. Users point their camera at an outfit, room, or object, and the app extracts dominant colors, then recommends watch faces using color theory (complementary, analogous, triadic). It features a custom .mercesface bundle format, cloud-backed catalog with offline fallback, and WatchConnectivity for seamless iPhone-to-Apple Watch transfer."
+        },
+        {
+            question: "How does the Merces app use AI for watch face recommendations?",
+            answer: "Merces uses camera-based color extraction to identify dominant colors in whatever the user photographs (outfit, room, object). It then applies color theory — complementary, analogous, and triadic color relationships — to score and rank watch faces from the catalog. This emerged directly from user research showing people choose watch faces by context ('something for this outfit') rather than browsing categories. The color extraction, color theory matching, and face scoring are all pure functions."
+        },
+        {
+            question: "What is the .mercesface file format?",
+            answer: "The .mercesface format is a custom bundle designed by ced.ai for Merces that packages watch face assets, complications, color schemes, and metadata into a single file. It enables offline-first functionality and efficient transfer between iPhone and Apple Watch via WatchConnectivity. The format was precisely specified during the SpecKit phase, defining every field, edge case (partial downloads, versioning), and fallback behavior."
+        },
+        {
+            question: "What architecture does the Merces app use?",
+            answer: "Merces is built with 71 Swift files using MVVM (Model-View-ViewModel) architecture with clean separation of concerns. The iOS and watchOS targets share core logic. Firebase provides the cloud backend with CDN distribution for the face catalog. Local caching ensures full offline functionality after initial sync. WatchConnectivity handles iPhone-to-Apple Watch transfer with connection interruption handling, queuing, and retry logic."
+        }
+    ]
+};
+
+const faqs = caseStudyFaqs[entry.id] || [
+    {
+        question: `What is the ${entry.data.title} project?`,
+        answer: entry.data.description
+    }
+];
+
 const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -29,6 +94,11 @@ const schema = {
             "about": {
                 "@type": "Thing",
                 "name": entry.data.domain
+            },
+            "keywords": entry.data.techStack.join(", "),
+            "speakable": {
+                "@type": "SpeakableSpecification",
+                "cssSelector": [".case-hero-title", ".case-study-content p:first-of-type"]
             }
         },
         {
@@ -41,16 +111,14 @@ const schema = {
         },
         {
             "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": `What is the ${entry.data.title} project?`,
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": entry.data.description
-                    }
+            "mainEntity": faqs.map(faq => ({
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": faq.answer
                 }
-            ]
+            }))
         }
     ]
 };

@@ -25,15 +25,53 @@ const schema = {
             "name": "ced.ai",
             "url": "https://ced.ai",
             "description": "AI consulting firm specializing in building production-grade AI systems that solve real business problems. Founded by Cedric Williams, combining 25+ years of computer science, cognitive science, and AI expertise.",
-            "founder": {
-                "@type": "Person",
-                "name": "Cedric Williams",
-                "alumniOf": [
-                    { "@type": "CollegeOrUniversity", "name": "University of North Carolina at Chapel Hill" },
-                    { "@type": "CollegeOrUniversity", "name": "Georgia Institute of Technology" }
-                ],
-                "knowsAbout": ["Artificial Intelligence", "Human-Computer Interaction", "Computer Science", "Cognitive Science", "Machine Learning", "Data Science"]
-            },
+            "founder": { "@id": "https://ced.ai/#founder" },
+            "sameAs": [
+                "https://linkedin.com/in/cedricwilliams",
+                "https://github.com/cedricwilliams"
+            ]
+        },
+        {
+            "@type": "Person",
+            "@id": "https://ced.ai/#founder",
+            "name": "Cedric Williams",
+            "jobTitle": "Founder & AI Consultant",
+            "url": "https://ced.ai",
+            "worksFor": { "@id": "https://ced.ai/#organization" },
+            "alumniOf": [
+                {
+                    "@type": "CollegeOrUniversity",
+                    "name": "University of North Carolina at Chapel Hill",
+                    "sameAs": "https://en.wikipedia.org/wiki/University_of_North_Carolina_at_Chapel_Hill"
+                },
+                {
+                    "@type": "CollegeOrUniversity",
+                    "name": "Georgia Institute of Technology",
+                    "sameAs": "https://en.wikipedia.org/wiki/Georgia_Institute_of_Technology"
+                }
+            ],
+            "hasCredential": [
+                {
+                    "@type": "EducationalOccupationalCredential",
+                    "credentialCategory": "degree",
+                    "educationalLevel": "Bachelor's",
+                    "about": ["Economics", "Computer Science with AI/ML Concentration"]
+                },
+                {
+                    "@type": "EducationalOccupationalCredential",
+                    "credentialCategory": "degree",
+                    "educationalLevel": "Master's",
+                    "about": "Human-Computer Interaction"
+                }
+            ],
+            "knowsAbout": [
+                { "@type": "Thing", "name": "Artificial Intelligence", "sameAs": "https://en.wikipedia.org/wiki/Artificial_intelligence" },
+                { "@type": "Thing", "name": "Human-Computer Interaction", "sameAs": "https://en.wikipedia.org/wiki/Human%E2%80%93computer_interaction" },
+                { "@type": "Thing", "name": "Computer Science", "sameAs": "https://en.wikipedia.org/wiki/Computer_science" },
+                { "@type": "Thing", "name": "Machine Learning", "sameAs": "https://en.wikipedia.org/wiki/Machine_learning" },
+                { "@type": "Thing", "name": "Data Science", "sameAs": "https://en.wikipedia.org/wiki/Data_science" },
+                { "@type": "Thing", "name": "Test-Driven Development", "sameAs": "https://en.wikipedia.org/wiki/Test-driven_development" }
+            ],
             "sameAs": [
                 "https://linkedin.com/in/cedricwilliams",
                 "https://github.com/cedricwilliams"
@@ -46,7 +84,20 @@ const schema = {
             "provider": { "@id": "https://ced.ai/#organization" },
             "serviceType": ["AI Strategy", "AI System Development", "Workflow Automation", "Technical Assessment"],
             "areaServed": "US",
-            "description": "We build AI systems that solve real business problems — from email automation saving 90%+ time to analytics platforms reclaiming 25% of lost productivity. Our 6-step methodology (HCI, SpecKit, Pure Functions, TDD, Regression, AI CI/CD) ensures systems that work on Monday morning, not just in demos."
+            "description": "We build AI systems that solve real business problems — from email automation saving 90%+ time to analytics platforms reclaiming 25% of lost productivity. Our 6-step methodology (HCI, SpecKit, Pure Functions, TDD, Regression, AI CI/CD) ensures systems that work on Monday morning, not just in demos.",
+            "knowsAbout": [
+                { "@type": "Thing", "name": "Large Language Models", "sameAs": "https://en.wikipedia.org/wiki/Large_language_model" },
+                { "@type": "Thing", "name": "Natural Language Processing", "sameAs": "https://en.wikipedia.org/wiki/Natural_language_processing" },
+                { "@type": "Thing", "name": "Workflow Automation", "sameAs": "https://en.wikipedia.org/wiki/Workflow_automation" }
+            ]
+        },
+        {
+            "@type": "WebPage",
+            "url": "https://ced.ai",
+            "speakable": {
+                "@type": "SpeakableSpecification",
+                "cssSelector": [".answer-capsule", ".section-title"]
+            }
         },
         {
             "@type": "FAQPage",

@@ -11,7 +11,44 @@ const schema = {
             "name": "Approach - ced.ai",
             "description": "How ced.ai builds AI systems that actually work. A 6-step methodology combining HCI, specification, pure functions, TDD, regression testing, and AI CI/CD.",
             "url": "https://ced.ai/approach",
-            "isPartOf": { "@id": "https://ced.ai/#website" }
+            "isPartOf": { "@id": "https://ced.ai/#website" },
+            "speakable": {
+                "@type": "SpeakableSpecification",
+                "cssSelector": [".page-intro", ".section-content p:first-child"]
+            },
+            "mentions": [
+                { "@type": "Thing", "name": "Human-Computer Interaction", "sameAs": "https://en.wikipedia.org/wiki/Human%E2%80%93computer_interaction" },
+                { "@type": "Thing", "name": "Test-Driven Development", "sameAs": "https://en.wikipedia.org/wiki/Test-driven_development" },
+                { "@type": "Thing", "name": "Regression Testing", "sameAs": "https://en.wikipedia.org/wiki/Regression_testing" },
+                { "@type": "Thing", "name": "Pure Function", "sameAs": "https://en.wikipedia.org/wiki/Pure_function" },
+                { "@type": "Thing", "name": "CI/CD", "sameAs": "https://en.wikipedia.org/wiki/CI/CD" }
+            ]
+        },
+        {
+            "@type": "DefinedTermSet",
+            "name": "ced.ai Methodology Concepts",
+            "hasDefinedTerm": [
+                {
+                    "@type": "DefinedTerm",
+                    "name": "Trust Surface",
+                    "description": "The point in an AI system where a human decides whether to accept or override the system's output. ced.ai designs trust surfaces explicitly — making AI decisions transparent, traceable, and overridable."
+                },
+                {
+                    "@type": "DefinedTerm",
+                    "name": "Pure Function Pipeline",
+                    "description": "An AI system architecture where each processing stage is a pure function with no side effects. Input in, output out. Each stage is independently testable and replaceable, making the entire system debuggable."
+                },
+                {
+                    "@type": "DefinedTerm",
+                    "name": "Monday Morning Test",
+                    "description": "ced.ai's design principle that systems must survive contact with real users who are distracted, under pressure, and skeptical. If a system requires training, it's not simple enough. If it requires motivation, it's not useful enough."
+                },
+                {
+                    "@type": "DefinedTerm",
+                    "name": "AI CI/CD",
+                    "description": "Continuous integration and deployment for AI systems that includes AI-specific quality gates: classification accuracy thresholds, extraction quality scores, response latency budgets, and cost monitoring with AI agents in the deployment loop."
+                }
+            ]
         },
         {
             "@type": "HowTo",

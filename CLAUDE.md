@@ -32,8 +32,12 @@ npm run preview  # Preview production build
 ```
 /               → Homepage (equation + 3 case studies + methodology preview)
 /approach       → 6-step methodology + credentials
+/approach/compsci → CompSci pillar deep-dive
+/approach/cogsci  → CogSci pillar deep-dive
+/approach/ai      → AI pillar deep-dive
 /work           → Case studies listing (3 case studies)
 /work/[slug]    → Individual case study (bid-manager, ncca-zoom, merces)
+/faq            → Consolidated FAQ page (20+ Q&As, AEO/GEO optimized)
 /contact        → Start an engagement (Formspree form)
 ```
 
@@ -85,13 +89,20 @@ src/
 - Consultant tone, not job-seeker tone
 
 ### AEO/GEO Optimization (LLM Ranking)
-- Every page has FAQPage schema for LLM citation
+- Dedicated /faq page consolidating 20+ Q&As across all topics
+- FAQPage schema on every page (30+ Q&As total across site)
 - 40-60 word answer capsules on every page
 - Question-format headings where natural
 - HowTo schema on approach page (6-step methodology)
-- CreativeWork + BreadcrumbList on case studies
-- ProfessionalService + Organization schemas on homepage
+- DefinedTermSet + DefinedTerm schemas for key concepts (trust surfaces, pure function pipeline, etc.)
+- CreativeWork + BreadcrumbList + speakable on case studies (3-4 FAQs per case study)
+- ProfessionalService + Organization + Person schemas on homepage with Wikipedia sameAs links
+- Speakable markup on homepage, approach, pillar pages, and case studies
+- `<link rel="alternate">` for llms.txt in BaseLayout head
+- llms.txt with full structured content (methodology, case studies, FAQs, concepts)
+- robots.txt explicitly allowing 15+ LLM crawlers (GPTBot, ClaudeBot, PerplexityBot, Cohere, Meta, etc.)
 - Short paragraphs (2-3 sentences) for extraction
+- about/mentions with Wikipedia entity links for technology concepts
 
 ### Differentiator
 - 6-step methodology: HCI → SpecKit → Pure Functions → TDD → Regression → AI CI/CD
